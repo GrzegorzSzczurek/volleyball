@@ -33,7 +33,7 @@ public class PlayerRepository implements PlayerRepo{
                 int cardId = rs.getInt("KARTKA_ID");
                 int scoredPoints = rs.getInt("PKT_ZDOBYTE");
                 SuspensionRepository suspensionRepository = new SuspensionRepository();
-                Suspension suspensionbyId = suspensionRepository.findById(suspensionId);
+                Suspension suspensionById = suspensionRepository.findById(suspensionId);
 
                 CardRepository cardRepository= new CardRepository();
                 Card cardById = cardRepository.findById(cardId);
@@ -41,7 +41,7 @@ public class PlayerRepository implements PlayerRepo{
                 ClubRepository clubRepository= new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
-                Player player = new Player(playerId, clubId, playerName, playerSurname, age, height, suspensionbyId, cardId, scoredPoints);
+                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionById, cardById, scoredPoints);
                 playerList.add(player);
             }
         } catch (SQLException e) {
@@ -68,7 +68,7 @@ public class PlayerRepository implements PlayerRepo{
                 int scoredPoints = rs.getInt("PKT_ZDOBYTE");
 
                 SuspensionRepository suspensionRepository = new SuspensionRepository();
-                Suspension suspensionbyId = suspensionRepository.findById(suspensionId);
+                Suspension suspensionById = suspensionRepository.findById(suspensionId);
 
                 CardRepository cardRepository= new CardRepository();
                 Card cardById = cardRepository.findById(cardId);
@@ -76,7 +76,7 @@ public class PlayerRepository implements PlayerRepo{
                 ClubRepository clubRepository= new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
-                Player player = new Player(playerId, clubId, playerName, playerSurname, age, height, suspensionbyId, cardId, scoredPoints);
+                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionById, cardById, scoredPoints);
 
                 return player;
             }

@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane prefHeight="466.0" prefWidth="764.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
@@ -22,9 +22,9 @@
                         <Text layoutX="189.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pojemnosc" />
                         <Text layoutX="189.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miasto" />
                         <Text layoutX="189.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kod pocztowy" />
-                        <Text layoutX="187.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ulica" />
+                        <Text layoutX="190.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ulica" wrappingWidth="33.705078125" />
                         <Button layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteHall" text="Usuń" />
-                        <Button fx:id="editHallButton" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editHall" text="Edytuj" />
+                        <Button layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editHall" text="Edytuj" />
                         <Button layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#addHall" text="Dodaj" />
                         <TableView fx:id="hallTable" layoutX="314.0" layoutY="35.0" prefHeight="341.0" prefWidth="424.0">
                           <columns>
@@ -72,12 +72,87 @@
                         <TableView fx:id="librarianTable1" layoutX="284.0" layoutY="9.0" prefHeight="406.0" prefWidth="468.0">
                            <columns>
                               <TableColumn fx:id="CoachName1" prefWidth="107.0" text="Imie" />
-                              <TableColumn fx:id="CoachSurname1" prefWidth="127.0" text="Nazwisko" />
-                              <TableColumn fx:id="CoachDayOfBirth1" prefWidth="106.0" text="Data urodzenia" />
-                              <TableColumn fx:id="CoachNationality1" prefWidth="127.0" text="Narodowość" />
+                              <TableColumn fx:id="CoachSurname1" prefWidth="108.0" text="Nazwisko" />
+                              <TableColumn fx:id="StartOfSuspension" prefWidth="125.0" text="Początek zawieszenia" />
+                              <TableColumn fx:id="EndOfSuspension" prefWidth="127.0" text="Koniec zawieszenia" />
                            </columns>
                         </TableView>
                         <DatePicker fx:id="tfSuspensionEndOfSuspesnion" layoutX="43.0" layoutY="118.0" promptText="Koniec zawieszenia" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Klub">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="25.0" layoutY="225.0" mnemonicParsing="false" onAction="#deleteClub" text="Usuń" />
+                        <Button layoutX="82.0" layoutY="225.0" mnemonicParsing="false" onAction="#addClub" text="Dodaj" />
+                        <Button layoutX="146.0" layoutY="225.0" mnemonicParsing="false" onAction="#editClub" text="Edytuj" />
+                        <TableView fx:id="librarianTable11" layoutX="393.0" layoutY="12.0" prefHeight="258.0" prefWidth="350.0">
+                           <columns>
+                              <TableColumn fx:id="clubName" prefWidth="175.0" text="Klub" />
+                              <TableColumn fx:id="clubCountry" prefWidth="174.0" text="Kraj" />
+                           </columns>
+                        </TableView>
+                        <TextField fx:id="tfclubName" layoutX="38.0" layoutY="70.0" promptText="Nazwa klubu" />
+                        <TextField fx:id="tfclubCountry" layoutX="38.0" layoutY="116.0" promptText="Kraj" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Zawodnik">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="23.0" layoutY="250.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
+                        <Button layoutX="82.0" layoutY="250.0" mnemonicParsing="false" onAction="#addPlayer" text="Dodaj" />
+                        <Button layoutX="146.0" layoutY="250.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj" />
+                        <TableView fx:id="librarianTable111" layoutX="223.0" layoutY="12.0" prefHeight="417.0" prefWidth="520.0">
+                           <columns>
+                              <TableColumn fx:id="playerName" prefWidth="130.0" text="Imie" />
+                              <TableColumn fx:id="playerSurname" prefWidth="114.0" text="Nazwisko" />
+                              <TableColumn fx:id="playerAge" prefWidth="85.0" text="Wiek" />
+                              <TableColumn fx:id="playerHeight" prefWidth="84.0" text="Wzrost" />
+                              <TableColumn fx:id="scoredPoints" prefWidth="106.0" text="Pkt zdobyte" />
+                           </columns>
+                        </TableView>
+                        <TextField fx:id="tfplayerName" layoutX="23.0" layoutY="54.0" promptText="Imię" />
+                        <TextField fx:id="tfplayerSurname" layoutX="23.0" layoutY="87.0" promptText="Nazwisko" />
+                        <TextField fx:id="tfplayerAge" layoutX="23.0" layoutY="120.0" promptText="Wiek" />
+                        <TextField fx:id="tfplayerHeight" layoutX="23.0" layoutY="153.0" promptText="Wzrost" />
+                        <TextField fx:id="tfplayerPoints" layoutX="23.0" layoutY="187.0" promptText="Pkt zdobyte" />
+                        <Text layoutX="184.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lat" />
+                        <Text layoutX="184.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cm" />
+                        <Text layoutX="184.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pkt" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Liga">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="23.0" layoutY="250.0" mnemonicParsing="false" onAction="#deleteLeague" text="Usuń" />
+                        <Button layoutX="82.0" layoutY="250.0" mnemonicParsing="false" onAction="#addLeague" text="Dodaj" />
+                        <Button layoutX="146.0" layoutY="250.0" mnemonicParsing="false" onAction="#editLeague" text="Edytuj" />
+                        <TableView fx:id="librarianTable1111" layoutX="223.0" layoutY="12.0" prefHeight="417.0" prefWidth="520.0">
+                           <columns>
+                              <TableColumn fx:id="leagueName" prefWidth="130.0" text="Nazwa ligi" />
+                              <TableColumn fx:id="leagueLevel" prefWidth="106.0" text="Poziom Ligi" />
+                              <TableColumn fx:id="numberOfTeams" prefWidth="93.0" text="Ilość Zespołów" />
+                              <TableColumn fx:id="numberOfMatches" prefWidth="84.0" text="Liczba Meczy" />
+                              <TableColumn fx:id="leagueYear" prefWidth="106.0" text="Rok" />
+                           </columns>
+                        </TableView>
+                        <TextField fx:id="tfleagueName" layoutX="23.0" layoutY="45.0" promptText="Nazwa Ligi" />
+                        <TextField fx:id="tfleagueLevel" layoutX="23.0" layoutY="87.0" promptText="Poziom Ligi" />
+                        <TextField fx:id="tfnumberOfTeams" layoutX="23.0" layoutY="120.0" promptText="Ilość Zespołów" />
+                        <TextField fx:id="tfnumberOfMatches" layoutX="23.0" layoutY="153.0" promptText="Liczba Meczy" />
+                        <TextField fx:id="tfleagueYear" layoutX="23.0" layoutY="187.0" promptText="Rok" />
+                        <Text layoutX="184.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lat" />
+                        <Text layoutX="184.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cm" />
+                        <Text layoutX="184.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pkt" />
                      </children>
                   </AnchorPane>
                </content>

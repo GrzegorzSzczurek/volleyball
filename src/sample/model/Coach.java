@@ -1,16 +1,17 @@
 package sample.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Coach {
 
     private Integer id;
     private String name;
     private String surname;
-    private LocalDate birthDay;
+    private Date birthDay;
     private String nationality;
 
-    public Coach(Integer id, String name, String surname, LocalDate birthDay, String nationality) {
+    public Coach(Integer id, String name, String surname, Date birthDay, String nationality) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -42,11 +43,11 @@ public class Coach {
         this.surname = surname;
     }
 
-    public LocalDate getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 

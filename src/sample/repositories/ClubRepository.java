@@ -94,7 +94,7 @@ public class ClubRepository implements ClubRepo{
             preparedStatement.setString(3, club.getCountry());
             preparedStatement.setInt(4, club.getLeagueId().getId());
             preparedStatement.setInt(5, club.getCoachId().getId());
-            preparedStatement.setString(6, club.getClubname());
+            preparedStatement.setString(6, club.getClubName());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -123,9 +123,9 @@ public class ClubRepository implements ClubRepo{
             preparedStatement.setString(3, club.getCountry());
             preparedStatement.setInt(4, club.getLeagueId().getId());
             preparedStatement.setInt(5, club.getCoachId().getId());
-            preparedStatement.setString(6, club.getClubname());
-            int i = preparedStatement.executeUpdate();
-            System.out.println("as");
+            preparedStatement.setString(6, club.getClubName());
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

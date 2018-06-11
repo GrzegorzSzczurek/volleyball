@@ -7,15 +7,15 @@ public class Club {
     private String country;
     private League leagueId;
     private Coach coachId;
-    private String clubname;
+    private String clubName;
 
-    public Club(Integer id, Hall hallId, String country, League leagueId, Coach coachId, String clubname) {
+    public Club(Integer id, Hall hallId, String country, League leagueId, Coach coachId, String clubName) {
         this.id = id;
         this.hallId = hallId;
         this.country = country;
         this.leagueId = leagueId;
         this.coachId = coachId;
-        this.clubname = clubname;
+        this.clubName = clubName;
     }
 
     public Club() {
@@ -61,11 +61,11 @@ public class Club {
         this.coachId = coachId;
     }
 
-    public String getClubname() {
-        return clubname;
+    public String getClubName() {
+        return clubName;
     }
 
-    public void setClubname(String clubname) {
-        this.clubname = clubname;
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
     }
 }
