@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/CadreRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/CadreRepository.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,33 +13,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Cadre.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/sample/model/Cadre.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="34">
-                    <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CadreRepository.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CadreRepository.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/repositories/CadreRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="112" column="92" lean-forward="false" selection-start-line="112" selection-start-column="92" selection-end-line="112" selection-end-column="92" />
+            <state relative-caret-position="557">
+              <caret line="122" column="5" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="122" selection-end-column="5" />
               <folding>
                 <marker date="1533823036893" expanded="true" signature="515:534" ph=" SELECT statement (KADRA)" />
                 <marker date="1533823036893" expanded="true" signature="1820:1855" ph=" SELECT statement (KLUB)" />
@@ -51,12 +31,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CardRepository.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CardRepository.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/repositories/CardRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="1309">
+              <caret line="88" column="63" lean-forward="false" selection-start-line="88" selection-start-column="63" selection-end-line="88" selection-end-column="63" />
+              <folding>
+                <marker date="1533823740532" expanded="true" signature="483:503" ph=" SELECT statement (KARTKI)" />
+                <marker date="1533823740532" expanded="true" signature="1237:1274" ph=" SELECT statement (KARTKI)" />
+                <marker date="1533823740532" expanded="true" signature="1925:2022" ph=" INSERT statement (KARTKI)" />
+                <marker date="1533823740532" expanded="true" signature="2555:2591" ph=" DELETE statement (KADRA)" />
+                <marker date="1533823740532" expanded="true" signature="2984:3036" ph=" UPDATE statement (KADRA)" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,12 +81,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/CoachRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/MatchRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Player.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/CadreRepository.java" />
+        <option value="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" />
       </list>
     </option>
   </component>
@@ -301,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533819711329</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="cadre repository done">
+      <created>1533823051719</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1533823051719</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -315,7 +308,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32928476" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5025707" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -343,7 +336,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="player repo done" />
-    <option name="LAST_COMMIT_MESSAGE" value="player repo done" />
+    <MESSAGE value="cadre repository done" />
+    <option name="LAST_COMMIT_MESSAGE" value="cadre repository done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -386,6 +380,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -393,6 +388,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -535,14 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/repositories/CardRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/repositories/ClubRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
@@ -565,16 +553,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/Club.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/repositories/CadreRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="112" column="92" lean-forward="false" selection-start-line="112" selection-start-column="92" selection-end-line="112" selection-end-column="92" />
+        <state relative-caret-position="557">
+          <caret line="122" column="5" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="122" selection-end-column="5" />
           <folding>
             <marker date="1533823036893" expanded="true" signature="515:534" ph=" SELECT statement (KADRA)" />
             <marker date="1533823036893" expanded="true" signature="1820:1855" ph=" SELECT statement (KLUB)" />
             <marker date="1533823036893" expanded="true" signature="3052:3168" ph=" INSERT statement (KLUB)" />
             <marker date="1533823036893" expanded="true" signature="3852:3886" ph=" DELETE statement (KLUB)" />
             <marker date="1533823036893" expanded="true" signature="4283:4358" ph=" UPDATE statement (KLUB)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/repositories/CardRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="88" column="63" lean-forward="false" selection-start-line="88" selection-start-column="63" selection-end-line="88" selection-end-column="63" />
+          <folding>
+            <marker date="1533823740532" expanded="true" signature="483:503" ph=" SELECT statement (KARTKI)" />
+            <marker date="1533823740532" expanded="true" signature="1237:1274" ph=" SELECT statement (KARTKI)" />
+            <marker date="1533823740532" expanded="true" signature="1925:2022" ph=" INSERT statement (KARTKI)" />
+            <marker date="1533823740532" expanded="true" signature="2555:2591" ph=" DELETE statement (KADRA)" />
+            <marker date="1533823740532" expanded="true" signature="2984:3036" ph=" UPDATE statement (KADRA)" />
           </folding>
         </state>
       </provider>
