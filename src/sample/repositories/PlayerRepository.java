@@ -41,7 +41,7 @@ public class PlayerRepository implements PlayerRepo{
                 ClubRepository clubRepository= new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
-                Player player = new Player(playerId, clubId, playerName, playerSurname, age, height, suspensionbyId, cardId, scoredPoints);
+                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionbyId, cardById, scoredPoints);
                 playerList.add(player);
             }
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class PlayerRepository implements PlayerRepo{
                 ClubRepository clubRepository= new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
-                Player player = new Player(playerId, clubId, playerName, playerSurname, age, height, suspensionbyId, cardId, scoredPoints);
+                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionbyId, cardById, scoredPoints);
 
                 return player;
             }
