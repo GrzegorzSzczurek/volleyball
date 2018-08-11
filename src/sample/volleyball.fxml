@@ -129,6 +129,9 @@
                               <TableColumn fx:id="clubCoachTable" prefWidth="114.0" text="Trener" />
                           </columns>
                         </TableView>
+                        <Button layoutX="25.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteClub" text="Usuń" />
+                        <Button layoutX="100.0" layoutY="331.0" mnemonicParsing="false" onAction="#addClub" text="Dodaj" />
+                        <Button fx:id="editClubButton" layoutX="176.0" layoutY="331.0" mnemonicParsing="false" onAction="#editClub" text="Edytuj" />
                      </children>
                   </AnchorPane>
               </content>

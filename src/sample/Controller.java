@@ -2,7 +2,6 @@ package sample;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +9,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
+import javafx.util.StringConverter;
+import sample.model.Club;
 import sample.model.Coach;
 import sample.model.Hall;
 import sample.model.League;
@@ -81,7 +81,6 @@ public class Controller implements Initializable {
     private TextField tfLeagueLevel;
     @FXML
     private TextField tfLeagueYear;
-
     @FXML
     private TableView<League> leagueTable;
     @FXML
@@ -97,6 +96,31 @@ public class Controller implements Initializable {
     @FXML
     private Button editLeagueButton;
 
+    @FXML
+    private TableView<Club> clubTable;
+    @FXML
+    private TableColumn<Club, String> clubNameTable;
+    @FXML
+    private TableColumn<Club, Integer> clubHallTable;
+    @FXML
+    private TableColumn<Club, Integer> clubCountryTable;
+    @FXML
+    private TableColumn<Club, Integer> clubLeagueTable;
+    @FXML
+    private TableColumn<Club, String> clubCoachTable;
+    @FXML
+    private Button editClubButton;
+    @FXML
+    private TextField tfClubCountry;
+    @FXML
+    private TextField tfClubName;
+    @FXML
+    private ComboBox<Hall> hallComboboxInClub;
+    @FXML
+    private ComboBox<League> leagueComboboxInClub;
+    @FXML
+    private ComboBox<Coach> coachComboboxInClub;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -111,6 +135,57 @@ public class Controller implements Initializable {
         setDataInLeagueTable();
         refreshLeagueTable();
         mouseHandlerOnLeagueTable();
+
+        fillHallCombobox();
+        refreshLeagueComboboxInClub();
+
+        fillLeagueCombobox();
+        refreshHallComboboxInClub();
+    }
+
+    private void fillHallCombobox() {
+        StringConverter<Hall> scConverter = new StringConverter<Hall>() {
+
+            @Override
+            public String toString(Hall halls) {
+                return halls.getHallName() + " " + halls.getPostCode();
+            }
+
+            @Override
+            public Hall fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        hallComboboxInClub.setConverter(scConverter);
+    }
+
+    private void fillLeagueCombobox() {
+        StringConverter<League> scConverter1 = new StringConverter<League>() {
+
+            @Override
+            public String toString(League leagues) {
+                return leagues.getLeagueName() + " " + leagues.getYear();
+            }
+
+            @Override
+            public League fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        leagueComboboxInClub.setConverter(scConverter1);
+    }
+
+    private void refreshHallComboboxInClub() {
+        List<Hall> allHalls = new HallRepository().findAll();
+        ObservableList<Hall> halls = FXCollections.observableArrayList(allHalls);
+        hallComboboxInClub.setItems(halls);
+    }
+    private void refreshLeagueComboboxInClub() {
+        List<League> allLeagues = new LeagueRepository().findAll();
+        ObservableList<League> leagues = FXCollections.observableArrayList(allLeagues);
+        leagueComboboxInClub.setItems(leagues);
     }
 
     private void setDataInLeagueTable() {
@@ -318,14 +393,26 @@ public class Controller implements Initializable {
         }
     }
 
+    public void addClub(ActionEvent actionEvent) {
+
+    }
+
+    public void editClub(ActionEvent actionEvent) {
+
+    }
+
+    public void deleteClub(ActionEvent actionEvent) {
+
+    }
+
     public void deleteSuspensionDate(ActionEvent actionEvent) {
     }
 
     public void addSuspensionDate(ActionEvent actionEvent) {
     }
-
     public void editSuspensionDate(ActionEvent actionEvent) {
     }
+
     private void refreshHallTable() {
         List<Hall> halls = new HallRepository().findAll();
         ObservableList<Hall> hall = FXCollections.observableArrayList(halls);
