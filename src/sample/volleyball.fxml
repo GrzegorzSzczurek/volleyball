@@ -116,10 +116,10 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ComboBox fx:id="hallComboboxInClub" layoutX="25.0" layoutY="46.0" prefWidth="150.0" promptText="Hala" />
-                        <TextField fx:id="tfClubCountry" layoutX="26.0" layoutY="107.0" text="Kraj" />
+                        <TextField fx:id="tfClubCountry" layoutX="26.0" layoutY="107.0" promptText="Kraj" />
                         <ComboBox fx:id="leagueComboboxInClub" layoutX="26.0" layoutY="164.0" prefWidth="150.0" promptText="Liga" />
                         <ComboBox fx:id="coachComboboxInClub" layoutX="26.0" layoutY="219.0" prefWidth="150.0" promptText="Trener" />
-                        <TextField fx:id="tfClubName" layoutX="26.0" layoutY="277.0" text="Nazwa klubu" />
+                        <TextField fx:id="tfClubName" layoutX="26.0" layoutY="277.0" promptText="Nazwa klubu" />
                         <TableView fx:id="clubTable" layoutX="253.0" layoutY="46.0" prefHeight="285.0" prefWidth="489.0">
                           <columns>
                               <TableColumn fx:id="clubNameTable" prefWidth="99.0" text="Nazwa klubu" />

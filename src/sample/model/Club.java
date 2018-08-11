@@ -17,6 +17,13 @@ public class Club {
         this.coachId = coachId;
         this.clubname = clubname;
     }
+    public Club(Hall hallId, String country, League leagueId, Coach coachId, String clubname) {
+        this.hallId = hallId;
+        this.country = country;
+        this.leagueId = leagueId;
+        this.coachId = coachId;
+        this.clubname = clubname;
+    }
 
     public Club() {
     }

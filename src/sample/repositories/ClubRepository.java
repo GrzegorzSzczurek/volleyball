@@ -85,16 +85,15 @@ public class ClubRepository implements ClubRepo {
     @Override
     public Club insert(Club club) {
         String insertTableSQL = "INSERT INTO KLUB"
-                + "(KLUB_ID, HALA_ID, KRAJ, LIGA_ID, TRENER_ID, NAZWA_KLUBU) VALUES"
-                + "(?,?,?,?,?,?)";
+                + "(HALA_ID, KRAJ, LIGA_ID, TRENER_ID, NAZWA_KLUBU) VALUES"
+                + "(?,?,?,?,?)";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
-            preparedStatement.setInt(1, club.getId());
-            preparedStatement.setInt(2, club.getHallId().getId());
-            preparedStatement.setString(3, club.getCountry());
-            preparedStatement.setInt(4, club.getLeagueId().getId());
-            preparedStatement.setInt(5, club.getCoachId().getId());
-            preparedStatement.setString(6, club.getClubname());
+            preparedStatement.setInt(1, club.getHallId().getId());
+            preparedStatement.setString(2, club.getCountry());
+            preparedStatement.setInt(3, club.getLeagueId().getId());
+            preparedStatement.setInt(4, club.getCoachId().getId());
+            preparedStatement.setString(5, club.getClubname());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

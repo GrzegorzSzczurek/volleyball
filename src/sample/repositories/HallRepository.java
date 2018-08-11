@@ -42,12 +42,12 @@ public class HallRepository implements HallRepo {
              PreparedStatement preparedStatement = dbConnection.prepareStatement(findHallById)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String hallName = rs.getString("hallName");
-                Integer capacity = rs.getInt("capacity");
-                String city = rs.getString("city");
-                Integer postCode = rs.getInt("postCode");
-                String street = rs.getString("street");
+                int id = rs.getInt("HALA_ID");
+                String hallName = rs.getString("NAZWA_HALI");
+                Integer capacity = rs.getInt("POJEMNOSC");
+                String city = rs.getString("MIASTO");
+                Integer postCode = rs.getInt("KOD_POCZTOWY");
+                String street = rs.getString("ULICA");
                 Hall hall = new Hall(id, hallName, capacity, city, postCode, street);
 
                 return hall;

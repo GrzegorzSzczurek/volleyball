@@ -14,6 +14,7 @@ import sample.model.Club;
 import sample.model.Coach;
 import sample.model.Hall;
 import sample.model.League;
+import sample.repositories.ClubRepository;
 import sample.repositories.CoachRepository;
 import sample.repositories.HallRepository;
 import sample.repositories.LeagueRepository;
@@ -141,6 +142,33 @@ public class Controller implements Initializable {
 
         fillLeagueCombobox();
         refreshHallComboboxInClub();
+
+        fillCoachCombobox();
+        refreshCoachCombobox();
+        refreshClubTable();
+    }
+
+    private void refreshCoachCombobox() {
+        List<Coach> allCoaches = new CoachRepository().findAll();
+        ObservableList<Coach> coaches = FXCollections.observableArrayList(allCoaches);
+        coachComboboxInClub.setItems(coaches);
+    }
+
+    private void fillCoachCombobox() {
+        StringConverter<Coach> scConverter = new StringConverter<Coach>() {
+
+            @Override
+            public String toString(Coach coaches) {
+                return coaches.getName() + " " + coaches.getSurname();
+            }
+
+            @Override
+            public Coach fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        coachComboboxInClub.setConverter(scConverter);
     }
 
     private void fillHallCombobox() {
@@ -182,6 +210,7 @@ public class Controller implements Initializable {
         ObservableList<Hall> halls = FXCollections.observableArrayList(allHalls);
         hallComboboxInClub.setItems(halls);
     }
+
     private void refreshLeagueComboboxInClub() {
         List<League> allLeagues = new LeagueRepository().findAll();
         ObservableList<League> leagues = FXCollections.observableArrayList(allLeagues);
@@ -395,6 +424,13 @@ public class Controller implements Initializable {
 
     public void addClub(ActionEvent actionEvent) {
 
+        Hall hall = hallComboboxInClub.getSelectionModel().getSelectedItem();
+        League league = leagueComboboxInClub.getSelectionModel().getSelectedItem();
+        Coach coach = coachComboboxInClub.getSelectionModel().getSelectedItem();
+
+        Club club = new Club(hall, tfClubCountry.getText(), league, coach, tfClubName.getText());
+        new ClubRepository().insert(club);
+        refreshClubTable();
     }
 
     public void editClub(ActionEvent actionEvent) {
@@ -429,5 +465,10 @@ public class Controller implements Initializable {
         List<League> leagues = new LeagueRepository().findAll();
         ObservableList<League> league = FXCollections.observableArrayList(leagues);
         leagueTable.setItems(league);
+    }
+    private void refreshClubTable() {
+        List<Club> clubs = new ClubRepository().findAll();
+        ObservableList<Club> club = FXCollections.observableArrayList(clubs);
+        clubTable.setItems(club);
     }
 }
