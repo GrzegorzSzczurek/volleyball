@@ -52,7 +52,7 @@ public class LeagueRepository implements LeagueRepo {
                 int numberOfMatches = rs.getInt("ILOSC_MECZY");
                 int year = rs.getInt("ROK");
 
-                League league = new League(id, leagueName, leagueLevel, numberOfMatches, numberOfMatches, year);
+                League league = new League(id, leagueName, leagueLevel, numberOfTeams, numberOfMatches, year);
 
                 return league;
             }
@@ -99,7 +99,7 @@ public class LeagueRepository implements LeagueRepo {
     @Override
     public void update(League league) {
 
-        String updatePlayerSql = "UPDATE LIGA SET NAYWA_LIGI= ?, POZIOM_LIGI= ?, ILOSC_ZESPOLOW= ?, ILOSC_MECZY= ?, ROK= ? WHERE LIGA_ID= ?";
+        String updatePlayerSql = "UPDATE LIGA SET NAZWA_LIGI= ?, POZIOM_LIGI= ?, ILOSC_ZESPOLOW= ?, ILOSC_MECZY= ?, ROK= ? WHERE LIGA_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)) {
             preparedStatement.setString(1, league.getLeagueName());

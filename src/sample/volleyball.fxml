@@ -94,15 +94,15 @@
                         <Text layoutX="189.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość meczy" />
                         <Text layoutX="187.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok" />
                         <Button layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteLeague" text="Usuń" />
-                        <Button fx:id="editHallButton1" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editLeague" text="Edytuj" />
+                        <Button fx:id="editLeagueButton" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editLeague" text="Edytuj" />
                         <Button layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#addLeague" text="Dodaj" />
-                        <TableView fx:id="leagueTable" layoutX="314.0" layoutY="35.0" prefHeight="341.0" prefWidth="424.0">
+                        <TableView fx:id="leagueTable" layoutX="291.0" layoutY="35.0" prefHeight="341.0" prefWidth="447.0">
                            <columns>
                               <TableColumn fx:id="leagueNameColumn" prefWidth="75.0" text="Nazwa" />
-                              <TableColumn fx:id="leagueNumberOfTeamsColumn" prefWidth="124.0" text="Ilość zespołów" />
-                              <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="54.0" text="Ilość meczy" />
-                              <TableColumn fx:id="leagueYearColumn" prefWidth="74.0" text="Rok" />
                               <TableColumn fx:id="leagueLevelColumn" prefWidth="96.0" text="Poziom ligi" />
+                              <TableColumn fx:id="leagueNumberOfTeamsColumn" prefWidth="124.0" text="Ilość zespołów" />
+                              <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="81.0" text="Ilość meczy" />
+                              <TableColumn fx:id="leagueYearColumn" prefWidth="70.0" text="Rok" />
                            </columns>
                         </TableView>
                         <TextField fx:id="tfLeagueLevel" layoutX="33.0" layoutY="76.0" />
@@ -110,6 +110,28 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab text="Klub">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="hallComboboxInClub" layoutX="25.0" layoutY="46.0" prefWidth="150.0" promptText="Hala" />
+                        <TextField fx:id="tfClubCountry" layoutX="26.0" layoutY="107.0" text="Kraj" />
+                        <ComboBox fx:id="leagueComboboxInClub" layoutX="26.0" layoutY="164.0" prefWidth="150.0" promptText="Liga" />
+                        <ComboBox fx:id="coachComboboxInClub" layoutX="26.0" layoutY="219.0" prefWidth="150.0" promptText="Trener" />
+                        <TextField fx:id="tfClubName" layoutX="26.0" layoutY="277.0" text="Nazwa klubu" />
+                        <TableView fx:id="clubTable" layoutX="253.0" layoutY="46.0" prefHeight="285.0" prefWidth="489.0">
+                          <columns>
+                              <TableColumn fx:id="clubNameTable" prefWidth="99.0" text="Nazwa klubu" />
+                            <TableColumn fx:id="clubHallTable" prefWidth="82.0" text="Hala" />
+                            <TableColumn fx:id="clubCountryTable" prefWidth="97.0" text="Kraj" />
+                              <TableColumn fx:id="clubLeagueTable" prefWidth="96.0" text="Liga" />
+                              <TableColumn fx:id="clubCoachTable" prefWidth="114.0" text="Trener" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
             </tabs>
         </TabPane>
