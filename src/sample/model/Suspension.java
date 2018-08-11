@@ -1,6 +1,5 @@
 package sample.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Suspension {

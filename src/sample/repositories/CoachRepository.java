@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoachRepository implements CoachRepo{
+public class CoachRepository implements CoachRepo {
     @Override
     public List<Coach> findAll() {
         String findAllSQL = "SELECT * FROM KADRA";

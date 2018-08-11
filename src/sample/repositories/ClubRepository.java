@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClubRepository implements ClubRepo{
+public class ClubRepository implements ClubRepo {
 
     @Override
     public List<Club> findAll() {
@@ -27,11 +27,11 @@ public class ClubRepository implements ClubRepo{
                 int id = rs.getInt("KLUB_ID");
                 int hallId = rs.getInt("HALA_ID");
                 String country = rs.getString("KRAJ");
-                int leagueId= rs.getInt("LIGA_ID");
-                int coachId= rs.getInt("TRENER_ID");
+                int leagueId = rs.getInt("LIGA_ID");
+                int coachId = rs.getInt("TRENER_ID");
                 String clubName = rs.getString("NAZWA_KLUBU");
 
-                HallRepository hallRepository= new HallRepository();
+                HallRepository hallRepository = new HallRepository();
                 Hall hallById = hallRepository.findById(hallId);
 
                 LeagueRepository leagueRepository = new LeagueRepository();
@@ -60,11 +60,11 @@ public class ClubRepository implements ClubRepo{
                 int id = rs.getInt("KLUB_ID");
                 int hallId = rs.getInt("HALA_ID");
                 String country = rs.getString("KRAJ");
-                int leagueId= rs.getInt("LIGA_ID");
-                int coachId= rs.getInt("TRENER_ID");
+                int leagueId = rs.getInt("LIGA_ID");
+                int coachId = rs.getInt("TRENER_ID");
                 String clubName = rs.getString("NAZWA_KLUBU");
 
-                HallRepository hallRepository= new HallRepository();
+                HallRepository hallRepository = new HallRepository();
                 Hall hallById = hallRepository.findById(hallId);
 
                 LeagueRepository leagueRepository = new LeagueRepository();

@@ -51,61 +51,29 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        hallNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Hall, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Hall, String> param) {
-                return new SimpleStringProperty(param.getValue().getHallName());
-            }
-        });
-        refreshHallTable();
-        hallCapacityColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Hall, Integer>, ObservableValue<Integer>>) param -> new SimpleObjectProperty(param.getValue().getCapacity()));
-        refreshHallTable();
-
-        hallCityColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Hall, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Hall, String> param) {
-                return new SimpleStringProperty(param.getValue().getCity());
-            }
-        });
-        refreshHallTable();
-
-        hallPostalCodeColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<Hall, Integer>, ObservableValue<Integer>>) param -> new SimpleObjectProperty<>(param.getValue().getPostCode()));
-        refreshHallTable();
-
-        hallCityColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Hall, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Hall, String> param) {
-                return new SimpleStringProperty(param.getValue().getCity());
-            }
-        });
-        refreshHallTable();
-        hallStreetColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Hall, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Hall, String> param) {
-                return new SimpleStringProperty(param.getValue().getStreet());
-            }
-        });
+        hallNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getHallName()));
+        hallCapacityColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCapacity()));
+        hallCityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCity()));
+        hallPostalCodeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getPostCode()));
+        hallCityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCity()));
+        hallStreetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getStreet()));
         refreshHallTable();
 
         editHallButton.setDisable(true);
-        hallTable.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Hall hall= hallTable.getSelectionModel().getSelectedItem();
-                if (hall != null) {
-                    String capacity = String.valueOf(hall.getCapacity());
-                    String postalCode = String.valueOf(hall.getPostCode());
-                    editHallButton.setDisable(false);
-                    tfHallName.setText(hall.getHallName());
-                    tfHallCapacity.setText(capacity);
-                    tfHallCity.setText(hall.getCity());
-                    tfHallPostalCode.setText(postalCode);
-                    tfHallStreet.setText(hall.getStreet());
-                }
+        hallTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Hall hall = hallTable.getSelectionModel().getSelectedItem();
+            if (hall != null) {
+                String capacity = String.valueOf(hall.getCapacity());
+                String postalCode = String.valueOf(hall.getPostCode());
+                editHallButton.setDisable(false);
+                tfHallName.setText(hall.getHallName());
+                tfHallCapacity.setText(capacity);
+                tfHallCity.setText(hall.getCity());
+                tfHallPostalCode.setText(postalCode);
+                tfHallStreet.setText(hall.getStreet());
             }
         });
     }
-
 
 
     @FXML
@@ -126,12 +94,12 @@ public class Controller implements Initializable {
     public void editHall(ActionEvent event) {
         Hall hall = hallTable.getSelectionModel().getSelectedItem();
         if (hall != null) {
-            int id = hallTable.getSelectionModel().getSelectedItem().getId();
             int capacity = Integer.parseInt(tfHallCapacity.getText());
             int postalCode = Integer.parseInt(tfHallPostalCode.getText());
             Hall updatedHall = new Hall(hall.getId(), tfHallName.getText(), capacity, tfHallCity.getText(), postalCode, tfHallStreet.getText());
             new HallRepository().update(updatedHall);
             refreshHallTable();
+            clearHallTextFields();
 //            tfAuthorSurname.clear();
 //            tfAuthorName.clear();
 //            refreshAuthorComboBox();
@@ -144,14 +112,24 @@ public class Controller implements Initializable {
 
         Integer capacity = Integer.parseInt(tfHallCapacity.getText());
         Integer postalCode = Integer.parseInt(tfHallPostalCode.getText());
-        Hall hall = new Hall( tfHallName.getText(), capacity, tfHallCity.getText(), postalCode, tfHallStreet.getText());
+        Hall hall = new Hall(tfHallName.getText(), capacity, tfHallCity.getText(), postalCode, tfHallStreet.getText());
         HallRepository hallRepository = new HallRepository();
-        Hall addHall = hallRepository.insert(hall);
+        hallRepository.insert(hall);
+
+        clearHallTextFields();
         refreshHallTable();
 //        refreshAuthorComboBox();
 //        tfAuthorName.clear();
 //        tfAuthorSurname.clear();
 //        refreshAuthorComboBox();
+    }
+
+    private void clearHallTextFields() {
+        tfHallName.clear();
+        tfHallCapacity.clear();
+        tfHallCity.clear();
+        tfHallPostalCode.clear();
+        tfHallStreet.clear();
     }
 
     public void deleteCoach(ActionEvent actionEvent) {

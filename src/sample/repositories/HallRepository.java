@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HallRepository implements HallRepo{
+public class HallRepository implements HallRepo {
     @Override
     public List<Hall> findAll() {
         String findAllSQL = "SELECT * FROM HALA";
@@ -20,13 +20,13 @@ public class HallRepository implements HallRepo{
              PreparedStatement preparedStatement = dbConnection.prepareStatement(findAllSQL)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-
-                String hallName = rs.getString("nazwa_hali");
-                int capacity= rs.getInt("pojemnosc");
-                String city= rs.getString("miasto");
-                Integer postCode= rs.getInt("kod_pocztowy");
-                String street= rs.getString("ulica");
-                Hall hall = new Hall(hallName, capacity, city, postCode, street);
+                int id = rs.getInt("HALA_ID");
+                String hallName = rs.getString("NAZWA_HALI");
+                int capacity = rs.getInt("POJEMNOSC");
+                String city = rs.getString("MIASTO");
+                Integer postCode = rs.getInt("KOD_POCZTOWY");
+                String street = rs.getString("ULICA");
+                Hall hall = new Hall(id, hallName, capacity, city, postCode, street);
                 hallList.add(hall);
             }
         } catch (SQLException e) {
@@ -44,10 +44,10 @@ public class HallRepository implements HallRepo{
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String hallName = rs.getString("hallName");
-                Integer capacity= rs.getInt("capacity");
-                String city= rs.getString("city");
-                Integer postCode= rs.getInt("postCode");
-                String street= rs.getString("street");
+                Integer capacity = rs.getInt("capacity");
+                String city = rs.getString("city");
+                Integer postCode = rs.getInt("postCode");
+                String street = rs.getString("street");
                 Hall hall = new Hall(id, hallName, capacity, city, postCode, street);
 
                 return hall;
@@ -82,9 +82,9 @@ public class HallRepository implements HallRepo{
     @Override
     public void removeById(int hallId) {
 
-        String autor = "DELETE FROM HALA WHERE HALA_ID= " + hallId;
+        String hall = "DELETE FROM HALA WHERE HALA_ID=" + hallId;
         try (Connection dbConnection = DbConnector.getDBConnection();
-             PreparedStatement preparedStatement = dbConnection.prepareStatement(autor)) {
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(hall)) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -95,9 +95,9 @@ public class HallRepository implements HallRepo{
     @Override
     public void update(Hall hall) {
 
-        String updatePlayerSql = "UPDATE HALA SET NAZWA_HALI= ?, POJEMNOSC= ?, MIASTO= ?, KOD_POCZTOWY= ?, ULICA= ? WHERE HALA_ID= ?";
+        String updateHallSql = "UPDATE hala SET NAZWA_HALI= ?, POJEMNOSC= ?, MIASTO= ?, KOD_POCZTOWY= ?, ULICA= ? WHERE HALA_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
-             PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)){
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(updateHallSql)) {
             preparedStatement.setString(1, hall.getHallName());
             preparedStatement.setInt(2, hall.getCapacity());
             preparedStatement.setString(3, hall.getCity());

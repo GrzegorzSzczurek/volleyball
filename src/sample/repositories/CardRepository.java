@@ -2,9 +2,7 @@ package sample.repositories;
 
 import sample.dbConnector.DbConnector;
 import sample.interfaces.CardRepo;
-import sample.model.Cadre;
 import sample.model.Card;
-import sample.model.Match;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardRepository implements CardRepo{
+public class CardRepository implements CardRepo {
     @Override
     public List<Card> findAll() {
         String findAllSQL = "SELECT * FROM KARTKI";

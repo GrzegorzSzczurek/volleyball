@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerRepository implements PlayerRepo{
+public class PlayerRepository implements PlayerRepo {
     @Override
     public List<Player> findAll() {
         String findAllSQL = "SELECT * FROM ZAWODNIK";
@@ -26,19 +26,19 @@ public class PlayerRepository implements PlayerRepo{
                 int playerId = rs.getInt("ZAWODNIK_ID");
                 int clubId = rs.getInt("KLUB_ID");
                 String playerName = rs.getString("IMIE");
-                String playerSurname= rs.getString("NAZWISKO");
+                String playerSurname = rs.getString("NAZWISKO");
                 int age = rs.getInt("WIEK");
-                int height= rs.getInt("WZROST");
+                int height = rs.getInt("WZROST");
                 int suspensionId = rs.getInt("ZAWIESZENIE_ID");
                 int cardId = rs.getInt("KARTKA_ID");
                 int scoredPoints = rs.getInt("PKT_ZDOBYTE");
                 SuspensionRepository suspensionRepository = new SuspensionRepository();
                 Suspension suspensionbyId = suspensionRepository.findById(suspensionId);
 
-                CardRepository cardRepository= new CardRepository();
+                CardRepository cardRepository = new CardRepository();
                 Card cardById = cardRepository.findById(cardId);
 
-                ClubRepository clubRepository= new ClubRepository();
+                ClubRepository clubRepository = new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
                 Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionbyId, cardById, scoredPoints);
@@ -60,9 +60,9 @@ public class PlayerRepository implements PlayerRepo{
                 int id = rs.getInt("ZAWODNIK_ID");
                 int clubId = rs.getInt("KLUB_ID");
                 String playerName = rs.getString("IMIE");
-                String playerSurname= rs.getString("NAZWISKO");
+                String playerSurname = rs.getString("NAZWISKO");
                 int age = rs.getInt("WIEK");
-                int height= rs.getInt("WZROST");
+                int height = rs.getInt("WZROST");
                 int suspensionId = rs.getInt("ZAWIESZENIE_ID");
                 int cardId = rs.getInt("KARTKA_ID");
                 int scoredPoints = rs.getInt("PKT_ZDOBYTE");
@@ -70,10 +70,10 @@ public class PlayerRepository implements PlayerRepo{
                 SuspensionRepository suspensionRepository = new SuspensionRepository();
                 Suspension suspensionbyId = suspensionRepository.findById(suspensionId);
 
-                CardRepository cardRepository= new CardRepository();
+                CardRepository cardRepository = new CardRepository();
                 Card cardById = cardRepository.findById(cardId);
 
-                ClubRepository clubRepository= new ClubRepository();
+                ClubRepository clubRepository = new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
                 Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionbyId, cardById, scoredPoints);
@@ -128,7 +128,7 @@ public class PlayerRepository implements PlayerRepo{
 
         String updatePlayerSql = "UPDATE ZAWODNIK SET KLUB_ID= ?, IMIE= ?, NAZWISKO= ?, WIEK= ?, WZROST= ?, ZAWIESZENIE_ID= ?, KARTKA_ID= ?, PKT_ZDOBYTE= ? WHERE ZAWODNIK_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
-             PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)){
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)) {
             preparedStatement.setString(1, player.getName());
             preparedStatement.setString(2, player.getSurname());
             preparedStatement.setInt(3, player.getAge());

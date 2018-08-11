@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CadreRepository implements CadreRepo{
+public class CadreRepository implements CadreRepo {
     @Override
     public List<Cadre> findAll() {
         String findAllSQL = "SELECT * FROM KADRA";
@@ -25,13 +25,13 @@ public class CadreRepository implements CadreRepo{
             while (rs.next()) {
                 int id = rs.getInt("KADRA_ID");
                 int matchId = rs.getInt("MECZ_ID");
-                int playerId= rs.getInt("ZAWODNIK_ID");
-                int clubId= rs.getInt("KLUB_ID");
+                int playerId = rs.getInt("ZAWODNIK_ID");
+                int clubId = rs.getInt("KLUB_ID");
 
-                MatchRepository matchRepository= new MatchRepository();
+                MatchRepository matchRepository = new MatchRepository();
                 Match matchById = matchRepository.findById(matchId);
 
-                PlayerRepository playerRepository= new PlayerRepository();
+                PlayerRepository playerRepository = new PlayerRepository();
                 Player playerById = playerRepository.findById(playerId);
 
                 ClubRepository clubRepository = new ClubRepository();
@@ -56,13 +56,13 @@ public class CadreRepository implements CadreRepo{
             while (rs.next()) {
                 int id = rs.getInt("KADRA_ID");
                 int matchId = rs.getInt("MECZ_ID");
-                int playerId= rs.getInt("ZAWODNIK_ID");
-                int clubId= rs.getInt("KLUB_ID");
+                int playerId = rs.getInt("ZAWODNIK_ID");
+                int clubId = rs.getInt("KLUB_ID");
 
-                MatchRepository matchRepository= new MatchRepository();
+                MatchRepository matchRepository = new MatchRepository();
                 Match matchById = matchRepository.findById(matchId);
 
-                PlayerRepository playerRepository= new PlayerRepository();
+                PlayerRepository playerRepository = new PlayerRepository();
                 Player playerById = playerRepository.findById(playerId);
 
                 ClubRepository clubRepository = new ClubRepository();

@@ -29,7 +29,7 @@ public class LeagueRepository implements LeagueRepo {
                 int numberOfMatches = rs.getInt("ILOSC_MECZY");
                 int year = rs.getInt("ROK");
 
-                League league= new League(id, leagueName, leagueLevel, numberOfMatches, numberOfMatches,year);
+                League league = new League(id, leagueName, leagueLevel, numberOfMatches, numberOfMatches, year);
                 leagueList.add(league);
             }
         } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class LeagueRepository implements LeagueRepo {
                 int numberOfMatches = rs.getInt("ILOSC_MECZY");
                 int year = rs.getInt("ROK");
 
-                League league= new League(id, leagueName, leagueLevel, numberOfMatches, numberOfMatches,year);
+                League league = new League(id, leagueName, leagueLevel, numberOfMatches, numberOfMatches, year);
 
                 return league;
             }
@@ -102,7 +102,7 @@ public class LeagueRepository implements LeagueRepo {
 
         String updatePlayerSql = "UPDATE LIGA SET NAYWA_LIGI= ?, POZIOM_LIGI= ?, ILOSC_ZESPOLOW= ?, ILOSC_MECZY= ?, ROK= ? WHERE LIGA_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
-             PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)){
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)) {
             preparedStatement.setString(1, league.getLeagueName());
             preparedStatement.setString(2, league.getLeagueLevel());
             preparedStatement.setInt(3, league.getNumberOfClubs());
