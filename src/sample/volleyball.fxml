@@ -85,25 +85,28 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="697.0">
                      <children>
-                        <TextField fx:id="tfLeagueName" layoutX="32.0" layoutY="82.0" />
+                        <TextField fx:id="tfLeagueName" layoutX="32.0" layoutY="35.0" />
                         <TextField fx:id="tfLeagueNumberOfTeams" layoutX="32.0" layoutY="126.0" />
                         <TextField fx:id="tfLeagueNumberOfMatches" layoutX="32.0" layoutY="167.0" />
                         <TextField fx:id="tfLeagueYear" layoutX="32.0" layoutY="205.0" />
-                        <Text layoutX="189.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa" />
+                        <Text layoutX="189.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa" />
                         <Text layoutX="189.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość zespołów" />
                         <Text layoutX="189.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość meczy" />
                         <Text layoutX="187.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok" />
-                        <Button layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteHall" text="Usuń" />
-                        <Button fx:id="editHallButton1" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editHall" text="Edytuj" />
-                        <Button layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#addHall" text="Dodaj" />
-                        <TableView fx:id="hallTable1" layoutX="314.0" layoutY="35.0" prefHeight="341.0" prefWidth="424.0">
+                        <Button layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteLeague" text="Usuń" />
+                        <Button fx:id="editHallButton1" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editLeague" text="Edytuj" />
+                        <Button layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#addLeague" text="Dodaj" />
+                        <TableView fx:id="leagueTable" layoutX="314.0" layoutY="35.0" prefHeight="341.0" prefWidth="424.0">
                            <columns>
                               <TableColumn fx:id="leagueNameColumn" prefWidth="75.0" text="Nazwa" />
                               <TableColumn fx:id="leagueNumberOfTeamsColumn" prefWidth="124.0" text="Ilość zespołów" />
-                              <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="114.0" text="Ilość meczy" />
-                              <TableColumn fx:id="leagueYearColumn" prefWidth="110.0" text="Rok" />
+                              <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="54.0" text="Ilość meczy" />
+                              <TableColumn fx:id="leagueYearColumn" prefWidth="74.0" text="Rok" />
+                              <TableColumn fx:id="leagueLevelColumn" prefWidth="96.0" text="Poziom ligi" />
                            </columns>
                         </TableView>
+                        <TextField fx:id="tfLeagueLevel" layoutX="33.0" layoutY="76.0" />
+                        <Text layoutX="189.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poziom ligi" />
                      </children>
                   </AnchorPane>
                </content>

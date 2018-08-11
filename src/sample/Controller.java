@@ -2,6 +2,7 @@ package sample;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,11 +10,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import sample.model.Coach;
 import sample.model.Hall;
 import sample.model.League;
 import sample.repositories.CoachRepository;
 import sample.repositories.HallRepository;
+import sample.repositories.LeagueRepository;
 
 import java.net.URL;
 import java.sql.Date;
@@ -75,38 +78,59 @@ public class Controller implements Initializable {
     @FXML
     private TextField tfLeagueNumberOfMatches;
     @FXML
+    private TextField tfLeagueLevel;
+    @FXML
     private TextField tfLeagueYear;
 
     @FXML
+    private TableView<League> leagueTable;
+    @FXML
     private TableColumn<League, String> leagueNameColumn;
     @FXML
-    private TableColumn<League, String> leagueNumberOfTeamsColumn;
+    private TableColumn<League, Integer> leagueNumberOfTeamsColumn;
     @FXML
-    private TableColumn<League, String> leagueNumberOfMatchesColumn;
+    private TableColumn<League, Integer> leagueNumberOfMatchesColumn;
     @FXML
-    private TableColumn<League, String> leagueYearColumn;
+    private TableColumn<League, Integer> leagueYearColumn;
+    @FXML
+    private TableColumn<League, String> leagueLevelColumn;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setDataInHallTable();
+        refreshHallTable();
+        mouseHandlerOnHallTable();
+
+        setDataInCoachTable();
+        refreshCoachTable();
+        mouseHandlerOnCoachTable();
+
+        leagueNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLeagueName()));
+        leagueNumberOfTeamsColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getNumberOfClubs())));
+        leagueLevelColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getLeagueLevel())));
+        leagueNumberOfMatchesColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getNumberOfMatches())));
+        leagueYearColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getYear())));
+        refreshLeagueTable();
+        mouseHandlerOnLeagueTable();
+    }
+
+    private void setDataInCoachTable() {
+        coachNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
+        coachSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
+        coachDayOfBirthColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getBirthDay().toString()));
+        coachNationalityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNationality()));
+        editCoachButton.setDisable(true);
+    }
+
+    private void setDataInHallTable() {
         hallNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getHallName()));
         hallCapacityColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCapacity()));
         hallCityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCity()));
         hallPostalCodeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getPostCode()));
         hallCityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCity()));
         hallStreetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getStreet()));
-        refreshHallTable();
-
-        mouseHandlerOnHallTable();
         editHallButton.setDisable(true);
-
-        coachNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
-        coachSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
-        coachDayOfBirthColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getBirthDay().toString()));
-        coachNationalityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNationality()));
-        editCoachButton.setDisable(true);
-        refreshCoachTable();
-
-        mouseHandlerOnCoachTable();
     }
 
     private void mouseHandlerOnHallTable() {
@@ -133,6 +157,20 @@ public class Controller implements Initializable {
                 tfCoachSurname.setText(coach.getSurname());
                 tfCoachNationality.setText(coach.getNationality());
                 editCoachButton.setDisable(false);
+            }
+        });
+    }
+    private void mouseHandlerOnLeagueTable() {
+        leagueTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            League league = leagueTable.getSelectionModel().getSelectedItem();
+            if (league != null) {
+                String numberOfMatches = String.valueOf(league.getNumberOfMatches());
+                String numberOfTeams = String.valueOf(league.getNumberOfClubs());
+                String year = String.valueOf(league.getYear());
+                tfLeagueName.setText(league.getLeagueName());
+                tfLeagueNumberOfMatches.setText(numberOfMatches);
+                tfLeagueNumberOfTeams.setText(numberOfTeams);
+                tfLeagueYear.setText(year);
             }
         });
     }
@@ -225,6 +263,32 @@ public class Controller implements Initializable {
             editCoachButton.setDisable(false);
         }
     }
+
+    public void deleteLeague(ActionEvent actionEvent) {
+    }
+
+    public void addLeague(ActionEvent actionEvent) {
+        Integer numberOfMatches = Integer.parseInt(tfLeagueNumberOfMatches.getText());
+        Integer numberOfTeams = Integer.parseInt(tfLeagueNumberOfTeams.getText());
+        Integer year = Integer.parseInt(tfLeagueYear.getText());
+        League league = new League(tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, numberOfMatches, year);
+        new LeagueRepository().insert(league);
+
+        clearLeagueFields();
+        refreshLeagueTable();
+    }
+
+    private void clearLeagueFields() {
+        tfLeagueYear.clear();
+        tfLeagueNumberOfTeams.clear();
+        tfLeagueNumberOfMatches.clear();
+        tfLeagueName.clear();
+        tfLeagueLevel.clear();
+    }
+
+    public void editLeague(ActionEvent actionEvent) {
+    }
+
     public void deleteSuspensionDate(ActionEvent actionEvent) {
     }
 
@@ -233,15 +297,21 @@ public class Controller implements Initializable {
 
     public void editSuspensionDate(ActionEvent actionEvent) {
     }
-
     private void refreshHallTable() {
         List<Hall> halls = new HallRepository().findAll();
         ObservableList<Hall> hall = FXCollections.observableArrayList(halls);
         hallTable.setItems(hall);
     }
+
     private void refreshCoachTable() {
         List<Coach> coaches = new CoachRepository().findAll();
         ObservableList<Coach> coach = FXCollections.observableArrayList(coaches);
         coachTable.setItems(coach);
+    }
+
+    private void refreshLeagueTable() {
+        List<League> leagues = new LeagueRepository().findAll();
+        ObservableList<League> league = FXCollections.observableArrayList(leagues);
+        leagueTable.setItems(league);
     }
 }
