@@ -100,15 +100,15 @@ public class Controller implements Initializable {
     @FXML
     private TableView<Club> clubTable;
     @FXML
-    private TableColumn<Club, String> clubNameTable;
+    private TableColumn<Club, String> clubNameColumn;
     @FXML
-    private TableColumn<Club, Integer> clubHallTable;
+    private TableColumn<Club, Integer> clubHallColumn;
     @FXML
-    private TableColumn<Club, Integer> clubCountryTable;
+    private TableColumn<Club, Integer> clubCountryColumn;
     @FXML
-    private TableColumn<Club, Integer> clubLeagueTable;
+    private TableColumn<Club, String> clubLeagueColumn;
     @FXML
-    private TableColumn<Club, String> clubCoachTable;
+    private TableColumn<Club, String> clubCoachColumn;
     @FXML
     private Button editClubButton;
     @FXML
@@ -143,9 +143,20 @@ public class Controller implements Initializable {
         fillLeagueCombobox();
         refreshHallComboboxInClub();
 
+        setDataInClubTable();
         fillCoachCombobox();
         refreshCoachCombobox();
         refreshClubTable();
+
+    }
+
+    private void setDataInClubTable() {
+        clubNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getClubName()));
+        clubHallColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getHallId().getHallName()));
+        clubCountryColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCountry()));
+        clubLeagueColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getLeagueId().getLeagueName()));
+        clubCoachColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCoachId().getName()));
+        editClubButton.setDisable(true);
     }
 
     private void refreshCoachCombobox() {

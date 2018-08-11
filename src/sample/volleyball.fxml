@@ -122,11 +122,11 @@
                         <TextField fx:id="tfClubName" layoutX="26.0" layoutY="277.0" promptText="Nazwa klubu" />
                         <TableView fx:id="clubTable" layoutX="253.0" layoutY="46.0" prefHeight="285.0" prefWidth="489.0">
                           <columns>
-                              <TableColumn fx:id="clubNameTable" prefWidth="99.0" text="Nazwa klubu" />
-                            <TableColumn fx:id="clubHallTable" prefWidth="82.0" text="Hala" />
-                            <TableColumn fx:id="clubCountryTable" prefWidth="97.0" text="Kraj" />
-                              <TableColumn fx:id="clubLeagueTable" prefWidth="96.0" text="Liga" />
-                              <TableColumn fx:id="clubCoachTable" prefWidth="114.0" text="Trener" />
+                              <TableColumn fx:id="clubNameColumn" prefWidth="99.0" text="Nazwa klubu" />
+                            <TableColumn fx:id="clubHallColumn" prefWidth="82.0" text="Hala" />
+                            <TableColumn fx:id="clubCountryColumn" prefWidth="97.0" text="Kraj" />
+                              <TableColumn fx:id="clubLeagueColumn" prefWidth="96.0" text="Liga" />
+                              <TableColumn fx:id="clubCoachColumn" prefWidth="114.0" text="Trener" />
                           </columns>
                         </TableView>
                         <Button layoutX="25.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteClub" text="Usuń" />
