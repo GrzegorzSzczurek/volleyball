@@ -83,8 +83,8 @@ public class CardRepository implements CardRepo {
         String cardUpdate = "UPDATE KARTKI SET KOLOR_KARTKI= ? WHERE KARTKA_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(cardUpdate)) {
-            preparedStatement.setInt(1, card.getId());
-            preparedStatement.setString(2, card.getCardType());
+            preparedStatement.setString(1, card.getCardType());
+            preparedStatement.setInt(2, card.getId());
             int i = preparedStatement.executeUpdate();
             System.out.println("as");
         } catch (SQLException e) {

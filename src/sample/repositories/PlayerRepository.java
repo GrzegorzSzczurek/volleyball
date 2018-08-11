@@ -129,14 +129,16 @@ public class PlayerRepository implements PlayerRepo {
         String updatePlayerSql = "UPDATE ZAWODNIK SET KLUB_ID= ?, IMIE= ?, NAZWISKO= ?, WIEK= ?, WZROST= ?, ZAWIESZENIE_ID= ?, KARTKA_ID= ?, PKT_ZDOBYTE= ? WHERE ZAWODNIK_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)) {
-            preparedStatement.setString(1, player.getName());
-            preparedStatement.setString(2, player.getSurname());
-            preparedStatement.setInt(3, player.getAge());
-            preparedStatement.setInt(4, player.getHeight());
-            preparedStatement.setInt(5, player.getSuspensionId().getId());
-            preparedStatement.setInt(6, player.getCardId().getId());
-            preparedStatement.setInt(7, player.getScoredPoints());
-            preparedStatement.setInt(8, player.getClubId().getId());
+            preparedStatement.setInt(1, player.getClubId().getId());
+            preparedStatement.setString(2, player.getName());
+            preparedStatement.setString(3, player.getSurname());
+            preparedStatement.setInt(4, player.getAge());
+            preparedStatement.setInt(5, player.getHeight());
+            preparedStatement.setInt(6, player.getSuspensionId().getId());
+            preparedStatement.setInt(7, player.getCardId().getId());
+            preparedStatement.setInt(8, player.getScoredPoints());
+            preparedStatement.setInt(9, player.getId());
+
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

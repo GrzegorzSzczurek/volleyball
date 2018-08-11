@@ -5,14 +5,13 @@ import sample.interfaces.CoachRepo;
 import sample.model.Coach;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CoachRepository implements CoachRepo {
     @Override
     public List<Coach> findAll() {
-        String findAllSQL = "SELECT * FROM KADRA";
+        String findAllSQL = "SELECT * FROM TRENER";
         List<Coach> coachList = new ArrayList<>();
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(findAllSQL)) {
@@ -22,8 +21,9 @@ public class CoachRepository implements CoachRepo {
                 String name = rs.getString("IMIE");
                 String surname = rs.getString("NAZWISKO");
                 String nationality = rs.getString("NARODOWOSC");
+                Date date = rs.getDate("DATA_URODZENIA");
 
-                Coach coach = new Coach(id, name, surname, LocalDate.now(), nationality);
+                Coach coach = new Coach(id, name, surname, date, nationality);
                 coachList.add(coach);
             }
         } catch (SQLException e) {
@@ -43,8 +43,8 @@ public class CoachRepository implements CoachRepo {
                 String name = rs.getString("IMIE");
                 String surname = rs.getString("NAZWISKO");
                 String nationality = rs.getString("NARODOWOSC");
-
-                return new Coach(id, name, surname, LocalDate.now(), nationality);
+                Date date = rs.getDate("DATA_URODZENIA");
+                return new Coach(id, name, surname, date, nationality);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -56,14 +56,13 @@ public class CoachRepository implements CoachRepo {
     @Override
     public Coach insert(Coach coach) {
         String insertTableSQL = "INSERT INTO TRENER"
-                + "(TRENER_ID, IMIE, NAZWISKO, DATA_URODZENIA, NARODOWOSC) VALUES"
-                + "(?,?,?,?,?)";
+                + "(IMIE, NAZWISKO, DATA_URODZENIA, NARODOWOSC) VALUES"
+                + "(?,?,?,?)";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
-            preparedStatement.setInt(1, coach.getId());
-            preparedStatement.setString(2, coach.getName());
-            preparedStatement.setString(3, coach.getSurname());
-            preparedStatement.setDate(4, Date.valueOf(coach.getBirthDay()));
+            preparedStatement.setString(1, coach.getName());
+            preparedStatement.setString(2, coach.getSurname());
+            preparedStatement.setString(3, String.valueOf(coach.getBirthDay()));
             preparedStatement.setString(4, coach.getNationality());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -85,16 +84,15 @@ public class CoachRepository implements CoachRepo {
 
     @Override
     public void update(Coach coach) {
-        String coachUpdate = "UPDATE TRENER SET IMIE= ? , NAZWISKO= ? , DATA_URODZENIA= ? , NARODOWOSC=? WHERE TERNER_ID= ?";
+        String coachUpdate = "UPDATE TRENER SET IMIE= ? , NAZWISKO= ? , DATA_URODZENIA= ? , NARODOWOSC= ? WHERE TRENER_ID=?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(coachUpdate)) {
-            preparedStatement.setInt(1, coach.getId());
-            preparedStatement.setString(2, coach.getName());
-            preparedStatement.setString(3, coach.getSurname());
-            preparedStatement.setDate(4, Date.valueOf(coach.getBirthDay()));
+            preparedStatement.setString(1, coach.getName());
+            preparedStatement.setString(2, coach.getSurname());
+            preparedStatement.setString(3, String.valueOf(coach.getBirthDay()));
             preparedStatement.setString(4, coach.getNationality());
-            int i = preparedStatement.executeUpdate();
-            System.out.println("as");
+            preparedStatement.setInt(5,coach.getId());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -108,6 +108,7 @@ public class LeagueRepository implements LeagueRepo {
             preparedStatement.setInt(3, league.getNumberOfClubs());
             preparedStatement.setInt(4, league.getNumberOfMatches());
             preparedStatement.setInt(5, league.getYear());
+            preparedStatement.setInt(6, league.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

@@ -2,7 +2,6 @@ package sample;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,14 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
 import sample.model.Coach;
 import sample.model.Hall;
 import sample.repositories.CoachRepository;
 import sample.repositories.HallRepository;
 
 import java.net.URL;
-
 import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -66,7 +63,7 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Coach, String> coachSurnameColumn;
     @FXML
-    private TableColumn<Coach, Date> coachDayOfBirthColumn;
+    private TableColumn<Coach, String> coachDayOfBirthColumn;
     @FXML
     private TableColumn<Coach, String> coachNationalityColumn;
 
@@ -85,13 +82,9 @@ public class Controller implements Initializable {
 
         coachNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
         coachSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
+        coachDayOfBirthColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getBirthDay().toString()));
         coachNationalityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNationality()));
-        coachDayOfBirthColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach, String> param) {
-                return new SimpleStringProperty(param.getValue().getBirthDay().toString());
-            }
-        });
+        editCoachButton.setDisable(true);
         refreshCoachTable();
 
         mouseHandlerOnCoachTable();
@@ -117,11 +110,10 @@ public class Controller implements Initializable {
         coachTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Coach coach = coachTable.getSelectionModel().getSelectedItem();
             if (coach != null) {
-                String dateOfBirth = String.valueOf(dpCoachDayOfBirth.getValue());
-                coachNameColumn.setText(coach.getName());
-                coachSurnameColumn.setText(coach.getSurname());
-                coachNationalityColumn.setText(coach.getNationality());
-                coachDayOfBirthColumn.setText(dateOfBirth);
+                tfCoachName.setText(coach.getName());
+                tfCoachSurname.setText(coach.getSurname());
+                tfCoachNationality.setText(coach.getNationality());
+                editCoachButton.setDisable(false);
             }
         });
     }
@@ -177,27 +169,43 @@ public class Controller implements Initializable {
     }
 
     public void deleteCoach(ActionEvent actionEvent) {
-
+        Coach coach = coachTable.getSelectionModel().getSelectedItem();
+        if (coach != null){
+            try{
+                new CoachRepository().removeById(coach.getId());
+            }catch (RuntimeException e){
+                System.err.println("Can't delete coach!");
+            }
+            refreshCoachTable();
+        }
     }
 
     public void addCoach(ActionEvent actionEvent) {
-        /*Integer capacity = Integer.parseInt(tfHallCapacity.getText());
-        Integer postalCode = Integer.parseInt(tfHallPostalCode.getText());
-        Hall hall = new Hall(tfHallName.getText(), capacity, tfHallCity.getText(), postalCode, tfHallStreet.getText());
-        HallRepository hallRepository = new HallRepository();
-        hallRepository.insert(hall);
-
-        clearHallTextFields();
-        refreshHallTable();*/
         Date dateOfBirth = Date.valueOf(dpCoachDayOfBirth.getValue());
         Coach coach = new Coach(tfCoachName.getText(), tfCoachSurname.getText(), dateOfBirth, tfCoachNationality.getText());
         new CoachRepository().insert(coach);
+        clearCoachFields();
         refreshCoachTable();
     }
 
-    public void editCoach(ActionEvent actionEvent) {
+    private void clearCoachFields() {
+        tfCoachName.clear();
+        tfCoachSurname.clear();
+        tfCoachNationality.clear();
+        dpCoachDayOfBirth.getEditor().clear();
     }
 
+    public void editCoach(ActionEvent actionEvent) {
+       Coach coach = coachTable.getSelectionModel().getSelectedItem();
+        if (coach != null) {
+            Date dateOfBirth = Date.valueOf(dpCoachDayOfBirth.getValue());
+            Coach updatedCoach = new Coach(coach.getId(), tfCoachName.getText(), tfCoachSurname.getText(), dateOfBirth, tfCoachNationality.getText());
+            new CoachRepository().update(updatedCoach);
+            refreshCoachTable();
+            clearCoachFields();
+            editCoachButton.setDisable(false);
+        }
+    }
     public void deleteSuspensionDate(ActionEvent actionEvent) {
     }
 

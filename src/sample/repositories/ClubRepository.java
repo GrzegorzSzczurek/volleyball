@@ -124,6 +124,8 @@ public class ClubRepository implements ClubRepo {
             preparedStatement.setInt(4, club.getLeagueId().getId());
             preparedStatement.setInt(5, club.getCoachId().getId());
             preparedStatement.setString(6, club.getClubname());
+            preparedStatement.setInt(7, club.getId());
+
             int i = preparedStatement.executeUpdate();
             System.out.println("as");
         } catch (SQLException e) {
