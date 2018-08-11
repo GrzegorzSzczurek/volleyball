@@ -3,22 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/model/Suspension.class" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/model/Suspension.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/CardRepository.class" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/CardRepository.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/HallRepository.class" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/HallRepository.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/SuspensionRepository.class" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/SuspensionRepository.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" afterPath="$PROJECT_DIR$/src/sample/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/interfaces/ClubRepo.java" afterPath="$PROJECT_DIR$/src/sample/interfaces/ClubRepo.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/model/Suspension.java" afterPath="$PROJECT_DIR$/src/sample/model/Suspension.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/CadreRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/CadreRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/ClubRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/ClubRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/CoachRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/CoachRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/HallRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/HallRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/SuspensionRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/SuspensionRepository.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/model/Coach.java" afterPath="$PROJECT_DIR$/src/sample/model/Coach.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/volleyball.fxml" afterPath="$PROJECT_DIR$/src/sample/volleyball.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -31,58 +17,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DbConnector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HallRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/repositories/HallRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="27" column="49" lean-forward="false" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+            <state relative-caret-position="272">
+              <caret line="91" column="89" lean-forward="false" selection-start-line="91" selection-start-column="89" selection-end-line="91" selection-end-column="89" />
               <folding>
-                <marker date="1533987589725" expanded="true" signature="430:448" ph=" SELECT statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="1434:1467" ph=" SELECT statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="2396:2524" ph=" INSERT statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="3248:3279" ph=" DELETE statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="3677:3775" ph=" UPDATE statement (HALA)" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Hall.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/model/Hall.java">
+      <file leaf-file-name="Coach.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/model/Coach.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="57" column="106" lean-forward="false" selection-start-line="57" selection-start-column="106" selection-end-line="57" selection-end-column="106" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="340">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -113,6 +67,7 @@
         <option value="$PROJECT_DIR$/src/sample/repositories/MatchRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/HallRepository.java" />
+        <option value="$PROJECT_DIR$/src/sample/model/Coach.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
       </list>
     </option>
@@ -370,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533912055135</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="working crud for hall">
+      <created>1533989450048</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1533989450048</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -417,19 +379,20 @@
     <MESSAGE value="coach repository done" />
     <MESSAGE value="match repository done" />
     <MESSAGE value="something works" />
-    <option name="LAST_COMMIT_MESSAGE" value="something works" />
+    <MESSAGE value="working crud for hall" />
+    <option name="LAST_COMMIT_MESSAGE" value="working crud for hall" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>94</line>
+          <line>145</line>
           <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>112</line>
+          <line>160</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -471,33 +434,13 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/repositories/HallRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="51" lean-forward="false" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-          <folding>
-            <marker date="1533987589725" expanded="true" signature="430:448" ph=" SELECT statement (HALA)" />
-            <marker date="1533987589725" expanded="true" signature="1434:1467" ph=" SELECT statement (HALA)" />
-            <marker date="1533987589725" expanded="true" signature="2396:2524" ph=" INSERT statement (HALA)" />
-            <marker date="1533987589725" expanded="true" signature="3248:3279" ph=" DELETE statement (HALA)" />
-            <marker date="1533987589725" expanded="true" signature="3677:3775" ph=" UPDATE statement (HALA)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
           <caret line="93" column="16" lean-forward="true" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="76" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -559,7 +502,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2176">
           <caret line="128" column="76" lean-forward="false" selection-start-line="128" selection-start-column="76" selection-end-line="128" selection-end-column="76" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -616,7 +561,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2142">
           <caret line="146" column="50" lean-forward="false" selection-start-line="146" selection-start-column="50" selection-end-line="146" selection-end-column="50" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -655,7 +602,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -768,6 +717,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
           <caret line="131" column="5" lean-forward="false" selection-start-line="18" selection-start-column="3" selection-end-line="131" selection-end-column="5" />
+          <folding>
+            <marker date="1533976240684" expanded="true" signature="512:530" ph=" SELECT statement (KLUB)" />
+            <marker date="1533976240684" expanded="true" signature="1943:1976" ph=" SELECT statement (KLUB)" />
+            <marker date="1533976240684" expanded="true" signature="3305:3440" ph=" INSERT statement (KLUB)" />
+            <marker date="1533976240684" expanded="true" signature="4240:4272" ph=" DELETE statement (KLUB)" />
+            <marker date="1533976240684" expanded="true" signature="4668:4766" ph=" UPDATE statement (KLUB)" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -820,25 +776,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/Coach.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -850,6 +791,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/Suspension.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -876,11 +825,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/Coach.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/util/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="130" column="13" lean-forward="false" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="57" column="106" lean-forward="false" selection-start-line="57" selection-start-column="106" selection-end-line="57" selection-end-column="106" />
-          <folding />
+        <state relative-caret-position="272">
+          <caret line="91" column="89" lean-forward="false" selection-start-line="91" selection-start-column="89" selection-end-line="91" selection-end-column="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

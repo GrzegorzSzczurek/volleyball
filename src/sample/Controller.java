@@ -6,19 +6,19 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import sample.model.Coach;
 import sample.model.Hall;
+import sample.repositories.CoachRepository;
 import sample.repositories.HallRepository;
 
 import java.net.URL;
+
+import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -49,6 +49,27 @@ public class Controller implements Initializable {
     @FXML
     private Button editHallButton;
 
+    @FXML
+    private TextField tfCoachName;
+    @FXML
+    private TextField tfCoachSurname;
+    @FXML
+    private TextField tfCoachNationality;
+    @FXML
+    private DatePicker dpCoachDayOfBirth;
+    @FXML
+    private TableView<Coach> coachTable;
+    @FXML
+    private Button editCoachButton;
+    @FXML
+    private TableColumn<Coach, String> coachNameColumn;
+    @FXML
+    private TableColumn<Coach, String> coachSurnameColumn;
+    @FXML
+    private TableColumn<Coach, Date> coachDayOfBirthColumn;
+    @FXML
+    private TableColumn<Coach, String> coachNationalityColumn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         hallNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getHallName()));
@@ -59,7 +80,24 @@ public class Controller implements Initializable {
         hallStreetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getStreet()));
         refreshHallTable();
 
+        mouseHandlerOnHallTable();
         editHallButton.setDisable(true);
+
+        coachNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
+        coachSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
+        coachNationalityColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNationality()));
+        coachDayOfBirthColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Coach, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Coach, String> param) {
+                return new SimpleStringProperty(param.getValue().getBirthDay().toString());
+            }
+        });
+        refreshCoachTable();
+
+        mouseHandlerOnCoachTable();
+    }
+
+    private void mouseHandlerOnHallTable() {
         hallTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Hall hall = hallTable.getSelectionModel().getSelectedItem();
             if (hall != null) {
@@ -71,6 +109,19 @@ public class Controller implements Initializable {
                 tfHallCity.setText(hall.getCity());
                 tfHallPostalCode.setText(postalCode);
                 tfHallStreet.setText(hall.getStreet());
+            }
+        });
+    }
+
+    private void mouseHandlerOnCoachTable() {
+        coachTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Coach coach = coachTable.getSelectionModel().getSelectedItem();
+            if (coach != null) {
+                String dateOfBirth = String.valueOf(dpCoachDayOfBirth.getValue());
+                coachNameColumn.setText(coach.getName());
+                coachSurnameColumn.setText(coach.getSurname());
+                coachNationalityColumn.setText(coach.getNationality());
+                coachDayOfBirthColumn.setText(dateOfBirth);
             }
         });
     }
@@ -100,10 +151,7 @@ public class Controller implements Initializable {
             new HallRepository().update(updatedHall);
             refreshHallTable();
             clearHallTextFields();
-//            tfAuthorSurname.clear();
-//            tfAuthorName.clear();
-//            refreshAuthorComboBox();
-//            refreshBookTable();
+            editHallButton.setDisable(false);
         }
     }
 
@@ -118,10 +166,6 @@ public class Controller implements Initializable {
 
         clearHallTextFields();
         refreshHallTable();
-//        refreshAuthorComboBox();
-//        tfAuthorName.clear();
-//        tfAuthorSurname.clear();
-//        refreshAuthorComboBox();
     }
 
     private void clearHallTextFields() {
@@ -137,6 +181,18 @@ public class Controller implements Initializable {
     }
 
     public void addCoach(ActionEvent actionEvent) {
+        /*Integer capacity = Integer.parseInt(tfHallCapacity.getText());
+        Integer postalCode = Integer.parseInt(tfHallPostalCode.getText());
+        Hall hall = new Hall(tfHallName.getText(), capacity, tfHallCity.getText(), postalCode, tfHallStreet.getText());
+        HallRepository hallRepository = new HallRepository();
+        hallRepository.insert(hall);
+
+        clearHallTextFields();
+        refreshHallTable();*/
+        Date dateOfBirth = Date.valueOf(dpCoachDayOfBirth.getValue());
+        Coach coach = new Coach(tfCoachName.getText(), tfCoachSurname.getText(), dateOfBirth, tfCoachNationality.getText());
+        new CoachRepository().insert(coach);
+        refreshCoachTable();
     }
 
     public void editCoach(ActionEvent actionEvent) {
@@ -155,5 +211,10 @@ public class Controller implements Initializable {
         List<Hall> halls = new HallRepository().findAll();
         ObservableList<Hall> hall = FXCollections.observableArrayList(halls);
         hallTable.setItems(hall);
+    }
+    private void refreshCoachTable() {
+        List<Coach> coaches = new CoachRepository().findAll();
+        ObservableList<Coach> coach = FXCollections.observableArrayList(coaches);
+        coachTable.setItems(coach);
     }
 }

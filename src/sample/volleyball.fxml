@@ -46,16 +46,16 @@
                                 <TextField fx:id="tfCoachName" layoutX="46.0" layoutY="60.0" promptText="Imie" />
                                 <TextField fx:id="tfCoachSurname" layoutX="46.0" layoutY="96.0" promptText="Nazwisko" />
                                 <TextField fx:id="tfCoachNationality" layoutX="46.0" layoutY="169.0" promptText="Narodowość" />
-                                <DatePicker fx:id="tfCoachDayOfBirth" layoutX="46.0" layoutY="132.0" promptText="Data urodzenia" />
+                                <DatePicker fx:id="dpCoachDayOfBirth" layoutX="46.0" layoutY="132.0" promptText="Data urodzenia" />
                                 <Button layoutX="25.0" layoutY="225.0" mnemonicParsing="false" onAction="#deleteCoach" text="Usuń" />
                                 <Button layoutX="82.0" layoutY="225.0" mnemonicParsing="false" onAction="#addCoach" text="Dodaj" />
-                                <Button layoutX="146.0" layoutY="225.0" mnemonicParsing="false" onAction="#editCoach" text="Edytuj" />
-                                <TableView fx:id="CoachTable" layoutX="284.0" layoutY="9.0" prefHeight="406.0" prefWidth="468.0">
+                                <Button fx:id="editCoachButton" layoutX="146.0" layoutY="225.0" mnemonicParsing="false" onAction="#editCoach" text="Edytuj" />
+                                <TableView fx:id="coachTable" layoutX="284.0" layoutY="9.0" prefHeight="406.0" prefWidth="468.0">
                                     <columns>
-                                        <TableColumn fx:id="CoachName" prefWidth="107.0" text="Imie" />
-                                        <TableColumn fx:id="CoachSurname" prefWidth="127.0" text="Nazwisko" />
-                                        <TableColumn fx:id="CoachDayOfBirth" prefWidth="106.0" text="Data urodzenia" />
-                                        <TableColumn fx:id="CoachNationality" prefWidth="127.0" text="Narodowość" />
+                                        <TableColumn fx:id="coachNameColumn" prefWidth="107.0" text="Imie" />
+                                        <TableColumn fx:id="coachSurnameColumn" prefWidth="127.0" text="Nazwisko" />
+                                        <TableColumn fx:id="coachDayOfBirthColumn" prefWidth="106.0" text="Data urodzenia" />
+                                        <TableColumn fx:id="coachNationalityColumn" prefWidth="127.0" text="Narodowość" />
                                     </columns>
                                 </TableView>
                             </children>
