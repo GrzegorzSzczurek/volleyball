@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
         <TabPane prefHeight="466.0" prefWidth="764.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -70,10 +72,8 @@
                                 <Button layoutX="146.0" layoutY="225.0" mnemonicParsing="false" onAction="#editSuspensionDate" text="Edytuj" />
                                 <TableView fx:id="librarianTable1" layoutX="284.0" layoutY="9.0" prefHeight="406.0" prefWidth="468.0">
                                     <columns>
-                                        <TableColumn fx:id="CoachName1" prefWidth="107.0" text="Imie" />
+                                        <TableColumn prefWidth="107.0" text="Imie" />
                                         <TableColumn fx:id="CoachSurname1" prefWidth="127.0" text="Nazwisko" />
-                                        <TableColumn fx:id="CoachDayOfBirth1" prefWidth="106.0" text="Data urodzenia" />
-                                        <TableColumn fx:id="CoachNationality1" prefWidth="127.0" text="Narodowość" />
                                     </columns>
                                 </TableView>
                                 <DatePicker fx:id="tfSuspensionEndOfSuspesnion" layoutX="43.0" layoutY="118.0" promptText="Koniec zawieszenia" />
@@ -81,6 +81,33 @@
                         </AnchorPane>
                     </content>
                 </Tab>
+            <Tab text="Liga">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="697.0">
+                     <children>
+                        <TextField fx:id="tfLeagueName" layoutX="32.0" layoutY="82.0" />
+                        <TextField fx:id="tfLeagueNumberOfTeams" layoutX="32.0" layoutY="126.0" />
+                        <TextField fx:id="tfLeagueNumberOfMatches" layoutX="32.0" layoutY="167.0" />
+                        <TextField fx:id="tfLeagueYear" layoutX="32.0" layoutY="205.0" />
+                        <Text layoutX="189.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa" />
+                        <Text layoutX="189.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość zespołów" />
+                        <Text layoutX="189.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość meczy" />
+                        <Text layoutX="187.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok" />
+                        <Button layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteHall" text="Usuń" />
+                        <Button fx:id="editHallButton1" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editHall" text="Edytuj" />
+                        <Button layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#addHall" text="Dodaj" />
+                        <TableView fx:id="hallTable1" layoutX="314.0" layoutY="35.0" prefHeight="341.0" prefWidth="424.0">
+                           <columns>
+                              <TableColumn fx:id="leagueNameColumn" prefWidth="75.0" text="Nazwa" />
+                              <TableColumn fx:id="leagueNumberOfTeamsColumn" prefWidth="124.0" text="Ilość zespołów" />
+                              <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="114.0" text="Ilość meczy" />
+                              <TableColumn fx:id="leagueYearColumn" prefWidth="110.0" text="Rok" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
             </tabs>
         </TabPane>
     </children>

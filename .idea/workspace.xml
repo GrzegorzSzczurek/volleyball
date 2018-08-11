@@ -3,15 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/model/Coach.class" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/model/Coach.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/CardRepository.class" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/CardRepository.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/MatchRepository.class" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/MatchRepository.class" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" afterPath="$PROJECT_DIR$/src/sample/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/model/Coach.java" afterPath="$PROJECT_DIR$/src/sample/model/Coach.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/ClubRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/ClubRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/CoachRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/CoachRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/MatchRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/MatchRepository.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" afterPath="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/volleyball.fxml" afterPath="$PROJECT_DIR$/src/sample/volleyball.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,57 +22,11 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-979">
-              <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state relative-caret-position="173">
+              <caret line="86" column="30" lean-forward="false" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
               <folding>
-                <element signature="e#4160#4536#0" expanded="false" />
+                <element signature="e#4686#5062#0" expanded="false" />
                 <element signature="method#deleteHall#0;class#Controller#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HallRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/repositories/HallRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding>
-                <marker date="1533987589725" expanded="true" signature="430:448" ph=" SELECT statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="1434:1467" ph=" SELECT statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="2396:2524" ph=" INSERT statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="3248:3279" ph=" DELETE statement (HALA)" />
-                <marker date="1533987589725" expanded="true" signature="3677:3775" ph=" UPDATE statement (HALA)" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoachRepository.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/repositories/CoachRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1534001154112" expanded="true" signature="334:348" ph=" SELECT statement (KADRA)" />
-                <marker date="1534001154112" expanded="true" signature="334:354" ph=" SELECT statement (TRENER)" />
-                <marker date="1534001154112" expanded="true" signature="1290:1327" ph=" SELECT statement (TRENER)" />
-                <marker date="1534001154112" expanded="true" signature="2174:2294" ph=" INSERT statement (TRENER)" />
-                <marker date="1534001154112" expanded="true" signature="2985:3021" ph=" DELETE statement (TRENER)" />
-                <marker date="1534001154112" expanded="true" signature="3419:3512" ph=" UPDATE statement (TRENER)" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Coach.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/model/Coach.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -390,7 +339,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533993850128</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="working crud for coach">
+      <created>1534001553666</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1534001553666</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -404,6 +360,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -420,7 +377,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2769923" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2769923" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -446,7 +403,8 @@
     <MESSAGE value="match repository done" />
     <MESSAGE value="something works" />
     <MESSAGE value="working crud for hall" />
-    <option name="LAST_COMMIT_MESSAGE" value="working crud for hall" />
+    <MESSAGE value="working crud for coach" />
+    <option name="LAST_COMMIT_MESSAGE" value="working crud for coach" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -459,7 +417,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>199</line>
+          <line>218</line>
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
@@ -538,7 +496,7 @@
         <state relative-caret-position="2176">
           <caret line="128" column="76" lean-forward="false" selection-start-line="128" selection-start-column="76" selection-end-line="128" selection-end-column="76" />
           <folding>
-            <element signature="e#4160#4536#0" expanded="false" />
+            <element signature="e#4686#5062#0" expanded="false" />
             <element signature="method#deleteHall#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -598,7 +556,7 @@
         <state relative-caret-position="2142">
           <caret line="146" column="50" lean-forward="false" selection-start-line="146" selection-start-column="50" selection-end-line="146" selection-end-column="50" />
           <folding>
-            <element signature="e#4160#4536#0" expanded="false" />
+            <element signature="e#4686#5062#0" expanded="false" />
             <element signature="method#deleteHall#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -640,7 +598,7 @@
         <state relative-caret-position="221">
           <caret line="33" column="39" lean-forward="true" selection-start-line="33" selection-start-column="39" selection-end-line="33" selection-end-column="39" />
           <folding>
-            <element signature="e#4160#4536#0" expanded="false" />
+            <element signature="e#4686#5062#0" expanded="false" />
             <element signature="method#deleteHall#0;class#Controller#0" expanded="false" />
           </folding>
         </state>
@@ -766,14 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/Suspension.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -964,12 +914,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/Suspension.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-979">
-          <caret line="70" column="0" lean-forward="false" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="173">
+          <caret line="86" column="30" lean-forward="false" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
           <folding>
-            <element signature="e#4160#4536#0" expanded="false" />
+            <element signature="e#4686#5062#0" expanded="false" />
             <element signature="method#deleteHall#0;class#Controller#0" expanded="false" />
           </folding>
         </state>

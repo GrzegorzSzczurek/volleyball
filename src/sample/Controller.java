@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import sample.model.Coach;
 import sample.model.Hall;
+import sample.model.League;
 import sample.repositories.CoachRepository;
 import sample.repositories.HallRepository;
 
@@ -66,6 +67,24 @@ public class Controller implements Initializable {
     private TableColumn<Coach, String> coachDayOfBirthColumn;
     @FXML
     private TableColumn<Coach, String> coachNationalityColumn;
+
+    @FXML
+    private TextField tfLeagueName;
+    @FXML
+    private TextField tfLeagueNumberOfTeams;
+    @FXML
+    private TextField tfLeagueNumberOfMatches;
+    @FXML
+    private TextField tfLeagueYear;
+
+    @FXML
+    private TableColumn<League, String> leagueNameColumn;
+    @FXML
+    private TableColumn<League, String> leagueNumberOfTeamsColumn;
+    @FXML
+    private TableColumn<League, String> leagueNumberOfMatchesColumn;
+    @FXML
+    private TableColumn<League, String> leagueYearColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
