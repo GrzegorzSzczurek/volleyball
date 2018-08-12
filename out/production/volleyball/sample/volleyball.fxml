@@ -122,16 +122,45 @@
                         <TextField fx:id="tfClubName" layoutX="26.0" layoutY="277.0" promptText="Nazwa klubu" />
                         <TableView fx:id="clubTable" layoutX="253.0" layoutY="46.0" prefHeight="285.0" prefWidth="489.0">
                           <columns>
-                              <TableColumn fx:id="clubNameTable" prefWidth="99.0" text="Nazwa klubu" />
-                            <TableColumn fx:id="clubHallTable" prefWidth="82.0" text="Hala" />
-                            <TableColumn fx:id="clubCountryTable" prefWidth="97.0" text="Kraj" />
-                              <TableColumn fx:id="clubLeagueTable" prefWidth="96.0" text="Liga" />
-                              <TableColumn fx:id="clubCoachTable" prefWidth="114.0" text="Trener" />
+                              <TableColumn fx:id="clubNameColumn" prefWidth="99.0" text="Nazwa klubu" />
+                            <TableColumn fx:id="clubHallColumn" prefWidth="82.0" text="Hala" />
+                            <TableColumn fx:id="clubCountryColumn" prefWidth="97.0" text="Kraj" />
+                              <TableColumn fx:id="clubLeagueColumn" prefWidth="96.0" text="Liga" />
+                              <TableColumn fx:id="clubCoachColumn" prefWidth="114.0" text="Trener" />
                           </columns>
                         </TableView>
                         <Button layoutX="25.0" layoutY="331.0" mnemonicParsing="false" onAction="#deleteClub" text="Usuń" />
                         <Button layoutX="100.0" layoutY="331.0" mnemonicParsing="false" onAction="#addClub" text="Dodaj" />
                         <Button fx:id="editClubButton" layoutX="176.0" layoutY="331.0" mnemonicParsing="false" onAction="#editClub" text="Edytuj" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Zawodnik">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ComboBox fx:id="playerClubCombobox" layoutX="14.0" layoutY="35.0" prefWidth="150.0" promptText="Klub" />
+                        <TextField fx:id="tfPlayerName" layoutX="15.0" layoutY="79.0" promptText="Imię" />
+                        <TextField fx:id="tfPlayerSurname" layoutX="15.0" layoutY="122.0" promptText="Nazwisko" />
+                        <TextField fx:id="tfPlayerAge" layoutX="15.0" layoutY="164.0" promptText="Wiek" />
+                        <TextField fx:id="tfPlayerHeight" layoutX="15.0" layoutY="206.0" promptText="Wzrost" />
+                        <ComboBox fx:id="playerCardsCombobox" layoutX="15.0" layoutY="253.0" prefWidth="150.0" promptText="Kartki" />
+                        <TextField fx:id="tfPlayerScoredPoints" layoutX="15.0" layoutY="300.0" promptText="Zdobyte punkty" />
+                        <TableView fx:id="playerTable" layoutX="182.0" layoutY="35.0" prefHeight="292.0" prefWidth="572.0">
+                          <columns>
+                            <TableColumn fx:id="playerClubColumn" prefWidth="75.0" text="Klub" />
+                            <TableColumn fx:id="playerNameColumn" prefWidth="75.0" text="Imię" />
+                              <TableColumn fx:id="playerSurnameColumn" prefWidth="75.0" text="Nazwisko" />
+                              <TableColumn fx:id="playerAgeColumn" prefWidth="75.0" text="Wiek" />
+                              <TableColumn fx:id="playerHeightColumn" prefWidth="75.0" text="Wzrost" />
+                              <TableColumn fx:id="playerCardsColumn" prefWidth="75.0" text="Kartki" />
+                              <TableColumn fx:id="playerScoredPointsColumn" prefWidth="121.0" text="Zdobyte punkty" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="15.0" layoutY="377.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
+                        <Button layoutX="90.0" layoutY="377.0" mnemonicParsing="false" onAction="#addPlayer" text="Dodaj" />
+                        <Button fx:id="eitPlayerButton" layoutX="165.0" layoutY="377.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj" />
                      </children>
                   </AnchorPane>
               </content>

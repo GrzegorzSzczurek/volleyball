@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
-import sample.model.Club;
-import sample.model.Coach;
-import sample.model.Hall;
-import sample.model.League;
+import sample.model.*;
 import sample.repositories.ClubRepository;
 import sample.repositories.CoachRepository;
 import sample.repositories.HallRepository;
@@ -122,6 +119,20 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<Coach> coachComboboxInClub;
 
+    @FXML
+    private TextField tfPlayerName;
+    @FXML
+    private TextField tfPlayerSurname;
+    @FXML
+    private TextField tfPlayerAge;
+    @FXML
+    private TextField tfPlayerHeight;
+    @FXML
+    private TextField tfPlayerScoredPoints;
+    @FXML
+    private ComboBox<Club> playerClubCombobox;
+    @FXML
+    private ComboBox<Card> playerCardsCombobox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -148,6 +159,48 @@ public class Controller implements Initializable {
         refreshCoachCombobox();
         refreshClubTable();
 
+        fillPlayerClubCombobox();
+        refreshPlayerClubCombbox();
+
+        mouseHandletClubTable();
+
+
+    }
+
+    private void mouseHandletClubTable() {
+        clubTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Club club = clubTable.getSelectionModel().getSelectedItem();
+            if (club != null) {
+
+                editHallButton.setDisable(false);
+                tfClubCountry.setText(club.getCountry());
+                tfClubName.setText(club.getClubName());
+                editClubButton.setDisable(false);
+            }
+        });
+    }
+
+    private void refreshPlayerClubCombbox() {
+        List<Club> allClubs = new ClubRepository().findAll();
+        ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
+        playerClubCombobox.setItems(clubs);
+    }
+
+    private void fillPlayerClubCombobox() {
+        StringConverter<Club> scConverter = new StringConverter<Club>() {
+
+            @Override
+            public String toString(Club club) {
+                return club.getClubName() + " " + club.getCountry();
+            }
+
+            @Override
+            public Club fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        playerClubCombobox.setConverter(scConverter);
     }
 
     private void setDataInClubTable() {
@@ -282,6 +335,7 @@ public class Controller implements Initializable {
             }
         });
     }
+
     private void mouseHandlerOnLeagueTable() {
         leagueTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             League league = leagueTable.getSelectionModel().getSelectedItem();
@@ -299,8 +353,6 @@ public class Controller implements Initializable {
         });
     }
 
-
-    @FXML
     public void deleteHall(ActionEvent event) {
         Hall hall = hallTable.getSelectionModel().getSelectedItem();
         if (hall != null) {
@@ -314,7 +366,6 @@ public class Controller implements Initializable {
         refreshHallTable();
     }
 
-    @FXML
     public void editHall(ActionEvent event) {
         Hall hall = hallTable.getSelectionModel().getSelectedItem();
         if (hall != null) {
@@ -327,8 +378,7 @@ public class Controller implements Initializable {
             editHallButton.setDisable(true);
         }
     }
-
-    @FXML
+    
     public void addHall(ActionEvent event) {
 
         Integer capacity = Integer.parseInt(tfHallCapacity.getText());
@@ -445,18 +495,47 @@ public class Controller implements Initializable {
     }
 
     public void editClub(ActionEvent actionEvent) {
+        Club club = clubTable.getSelectionModel().getSelectedItem();
+        if (club != null) {
+            Hall hall = hallComboboxInClub.getSelectionModel().getSelectedItem();
+            League league = leagueComboboxInClub.getSelectionModel().getSelectedItem();
+            Coach coach = coachComboboxInClub.getSelectionModel().getSelectedItem();
 
+            Club updatedClub = new Club(club.getId(), hall, tfClubCountry.getText(), league, coach, tfClubName.getText());
+            new ClubRepository().update(updatedClub);
+            refreshClubTable();
+            refreshLeagueTable();
+            clearLeagueFields();
+            editLeagueButton.setDisable(true);
+        }
     }
 
     public void deleteClub(ActionEvent actionEvent) {
+        Club club = clubTable.getSelectionModel().getSelectedItem();
+        if (club != null){
+            try{
+                new ClubRepository().removeById(club.getId());
+            }catch (RuntimeException e){
+                System.err.println("Can't delete club!");
+            }
+            refreshClubTable();
+        }
+    }
 
+    public void addPlayer(ActionEvent actionEvent) {
+    }
+
+    public void deletePlayer(ActionEvent actionEvent) {
+    }
+
+    public void editPlayer(ActionEvent actionEvent) {
     }
 
     public void deleteSuspensionDate(ActionEvent actionEvent) {
     }
-
     public void addSuspensionDate(ActionEvent actionEvent) {
     }
+
     public void editSuspensionDate(ActionEvent actionEvent) {
     }
 
@@ -471,12 +550,12 @@ public class Controller implements Initializable {
         ObservableList<Coach> coach = FXCollections.observableArrayList(coaches);
         coachTable.setItems(coach);
     }
-
     private void refreshLeagueTable() {
         List<League> leagues = new LeagueRepository().findAll();
         ObservableList<League> league = FXCollections.observableArrayList(leagues);
         leagueTable.setItems(league);
     }
+
     private void refreshClubTable() {
         List<Club> clubs = new ClubRepository().findAll();
         ObservableList<Club> club = FXCollections.observableArrayList(clubs);

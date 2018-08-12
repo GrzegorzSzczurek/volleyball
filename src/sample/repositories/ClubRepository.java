@@ -117,13 +117,12 @@ public class ClubRepository implements ClubRepo {
         String ksiazkaUpdate = "UPDATE KLUB SET HALA_ID= ? , KRAJ= ? , LIGA_ID= ? , TRENER_ID= ? , NAZWA_KLUBU= ? WHERE KLUB_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(ksiazkaUpdate)) {
-            preparedStatement.setInt(1, club.getId());
-            preparedStatement.setInt(2, club.getHallId().getId());
-            preparedStatement.setString(3, club.getCountry());
-            preparedStatement.setInt(4, club.getLeagueId().getId());
-            preparedStatement.setInt(5, club.getCoachId().getId());
-            preparedStatement.setString(6, club.getClubName());
-            preparedStatement.setInt(7, club.getId());
+            preparedStatement.setInt(1, club.getHallId().getId());
+            preparedStatement.setString(2, club.getCountry());
+            preparedStatement.setInt(3, club.getLeagueId().getId());
+            preparedStatement.setInt(4, club.getCoachId().getId());
+            preparedStatement.setString(5, club.getClubName());
+            preparedStatement.setInt(6, club.getId());
 
             int i = preparedStatement.executeUpdate();
             System.out.println("as");
