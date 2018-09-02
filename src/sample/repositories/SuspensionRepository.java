@@ -33,7 +33,7 @@ public class SuspensionRepository implements SuspensionRepo {
 
     @Override
     public Suspension findById(int suspensionId) {
-        String findBookById = "SELECT * FROM SUSPENSION WHERE ZAWIESZENIE_ID=" + suspensionId;
+        String findBookById = "SELECT * FROM ZAWIESZENIA WHERE ZAWIESZENIE_ID=" + suspensionId;
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(findBookById)) {
             ResultSet rs = preparedStatement.executeQuery();

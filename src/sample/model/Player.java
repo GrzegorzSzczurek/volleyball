@@ -24,6 +24,15 @@ public class Player {
         this.scoredPoints = scoredPoints;
     }
 
+    public Player(Club clubId, String name, String surname, int age, int height, int scoredPoints) {
+        this.clubId = clubId;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.height = height;
+        this.scoredPoints = scoredPoints;
+    }
+
     public Player() {
     }
 

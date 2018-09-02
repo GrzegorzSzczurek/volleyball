@@ -160,7 +160,7 @@
                         </TableView>
                         <Button layoutX="15.0" layoutY="377.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
                         <Button layoutX="90.0" layoutY="377.0" mnemonicParsing="false" onAction="#addPlayer" text="Dodaj" />
-                        <Button fx:id="eitPlayerButton" layoutX="165.0" layoutY="377.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj" />
+                        <Button fx:id="editPlayerButton" layoutX="165.0" layoutY="377.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj" />
                      </children>
                   </AnchorPane>
               </content>

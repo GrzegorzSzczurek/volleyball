@@ -10,7 +10,9 @@ public interface PlayerRepo {
 
     Player findById(int playerId);
 
-    Player insert(Player player);
+    Player insertAll(Player player);
+
+    Player insertBasic(Player player);
 
     void removeById(int playerId);
 

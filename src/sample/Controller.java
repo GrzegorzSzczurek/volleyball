@@ -11,10 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
 import sample.model.*;
-import sample.repositories.ClubRepository;
-import sample.repositories.CoachRepository;
-import sample.repositories.HallRepository;
-import sample.repositories.LeagueRepository;
+import sample.repositories.*;
 
 import java.net.URL;
 import java.sql.Date;
@@ -133,6 +130,26 @@ public class Controller implements Initializable {
     private ComboBox<Club> playerClubCombobox;
     @FXML
     private ComboBox<Card> playerCardsCombobox;
+    @FXML
+    private TableView<Player> playerTable;
+    @FXML
+    private TableColumn<Player, String> playerClubColumn;
+    @FXML
+    private TableColumn<Player, String> playerNameColumn;
+    @FXML
+    private TableColumn<Player, String> playerSurnameColumn;
+    @FXML
+    private TableColumn<Player, Integer> playerAgeColumn;
+    @FXML
+    private TableColumn<Player, Integer> playerHeightColumn;
+    @FXML
+    private TableColumn<Player, String> playerCardsColumn;
+    @FXML
+    private TableColumn<Player, Integer> playerScoredPointsColumn;
+
+
+    @FXML
+    private Button editPlayerButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -158,16 +175,17 @@ public class Controller implements Initializable {
         fillCoachCombobox();
         refreshCoachCombobox();
         refreshClubTable();
+        mouseHandlerClubTable();
 
         fillPlayerClubCombobox();
         refreshPlayerClubCombbox();
 
-        mouseHandletClubTable();
-
-
+        setDataInPlayerTable();
+        refreshPlayerTable();
+        mouseHandlerOnPlayerTable();
     }
 
-    private void mouseHandletClubTable() {
+    private void mouseHandlerClubTable() {
         clubTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Club club = clubTable.getSelectionModel().getSelectedItem();
             if (club != null) {
@@ -307,6 +325,16 @@ public class Controller implements Initializable {
         hallStreetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getStreet()));
         editHallButton.setDisable(true);
     }
+    private void setDataInPlayerTable() {
+        playerClubColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getClubId().getClubName()));
+        playerNameColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getName()));
+        playerSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
+        playerAgeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getAge()));
+        playerHeightColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getHeight()));
+        //playerCardsColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCardId().getCardType()));
+        playerScoredPointsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getScoredPoints()));
+        editPlayerButton.setDisable(true);
+    }
 
     private void mouseHandlerOnHallTable() {
         hallTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -352,6 +380,22 @@ public class Controller implements Initializable {
             }
         });
     }
+    private void mouseHandlerOnPlayerTable() {
+        playerTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Player player = playerTable.getSelectionModel().getSelectedItem();
+            if (player != null) {
+                String age = String.valueOf(player.getAge());
+                String height = String.valueOf(player.getHeight());
+                String scoredPoints = String.valueOf(player.getScoredPoints());
+                tfPlayerName.setText(player.getName());
+                tfPlayerSurname.setText(player.getSurname());
+                tfPlayerAge.setText(age);
+                tfPlayerHeight.setText(height);
+                tfPlayerScoredPoints.setText(scoredPoints);
+                editPlayerButton.setDisable(false);
+            }
+        });
+    }
 
     public void deleteHall(ActionEvent event) {
         Hall hall = hallTable.getSelectionModel().getSelectedItem();
@@ -378,7 +422,7 @@ public class Controller implements Initializable {
             editHallButton.setDisable(true);
         }
     }
-    
+
     public void addHall(ActionEvent event) {
 
         Integer capacity = Integer.parseInt(tfHallCapacity.getText());
@@ -523,6 +567,14 @@ public class Controller implements Initializable {
     }
 
     public void addPlayer(ActionEvent actionEvent) {
+        Club club = playerClubCombobox.getSelectionModel().getSelectedItem();
+        Integer playerAge = Integer.parseInt(tfPlayerAge.getText());
+        Integer playerHeight = Integer.parseInt(tfPlayerHeight.getText());
+        Integer scoredPoints = Integer.parseInt(tfPlayerScoredPoints.getText());
+
+        Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
+        new PlayerRepository().insertBasic(player);
+        refreshPlayerTable();
     }
 
     public void deletePlayer(ActionEvent actionEvent) {
@@ -543,6 +595,11 @@ public class Controller implements Initializable {
         List<Hall> halls = new HallRepository().findAll();
         ObservableList<Hall> hall = FXCollections.observableArrayList(halls);
         hallTable.setItems(hall);
+    }
+    private void refreshPlayerTable() {
+        List<Player> players = new PlayerRepository().findAll();
+        ObservableList<Player> player = FXCollections.observableArrayList(players);
+        playerTable.setItems(player);
     }
 
     private void refreshCoachTable() {
