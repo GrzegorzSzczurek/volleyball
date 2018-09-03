@@ -14,6 +14,8 @@ public interface PlayerRepo {
 
     Player insertBasic(Player player);
 
+    Player insertCard(Player player);
+
     void removeById(int playerId);
 
     void updateBasic(Player player);

@@ -132,6 +132,21 @@ public class PlayerRepository implements PlayerRepo {
     }
 
     @Override
+    public Player insertCard(Player player) {
+        String insertTableSQL = "UPDATE ZAWODNIK SET KARTKA_ID= ? WHERE ZAWODNIK_ID= ?";
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
+            preparedStatement.setInt(1, player.getCardId().getId());
+            preparedStatement.setInt(2, player.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return player;
+    }
+
+    @Override
     public void removeById(int hallId) {
 
         String autor = "DELETE FROM ZAWODNIK WHERE ZAWODNIK_ID= " + hallId;

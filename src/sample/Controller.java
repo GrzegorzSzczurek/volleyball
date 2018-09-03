@@ -160,6 +160,34 @@ public class Controller implements Initializable {
     @FXML
     private Button editCardButton;
 
+    @FXML
+    private TableColumn<Match, String> hostColumn;
+    @FXML
+    private TableColumn<Match, String> guestColumn;
+    @FXML
+    private TableColumn<Match, Integer> pointsForMatchColumn;
+    @FXML
+    private TableColumn<Match, Integer> frequencyColumn;
+    @FXML
+    private TableColumn<Match, Integer> fixtureColumn;
+    @FXML
+    private ComboBox<Player> hostCadreCombobox;
+    @FXML
+    private ComboBox<Card> guestCadreCombobox;
+    @FXML
+    private ComboBox<Card> pointsCombobox;
+    @FXML
+    private TextField tfFrequency;
+    @FXML
+    private TextField tfFixture;
+
+    @FXML
+    private ComboBox<Club> cadreClubCombobox;
+    @FXML
+    private ComboBox<Player> cadrePlayerCombobox;
+    @FXML
+    private ComboBox<Match> matchCombobox;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setDataInHallTable();
@@ -198,12 +226,26 @@ public class Controller implements Initializable {
         fillPlayerCombobox();
         refreshPlayerCombobox();
         refreshCardTable();
+
+        fillCardCombobox();
+        refreshCardCombobox();
+
+        fillCadreClubCombobox();
+        refreshCadreClubCombobox();
+        fillCadrePlayerCombobox();
+        refreshCadrePlayerCombobox();
     }
 
     private void refreshPlayerClubCombobox() {
         List<Club> allClubs = new ClubRepository().findAll();
         ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
         playerClubCombobox.setItems(clubs);
+    }
+
+    private void refreshCadreClubCombobox() {
+        List<Club> allClubs = new ClubRepository().findAll();
+        ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
+        cadreClubCombobox.setItems(clubs);
     }
 
     private void fillPlayerClubCombobox() {
@@ -221,6 +263,23 @@ public class Controller implements Initializable {
 
         };
         playerClubCombobox.setConverter(scConverter);
+    }
+
+    private void fillCadreClubCombobox() {
+        StringConverter<Club> scConverter = new StringConverter<Club>() {
+
+            @Override
+            public String toString(Club club) {
+                return club.getClubName() + " " + club.getCountry();
+            }
+
+            @Override
+            public Club fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        cadreClubCombobox.setConverter(scConverter);
     }
 
     private void setDataInClubTable() {
@@ -306,6 +365,40 @@ public class Controller implements Initializable {
         playerCombobox.setConverter(scConverter1);
     }
 
+    private void fillCadrePlayerCombobox() {
+        StringConverter<Player> scConverter1 = new StringConverter<Player>() {
+
+            @Override
+            public String toString(Player players) {
+                return players.getName() + " " + players.getSurname();
+            }
+
+            @Override
+            public Player fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        cadrePlayerCombobox.setConverter(scConverter1);
+    }
+
+    private void fillCardCombobox() {
+        StringConverter<Card> scConverter1 = new StringConverter<Card>() {
+
+            @Override
+            public String toString(Card cards) {
+                return cards.getCardType();
+            }
+
+            @Override
+            public Card fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        cardCombobox.setConverter(scConverter1);
+    }
+
     private void refreshHallComboboxInClub() {
         List<Hall> allHalls = new HallRepository().findAll();
         ObservableList<Hall> halls = FXCollections.observableArrayList(allHalls);
@@ -322,6 +415,18 @@ public class Controller implements Initializable {
         List<Player> allPlayers = new PlayerRepository().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
         playerCombobox.setItems(players);
+    }
+
+    private void refreshCadrePlayerCombobox() {
+        List<Player> allPlayers = new PlayerRepository().findAll();
+        ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
+        cadrePlayerCombobox.setItems(players);
+    }
+
+    private void refreshCardCombobox() {
+        List<Card> allCards = new CardRepository().findAll();
+        ObservableList<Card> cards = FXCollections.observableArrayList(allCards);
+        cardCombobox.setItems(cards);
     }
 
     private void setDataInLeagueTable() {
@@ -362,7 +467,7 @@ public class Controller implements Initializable {
         playerSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
         playerAgeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getAge()));
         playerHeightColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getHeight()));
-        //playerCardsColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCardId().getCardType()));
+        playerCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCardId().getId()));
         playerScoredPointsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getScoredPoints()));
         editPlayerButton.setDisable(true);
     }
@@ -684,6 +789,7 @@ public class Controller implements Initializable {
         new CardRepository().insert(card);
         tfCard.clear();
         refreshCardTable();
+        refreshCardCombobox();
     }
 
     public void deleteCard(ActionEvent actionEvent) {
@@ -691,6 +797,7 @@ public class Controller implements Initializable {
         new CardRepository().removeById(card.getId());
         refreshCardTable();
         tfCard.clear();
+        refreshCardCombobox();
     }
 
     public void editCard(ActionEvent actionEvent) {
@@ -700,10 +807,33 @@ public class Controller implements Initializable {
             new CardRepository().update(updatedCard);
             refreshCardTable();
             tfCard.clear();
+            refreshCardCombobox();
         }
     }
 
     public void addCardToPlayer(ActionEvent actionEvent) {
+        Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
+        Player player = new Player(playerFromCombobox.getId(), cardCombobox.getSelectionModel().getSelectedItem());
+        new PlayerRepository().insertCard(player);
+        refreshPlayerTable();
+    }
+
+    public void addMatch(ActionEvent actionEvent) {
+    }
+
+    public void deleteMatch(ActionEvent actionEvent) {
+    }
+
+    public void editMatch(ActionEvent actionEvent) {
+    }
+
+    public void addCadre(ActionEvent actionEvent) {
+    }
+
+    public void deleteCadre(ActionEvent actionEvent) {
+    }
+
+    public void editCadre(ActionEvent actionEvent) {
     }
 
     private void clearPlayerFields() {
