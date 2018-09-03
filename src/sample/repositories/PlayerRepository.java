@@ -109,6 +109,7 @@ public class PlayerRepository implements PlayerRepo {
 
         return player;
     }
+
     @Override
     public Player insertBasic(Player player) {
         String insertTableSQL = "INSERT INTO ZAWODNIK"
@@ -144,7 +145,28 @@ public class PlayerRepository implements PlayerRepo {
 
 
     @Override
-    public void update(Player player) {
+    public void updateBasic(Player player) {
+
+        String updatePlayerSql = "UPDATE ZAWODNIK SET KLUB_ID= ?, IMIE= ?, NAZWISKO= ?, WIEK= ?, WZROST= ?, PKT_ZDOBYTE= ? WHERE ZAWODNIK_ID= ?";
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)) {
+            preparedStatement.setInt(1, player.getClubId().getId());
+            preparedStatement.setString(2, player.getName());
+            preparedStatement.setString(3, player.getSurname());
+            preparedStatement.setInt(4, player.getAge());
+            preparedStatement.setInt(5, player.getHeight());
+            preparedStatement.setInt(6, player.getScoredPoints());
+            preparedStatement.setInt(7, player.getId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void updateWithSuspensionAndCards(Player player) {
 
         String updatePlayerSql = "UPDATE ZAWODNIK SET KLUB_ID= ?, IMIE= ?, NAZWISKO= ?, WIEK= ?, WZROST= ?, ZAWIESZENIE_ID= ?, KARTKA_ID= ?, PKT_ZDOBYTE= ? WHERE ZAWODNIK_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();

@@ -16,5 +16,7 @@ public interface PlayerRepo {
 
     void removeById(int playerId);
 
-    void update(Player player);
+    void updateBasic(Player player);
+
+    void updateWithSuspensionAndCards(Player player);
 }

@@ -185,19 +185,6 @@ public class Controller implements Initializable {
         mouseHandlerOnPlayerTable();
     }
 
-    private void mouseHandlerClubTable() {
-        clubTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            Club club = clubTable.getSelectionModel().getSelectedItem();
-            if (club != null) {
-
-                editHallButton.setDisable(false);
-                tfClubCountry.setText(club.getCountry());
-                tfClubName.setText(club.getClubName());
-                editClubButton.setDisable(false);
-            }
-        });
-    }
-
     private void refreshPlayerClubCombbox() {
         List<Club> allClubs = new ClubRepository().findAll();
         ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
@@ -325,6 +312,7 @@ public class Controller implements Initializable {
         hallStreetColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getStreet()));
         editHallButton.setDisable(true);
     }
+
     private void setDataInPlayerTable() {
         playerClubColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getClubId().getClubName()));
         playerNameColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getName()));
@@ -364,6 +352,19 @@ public class Controller implements Initializable {
         });
     }
 
+    private void mouseHandlerClubTable() {
+        clubTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Club club = clubTable.getSelectionModel().getSelectedItem();
+            if (club != null) {
+
+                editHallButton.setDisable(false);
+                tfClubCountry.setText(club.getCountry());
+                tfClubName.setText(club.getClubName());
+                editClubButton.setDisable(false);
+            }
+        });
+    }
+
     private void mouseHandlerOnLeagueTable() {
         leagueTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             League league = leagueTable.getSelectionModel().getSelectedItem();
@@ -380,6 +381,7 @@ public class Controller implements Initializable {
             }
         });
     }
+
     private void mouseHandlerOnPlayerTable() {
         playerTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Player player = playerTable.getSelectionModel().getSelectedItem();
@@ -445,13 +447,14 @@ public class Controller implements Initializable {
 
     public void deleteCoach(ActionEvent actionEvent) {
         Coach coach = coachTable.getSelectionModel().getSelectedItem();
-        if (coach != null){
-            try{
+        if (coach != null) {
+            try {
                 new CoachRepository().removeById(coach.getId());
-            }catch (RuntimeException e){
+            } catch (RuntimeException e) {
                 System.err.println("Can't delete coach!");
             }
             refreshCoachTable();
+            clearCoachFields();
         }
     }
 
@@ -471,7 +474,7 @@ public class Controller implements Initializable {
     }
 
     public void editCoach(ActionEvent actionEvent) {
-       Coach coach = coachTable.getSelectionModel().getSelectedItem();
+        Coach coach = coachTable.getSelectionModel().getSelectedItem();
         if (coach != null) {
             Date dateOfBirth = Date.valueOf(dpCoachDayOfBirth.getValue());
             Coach updatedCoach = new Coach(coach.getId(), tfCoachName.getText(), tfCoachSurname.getText(), dateOfBirth, tfCoachNationality.getText());
@@ -484,13 +487,14 @@ public class Controller implements Initializable {
 
     public void deleteLeague(ActionEvent actionEvent) {
         League league = leagueTable.getSelectionModel().getSelectedItem();
-        if (league != null){
-            try{
+        if (league != null) {
+            try {
                 new LeagueRepository().removeById(league.getId());
-            }catch (RuntimeException e){
+            } catch (RuntimeException e) {
                 System.err.println("Can't delete coach!");
             }
             refreshLeagueTable();
+            clearLeagueFields();
         }
     }
 
@@ -513,13 +517,21 @@ public class Controller implements Initializable {
         tfLeagueLevel.clear();
     }
 
+    private void clearClubFields() {
+        tfClubCountry.clear();
+        tfClubName.clear();
+        hallComboboxInClub.getSelectionModel().clearSelection();
+        leagueComboboxInClub.getSelectionModel().clearSelection();
+        coachComboboxInClub.getSelectionModel().clearSelection();
+    }
+
     public void editLeague(ActionEvent actionEvent) {
         League league = leagueTable.getSelectionModel().getSelectedItem();
         if (league != null) {
             Integer numberOfMatches = Integer.parseInt(tfLeagueNumberOfMatches.getText());
             Integer numberOfTeams = Integer.parseInt(tfLeagueNumberOfTeams.getText());
             Integer year = Integer.parseInt(tfLeagueYear.getText());
-            League updatedLeague = new League(league.getId(),tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, numberOfMatches, year);
+            League updatedLeague = new League(league.getId(), tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, numberOfMatches, year);
             new LeagueRepository().update(updatedLeague);
             refreshLeagueTable();
             clearLeagueFields();
@@ -536,6 +548,7 @@ public class Controller implements Initializable {
         Club club = new Club(hall, tfClubCountry.getText(), league, coach, tfClubName.getText());
         new ClubRepository().insert(club);
         refreshClubTable();
+        clearClubFields();
     }
 
     public void editClub(ActionEvent actionEvent) {
@@ -550,19 +563,21 @@ public class Controller implements Initializable {
             refreshClubTable();
             refreshLeagueTable();
             clearLeagueFields();
+            clearClubFields();
             editLeagueButton.setDisable(true);
         }
     }
 
     public void deleteClub(ActionEvent actionEvent) {
         Club club = clubTable.getSelectionModel().getSelectedItem();
-        if (club != null){
-            try{
+        if (club != null) {
+            try {
                 new ClubRepository().removeById(club.getId());
-            }catch (RuntimeException e){
+            } catch (RuntimeException e) {
                 System.err.println("Can't delete club!");
             }
             refreshClubTable();
+            clearClubFields();
         }
     }
 
@@ -575,16 +590,50 @@ public class Controller implements Initializable {
         Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
         new PlayerRepository().insertBasic(player);
         refreshPlayerTable();
+        clearPlayerFields();
     }
 
     public void deletePlayer(ActionEvent actionEvent) {
+        Player player = playerTable.getSelectionModel().getSelectedItem();
+        if (player != null) {
+            try {
+                new PlayerRepository().removeById(player.getId());
+            } catch (RuntimeException e) {
+                System.err.println("Can't delete player!");
+            }
+            refreshPlayerTable();
+            clearPlayerFields();
+        }
     }
 
     public void editPlayer(ActionEvent actionEvent) {
+
+        Player player = playerTable.getSelectionModel().getSelectedItem();
+        if (player != null) {
+            Club club = playerClubCombobox.getSelectionModel().getSelectedItem();
+            int playerAge = Integer.parseInt(tfPlayerAge.getText());
+            int playerHeight = Integer.parseInt(tfPlayerHeight.getText());
+            int scoredPoints = Integer.parseInt(tfPlayerScoredPoints.getText());
+
+            Player updatedPlayer = new Player(player.getId(), club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
+            new PlayerRepository().updateBasic(updatedPlayer);
+            refreshPlayerTable();
+            clearPlayerFields();
+            editPlayerButton.setDisable(true);
+        }
+    }
+
+    private void clearPlayerFields() {
+        tfPlayerName.clear();
+        tfPlayerSurname.clear();
+        tfPlayerAge.clear();
+        tfPlayerHeight.clear();
+        tfPlayerScoredPoints.clear();
     }
 
     public void deleteSuspensionDate(ActionEvent actionEvent) {
     }
+
     public void addSuspensionDate(ActionEvent actionEvent) {
     }
 
@@ -596,6 +645,7 @@ public class Controller implements Initializable {
         ObservableList<Hall> hall = FXCollections.observableArrayList(halls);
         hallTable.setItems(hall);
     }
+
     private void refreshPlayerTable() {
         List<Player> players = new PlayerRepository().findAll();
         ObservableList<Player> player = FXCollections.observableArrayList(players);
@@ -607,6 +657,7 @@ public class Controller implements Initializable {
         ObservableList<Coach> coach = FXCollections.observableArrayList(coaches);
         coachTable.setItems(coach);
     }
+
     private void refreshLeagueTable() {
         List<League> leagues = new LeagueRepository().findAll();
         ObservableList<League> league = FXCollections.observableArrayList(leagues);

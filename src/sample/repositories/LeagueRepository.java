@@ -28,7 +28,7 @@ public class LeagueRepository implements LeagueRepo {
                 int numberOfMatches = rs.getInt("ILOSC_MECZY");
                 int year = rs.getInt("ROK");
 
-                League league = new League(id, leagueName, leagueLevel, numberOfTeams, numberOfMatches,  year);
+                League league = new League(id, leagueName, leagueLevel, numberOfTeams, numberOfMatches, year);
                 leagueList.add(league);
             }
         } catch (SQLException e) {

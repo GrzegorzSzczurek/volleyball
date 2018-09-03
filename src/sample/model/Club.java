@@ -17,6 +17,7 @@ public class Club {
         this.coachId = coachId;
         this.clubName = clubName;
     }
+
     public Club(Hall hallId, String country, League leagueId, Coach coachId, String clubName) {
         this.hallId = hallId;
         this.country = country;

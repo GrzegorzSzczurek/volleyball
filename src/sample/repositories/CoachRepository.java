@@ -91,7 +91,7 @@ public class CoachRepository implements CoachRepo {
             preparedStatement.setString(2, coach.getSurname());
             preparedStatement.setString(3, String.valueOf(coach.getBirthDay()));
             preparedStatement.setString(4, coach.getNationality());
-            preparedStatement.setInt(5,coach.getId());
+            preparedStatement.setInt(5, coach.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

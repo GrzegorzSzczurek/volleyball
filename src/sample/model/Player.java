@@ -33,6 +33,16 @@ public class Player {
         this.scoredPoints = scoredPoints;
     }
 
+    public Player(Integer id, Club clubId, String name, String surname, int age, int height, int scoredPoints) {
+        this.id = id;
+        this.clubId = clubId;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.height = height;
+        this.scoredPoints = scoredPoints;
+    }
+
     public Player() {
     }
 
