@@ -187,7 +187,7 @@ public class Controller implements Initializable {
         mouseHandlerClubTable();
 
         fillPlayerClubCombobox();
-        refreshPlayerClubCombbox();
+        refreshPlayerClubCombobox();
 
         setDataInPlayerTable();
         refreshPlayerTable();
@@ -195,10 +195,12 @@ public class Controller implements Initializable {
 
         setDataInCardTable();
         mouseHandlerOnCardTable();
+        fillPlayerCombobox();
+        refreshPlayerCombobox();
         refreshCardTable();
     }
 
-    private void refreshPlayerClubCombbox() {
+    private void refreshPlayerClubCombobox() {
         List<Club> allClubs = new ClubRepository().findAll();
         ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
         playerClubCombobox.setItems(clubs);
@@ -287,6 +289,23 @@ public class Controller implements Initializable {
         leagueComboboxInClub.setConverter(scConverter1);
     }
 
+    private void fillPlayerCombobox() {
+        StringConverter<Player> scConverter1 = new StringConverter<Player>() {
+
+            @Override
+            public String toString(Player players) {
+                return players.getName() + " " + players.getSurname();
+            }
+
+            @Override
+            public Player fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        playerCombobox.setConverter(scConverter1);
+    }
+
     private void refreshHallComboboxInClub() {
         List<Hall> allHalls = new HallRepository().findAll();
         ObservableList<Hall> halls = FXCollections.observableArrayList(allHalls);
@@ -297,6 +316,12 @@ public class Controller implements Initializable {
         List<League> allLeagues = new LeagueRepository().findAll();
         ObservableList<League> leagues = FXCollections.observableArrayList(allLeagues);
         leagueComboboxInClub.setItems(leagues);
+    }
+
+    private void refreshPlayerCombobox() {
+        List<Player> allPlayers = new PlayerRepository().findAll();
+        ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
+        playerCombobox.setItems(players);
     }
 
     private void setDataInLeagueTable() {
@@ -618,6 +643,7 @@ public class Controller implements Initializable {
         Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
         new PlayerRepository().insertBasic(player);
         refreshPlayerTable();
+        refreshPlayerCombobox();
         clearPlayerFields();
     }
 
@@ -630,6 +656,7 @@ public class Controller implements Initializable {
                 System.err.println("Can't delete player!");
             }
             refreshPlayerTable();
+            refreshPlayerCombobox();
             clearPlayerFields();
         }
     }
@@ -647,6 +674,7 @@ public class Controller implements Initializable {
             new PlayerRepository().updateBasic(updatedPlayer);
             refreshPlayerTable();
             clearPlayerFields();
+            refreshPlayerCombobox();
             editPlayerButton.setDisable(true);
         }
     }
