@@ -78,8 +78,8 @@ public class MatchRepository implements MatchRepo {
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
             preparedStatement.setInt(1, match.getId());
-            preparedStatement.setInt(2, match.getGuestCadre().getClubId().getId());
-            preparedStatement.setInt(3, match.getHostCadre().getClubId().getId());
+            preparedStatement.setInt(2, match.getGuestCadre().getCadreId());
+            preparedStatement.setInt(3, match.getHostCadre().getCadreId());
             preparedStatement.setInt(4, match.getPointsForMatch());
             preparedStatement.setInt(5, match.getFrequency());
             preparedStatement.setInt(6, match.getFixture());
@@ -106,8 +106,8 @@ public class MatchRepository implements MatchRepo {
         String matchUpdate = "UPDATE MECZ SET GOSC_KADRA= ? , GOSPODARZ_KADRA= ? , PKT_ZA_MECZ= ? , FREKWENCJA= ? , KOLEJKA= ? WHERE MECZ_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(matchUpdate)) {
-            preparedStatement.setInt(1, match.getGuestCadre().getClubId().getId());
-            preparedStatement.setInt(2, match.getHostCadre().getClubId().getId());
+            preparedStatement.setInt(1, match.getGuestCadre().getCadreId());
+            preparedStatement.setInt(2, match.getHostCadre().getCadreId());
             preparedStatement.setInt(3, match.getPointsForMatch());
             preparedStatement.setInt(4, match.getFrequency());
             preparedStatement.setInt(5, match.getFixture());

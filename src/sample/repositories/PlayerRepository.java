@@ -41,7 +41,7 @@ public class PlayerRepository implements PlayerRepo {
                 ClubRepository clubRepository = new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
-                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionbyId, cardById, scoredPoints);
+                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, scoredPoints);
                 playerList.add(player);
             }
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class PlayerRepository implements PlayerRepo {
                 ClubRepository clubRepository = new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
-                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, suspensionbyId, cardById, scoredPoints);
+                Player player = new Player(playerId, clubById, playerName, playerSurname, age, height, scoredPoints);
 
                 return player;
             }
@@ -90,8 +90,8 @@ public class PlayerRepository implements PlayerRepo {
     @Override
     public Player insertAll(Player player) {
         String insertTableSQL = "INSERT INTO ZAWODNIK"
-                + "(KLUB_ID, IMIE, NAZWISKO, WIEK, WZROST, ZAWIESZENIE_ID, KARTKA_ID, PKT_ZDOBYTE) VALUES"
-                + "(?,?,?,?,?, ?, ?, ?)";
+                + "(KLUB_ID, IMIE, NAZWISKO, WIEK, WZROST, PKT_ZDOBYTE) VALUES"
+                + "(?,?,?,?,?, ?)";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
             preparedStatement.setInt(1, player.getClubId().getId());
@@ -99,9 +99,7 @@ public class PlayerRepository implements PlayerRepo {
             preparedStatement.setString(3, player.getSurname());
             preparedStatement.setInt(4, player.getAge());
             preparedStatement.setInt(5, player.getHeight());
-            preparedStatement.setInt(6, player.getSuspensionId().getId());
-            preparedStatement.setInt(7, player.getCardId().getId());
-            preparedStatement.setInt(8, player.getScoredPoints());
+            preparedStatement.setInt(6, player.getScoredPoints());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -131,7 +129,7 @@ public class PlayerRepository implements PlayerRepo {
         return player;
     }
 
-    @Override
+    /*@Override
     public Player insertCard(Player player) {
         String insertTableSQL = "UPDATE ZAWODNIK SET KARTKA_ID= ? WHERE ZAWODNIK_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
@@ -144,7 +142,7 @@ public class PlayerRepository implements PlayerRepo {
         }
 
         return player;
-    }
+    }*/
 
     @Override
     public void removeById(int hallId) {
@@ -180,7 +178,7 @@ public class PlayerRepository implements PlayerRepo {
         }
     }
 
-    @Override
+    /*@Override
     public void updateWithSuspensionAndCards(Player player) {
 
         String updatePlayerSql = "UPDATE ZAWODNIK SET KLUB_ID= ?, IMIE= ?, NAZWISKO= ?, WIEK= ?, WZROST= ?, ZAWIESZENIE_ID= ?, KARTKA_ID= ?, PKT_ZDOBYTE= ? WHERE ZAWODNIK_ID= ?";
@@ -201,5 +199,5 @@ public class PlayerRepository implements PlayerRepo {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }

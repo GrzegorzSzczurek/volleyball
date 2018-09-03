@@ -467,7 +467,7 @@ public class Controller implements Initializable {
         playerSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
         playerAgeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getAge()));
         playerHeightColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getHeight()));
-        playerCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCardId().getId()));
+        //playerCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCardId().getId()));
         playerScoredPointsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getScoredPoints()));
         editPlayerButton.setDisable(true);
     }
@@ -746,7 +746,9 @@ public class Controller implements Initializable {
         Integer scoredPoints = Integer.parseInt(tfPlayerScoredPoints.getText());
 
         Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
+        Team team = new Team(club, player);
         new PlayerRepository().insertBasic(player);
+        new TeamRepository().insert(team);
         refreshPlayerTable();
         refreshPlayerCombobox();
         clearPlayerFields();
@@ -785,9 +787,10 @@ public class Controller implements Initializable {
     }
 
     public void addCard(ActionEvent actionEvent) {
-        Card card = new Card(tfCard.getText());
+        Card card = new Card(tfCard.getText(), playerCombobox.getSelectionModel().getSelectedItem());
         new CardRepository().insert(card);
         tfCard.clear();
+        playerCombobox.getSelectionModel().clearSelection();
         refreshCardTable();
         refreshCardCombobox();
     }
@@ -811,12 +814,12 @@ public class Controller implements Initializable {
         }
     }
 
-    public void addCardToPlayer(ActionEvent actionEvent) {
+   /* public void addCardToPlayer(ActionEvent actionEvent) {
         Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
         Player player = new Player(playerFromCombobox.getId(), cardCombobox.getSelectionModel().getSelectedItem());
         new PlayerRepository().insertCard(player);
         refreshPlayerTable();
-    }
+    }*/
 
     public void addMatch(ActionEvent actionEvent) {
     }

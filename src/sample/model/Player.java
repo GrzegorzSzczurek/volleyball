@@ -8,21 +8,7 @@ public class Player {
     private String surname;
     private int age;
     private int height;
-    private Suspension suspensionId;
-    private Card cardId;
     private int scoredPoints;
-
-    public Player(Integer id, Club clubId, String name, String surname, int age, int height, Suspension suspensionId, Card cardId, int scoredPoints) {
-        this.id = id;
-        this.clubId = clubId;
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.height = height;
-        this.suspensionId = suspensionId;
-        this.cardId = cardId;
-        this.scoredPoints = scoredPoints;
-    }
 
     public Player(Club clubId, String name, String surname, int age, int height, int scoredPoints) {
         this.clubId = clubId;
@@ -31,11 +17,6 @@ public class Player {
         this.age = age;
         this.height = height;
         this.scoredPoints = scoredPoints;
-    }
-
-    public Player(Integer id, Card cardId) {
-        this.id = id;
-        this.cardId = cardId;
     }
 
     public Player(Integer id, Club clubId, String name, String surname, int age, int height, int scoredPoints) {
@@ -97,22 +78,6 @@ public class Player {
 
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    public Suspension getSuspensionId() {
-        return suspensionId;
-    }
-
-    public void setSuspensionId(Suspension suspensionId) {
-        this.suspensionId = suspensionId;
-    }
-
-    public Card getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(Card cardId) {
-        this.cardId = cardId;
     }
 
     public int getScoredPoints() {

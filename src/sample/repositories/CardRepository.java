@@ -54,11 +54,12 @@ public class CardRepository implements CardRepo {
     @Override
     public Card insert(Card card) {
         String insertTableSQL = "INSERT INTO KARTKI"
-                + "(KOLOR_KARTKI) VALUES"
-                + "(?)";
+                + "(KOLOR_KARTKI, ZAWODNIK_ID) VALUES"
+                + "(?, ?)";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
             preparedStatement.setString(1, card.getCardType());
+            preparedStatement.setInt(2, card.getPlayer().getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -79,11 +80,12 @@ public class CardRepository implements CardRepo {
 
     @Override
     public void update(Card card) {
-        String cardUpdate = "UPDATE KARTKI SET KOLOR_KARTKI= ? WHERE KARTKA_ID= ?";
+        String cardUpdate = "UPDATE KARTKI SET KOLOR_KARTKI= ?, ZAWODNIK_ID=? WHERE KARTKA_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(cardUpdate)) {
             preparedStatement.setString(1, card.getCardType());
-            preparedStatement.setInt(2, card.getId());
+            preparedStatement.setInt(2, card.getPlayer().getId());
+            preparedStatement.setInt(3, card.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
