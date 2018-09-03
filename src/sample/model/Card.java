@@ -10,6 +10,10 @@ public class Card {
         this.cardType = cardType;
     }
 
+    public Card(String cardType) {
+        this.cardType = cardType;
+    }
+
     public Card() {
     }
 

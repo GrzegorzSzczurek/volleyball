@@ -129,8 +129,6 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<Club> playerClubCombobox;
     @FXML
-    private ComboBox<Card> playerCardsCombobox;
-    @FXML
     private TableView<Player> playerTable;
     @FXML
     private TableColumn<Player, String> playerClubColumn;
@@ -146,10 +144,21 @@ public class Controller implements Initializable {
     private TableColumn<Player, String> playerCardsColumn;
     @FXML
     private TableColumn<Player, Integer> playerScoredPointsColumn;
-
-
     @FXML
     private Button editPlayerButton;
+
+    @FXML
+    private TableView<Card> cardTable;
+    @FXML
+    private TextField tfCard;
+    @FXML
+    private ComboBox<Player> playerCombobox;
+    @FXML
+    private ComboBox<Card> cardCombobox;
+    @FXML
+    private TableColumn<Card, String> cardsColumn;
+    @FXML
+    private Button editCardButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -183,6 +192,10 @@ public class Controller implements Initializable {
         setDataInPlayerTable();
         refreshPlayerTable();
         mouseHandlerOnPlayerTable();
+
+        setDataInCardTable();
+        mouseHandlerOnCardTable();
+        refreshCardTable();
     }
 
     private void refreshPlayerClubCombbox() {
@@ -295,6 +308,11 @@ public class Controller implements Initializable {
         editLeagueButton.setDisable(true);
     }
 
+    private void setDataInCardTable() {
+        cardsColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCardType()));
+        editLeagueButton.setDisable(true);
+    }
+
     private void setDataInCoachTable() {
         coachNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getName()));
         coachSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
@@ -395,6 +413,16 @@ public class Controller implements Initializable {
                 tfPlayerHeight.setText(height);
                 tfPlayerScoredPoints.setText(scoredPoints);
                 editPlayerButton.setDisable(false);
+            }
+        });
+    }
+
+    private void mouseHandlerOnCardTable() {
+        cardTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            Card card = cardTable.getSelectionModel().getSelectedItem();
+            if (card != null) {
+                tfCard.setText(card.getCardType());
+                editCardButton.setDisable(false);
             }
         });
     }
@@ -623,6 +651,33 @@ public class Controller implements Initializable {
         }
     }
 
+    public void addCard(ActionEvent actionEvent) {
+        Card card = new Card(tfCard.getText());
+        new CardRepository().insert(card);
+        tfCard.clear();
+        refreshCardTable();
+    }
+
+    public void deleteCard(ActionEvent actionEvent) {
+        Card card = cardTable.getSelectionModel().getSelectedItem();
+        new CardRepository().removeById(card.getId());
+        refreshCardTable();
+        tfCard.clear();
+    }
+
+    public void editCard(ActionEvent actionEvent) {
+        Card card = cardTable.getSelectionModel().getSelectedItem();
+        if(card != null){
+            Card updatedCard = new Card(card.getId(), tfCard.getText());
+            new CardRepository().update(updatedCard);
+            refreshCardTable();
+            tfCard.clear();
+        }
+    }
+
+    public void addCardToPlayer(ActionEvent actionEvent) {
+    }
+
     private void clearPlayerFields() {
         tfPlayerName.clear();
         tfPlayerSurname.clear();
@@ -668,5 +723,11 @@ public class Controller implements Initializable {
         List<Club> clubs = new ClubRepository().findAll();
         ObservableList<Club> club = FXCollections.observableArrayList(clubs);
         clubTable.setItems(club);
+    }
+
+    private void refreshCardTable() {
+        List<Card> cards = new CardRepository().findAll();
+        ObservableList<Card> card = FXCollections.observableArrayList(cards);
+        cardTable.setItems(card);
     }
 }
