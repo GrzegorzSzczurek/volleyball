@@ -253,7 +253,7 @@ public class Controller implements Initializable {
         //refreshCadrePlayerCombobox();
         setDataInMatchesTables();
         refreshMatchTable();
-        refreshCadreTable();
+       // refreshCadreTable();
     }
 
     private void refreshPlayerClubCombobox() {
@@ -459,19 +459,16 @@ public class Controller implements Initializable {
     }
 
     private void setDataInMatchesTables() {
-        hostColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Match, Integer>, ObservableValue<Integer>>() {
-            @Override
-            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Match, Integer> param) {
-                return new SimpleObjectProperty(param.getValue().getHostCadre());
-            }
-        });
+
+        hostColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getCadreId())));
         guestColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getCadreId())));
         frequencyColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFrequency())));
         fixtureColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFixture())));
+
         /*cadreIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().toString())));
         matchIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getMatchId().getId())));
-        clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));*/
-        /*cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
+        clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
+        cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
         playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getId())));*/
     }
 

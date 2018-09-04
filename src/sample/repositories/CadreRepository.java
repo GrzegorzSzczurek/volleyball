@@ -51,16 +51,16 @@ public class CadreRepository implements CadreRepo {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("KADRA_ID");
-                int matchId = rs.getInt("MECZ_ID");
+                //int matchId = rs.getInt("MECZ_ID");
                 int clubId = rs.getInt("KLUB_ID");
 
-                MatchRepository matchRepository = new MatchRepository();
-                Match matchById = matchRepository.findById(matchId);
+                /*MatchRepository matchRepository = new MatchRepository();
+                Match matchById = matchRepository.findById(matchId);*/
 
                 ClubRepository clubRepository = new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);
 
-                return new Cadre(id, matchById, clubById);
+                return new Cadre(id, clubById);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

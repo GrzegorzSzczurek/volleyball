@@ -17,6 +17,11 @@ public class Cadre {
         this.clubId = clubId;
     }
 
+    public Cadre(Integer cadreId, Club clubId) {
+        this.cadreId = cadreId;
+        this.clubId = clubId;
+    }
+
     public Cadre(Club clubId) {
         this.clubId = clubId;
     }
