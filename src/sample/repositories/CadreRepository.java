@@ -24,12 +24,16 @@ public class CadreRepository implements CadreRepo {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("KADRA_ID");
-                int playerId = rs.getInt("ZAWODNIK_ID");
+                int matchId = rs.getInt("MECZ_ID");
+                int clubId = rs.getInt("KLUB_ID");
 
-                PlayerRepository playerRepository = new PlayerRepository();
-                Player playerById = playerRepository.findById(playerId);
+                MatchRepository matchRepository = new MatchRepository();
+                Match matchById = matchRepository.findById(matchId);
 
-                Cadre cadre = new Cadre(id, playerById);
+                ClubRepository clubRepository = new ClubRepository();
+                Club clubById = clubRepository.findById(clubId);
+
+                Cadre cadre = new Cadre(id, matchById, clubById);
 
                 cadreList.add(cadre);
             }
@@ -47,12 +51,16 @@ public class CadreRepository implements CadreRepo {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("KADRA_ID");
-                int playerId = rs.getInt("ZAWODNIK_ID");
+                int matchId = rs.getInt("MECZ_ID");
+                int clubId = rs.getInt("KLUB_ID");
 
-                PlayerRepository playerRepository = new PlayerRepository();
-                Player playerById = playerRepository.findById(playerId);
+                MatchRepository matchRepository = new MatchRepository();
+                Match matchById = matchRepository.findById(matchId);
 
-                return new Cadre(id, playerById);
+                ClubRepository clubRepository = new ClubRepository();
+                Club clubById = clubRepository.findById(clubId);
+
+                return new Cadre(id, matchById, clubById);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -64,12 +72,27 @@ public class CadreRepository implements CadreRepo {
     @Override
     public Cadre insert(Cadre cadre) {
         String insertTableSQL = "INSERT INTO KADRA"
-                + "(KADRA_ID, ZAWODNIK_ID) VALUES"
+                + "(MECZ_ID, KLUB_ID) VALUES"
                 + "(?,?)";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
-            preparedStatement.setInt(1, cadre.getCadreId());
-            preparedStatement.setInt(2, cadre.getPlayerId().getId());
+            preparedStatement.setInt(1, cadre.getMatchId().getId());
+            preparedStatement.setInt(2, cadre.getClubId().getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cadre;
+    }
+
+    @Override
+    public Cadre insertWithoutMatch(Cadre cadre) {
+        String insertTableSQL = "INSERT INTO KADRA"
+                + "(KLUB_ID) VALUES"
+                + "(?)";
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
+            preparedStatement.setInt(1, cadre.getClubId().getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -90,13 +113,13 @@ public class CadreRepository implements CadreRepo {
 
     @Override
     public void update(Cadre cadre) {
-        String cadreUpdate = "UPDATE KADRA SET ZAWODNIK_ID= ? WHERE KADRA_ID= ?";
+        String cadreUpdate = "UPDATE KADRA SET MECZ_ID= ? , KLUB_ID=? WHERE KADRA_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(cadreUpdate)) {
-            preparedStatement.setInt(1, cadre.getPlayerId().getId());
-            preparedStatement.setInt(2, cadre.getCadreId());
+            preparedStatement.setInt(1, cadre.getMatchId().getId());
+            preparedStatement.setInt(2, cadre.getClubId().getId());
+            preparedStatement.setInt(3, cadre.getCadreId());
             int i = preparedStatement.executeUpdate();
-            System.out.println("as");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -213,18 +213,12 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ComboBox fx:id="cadreClubCombobox" layoutX="24.0" layoutY="56.0" prefWidth="150.0" promptText="Klub" />
-                        <ComboBox fx:id="cadrePlayerCombobox" layoutX="24.0" layoutY="114.0" prefWidth="150.0" promptText="Zawodnik" />
-                        <ComboBox fx:id="matchCombobox" layoutX="24.0" layoutY="165.0" prefWidth="150.0" promptText="Mecz" />
-                        <TableView layoutX="282.0" layoutY="56.0" prefHeight="272.0" prefWidth="450.0">
-                          <columns>
-                            <TableColumn fx:id="cadreClubColumn" prefWidth="112.0" text="Klub" />
-                            <TableColumn fx:id="cadrePlayerColumn" prefWidth="180.0" text="Zawodnik" />
-                              <TableColumn fx:id="cadreMatchColumn" prefWidth="157.0" text="Mecz" />
-                          </columns>
-                        </TableView>
-                        <Button layoutX="24.0" layoutY="243.0" mnemonicParsing="false" onAction="#addCadre" text="Dodaj" />
-                        <Button layoutX="99.0" layoutY="243.0" mnemonicParsing="false" onAction="#deleteCadre" text="Usuń" />
-                        <Button layoutX="174.0" layoutY="243.0" mnemonicParsing="false" onAction="#editCadre" text="Edytuj" />
+                        <Button layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#addCadre" text="Dodaj" />
+                        <Button layoutX="78.0" layoutY="120.0" mnemonicParsing="false" onAction="#deleteCadre" text="Usuń" />
+                        <Button layoutX="136.0" layoutY="120.0" mnemonicParsing="false" onAction="#editCadre" text="Edytuj" />
+                        <ComboBox fx:id="cadreCombobox" layoutX="402.0" layoutY="69.0" prefWidth="150.0" promptText="Kadra" />
+                        <ComboBox fx:id="cadrePlayerCombobox" layoutX="402.0" layoutY="145.0" prefWidth="150.0" promptText="Zawodnik" />
+                        <Button layoutX="402.0" layoutY="219.0" mnemonicParsing="false" onAction="#addPlayerToCadre" text="Dodaj zawodnika do kadry" />
                      </children>
                   </AnchorPane>
               </content>

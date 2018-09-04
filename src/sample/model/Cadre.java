@@ -1,16 +1,30 @@
 package sample.model;
 
+import java.util.List;
+
 public class Cadre {
 
     private Integer cadreId;
-    private Player playerId;
+    private Match matchId;
+    private Club clubId;
+    private List<Player> playerList;
 
     public Cadre() {
     }
 
-    public Cadre(Integer cadreId, Player playerId) {
+    public Cadre(Integer cadreId, Match matchId, Club clubId) {
         this.cadreId = cadreId;
-        this.playerId = playerId;
+        this.matchId = matchId;
+        this.clubId = clubId;
+    }
+
+    public Cadre(Club clubId) {
+        this.clubId = clubId;
+    }
+
+    public Cadre(Match matchId, Club clubId) {
+        this.matchId = matchId;
+        this.clubId = clubId;
     }
 
     public Integer getCadreId() {
@@ -21,11 +35,19 @@ public class Cadre {
         this.cadreId = cadreId;
     }
 
-    public Player getPlayerId() {
-        return playerId;
+    public Match getMatchId() {
+        return matchId;
     }
 
-    public void setPlayerId(Player playerId) {
-        this.playerId = playerId;
+    public void setMatchId(Match matchId) {
+        this.matchId = matchId;
+    }
+
+    public Club getClubId() {
+        return clubId;
+    }
+
+    public void setClubId(Club clubId) {
+        this.clubId = clubId;
     }
 }
