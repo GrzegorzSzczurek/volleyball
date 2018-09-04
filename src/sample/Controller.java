@@ -1,7 +1,9 @@
 package sample;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 import javafx.util.StringConverter;
 import sample.model.*;
 import sample.repositories.*;
@@ -161,15 +164,24 @@ public class Controller implements Initializable {
     private Button editCardButton;
 
     @FXML
-    private TableColumn<Match, String> hostColumn;
+    private TableColumn<Match, Integer> hostColumn;
     @FXML
-    private TableColumn<Match, String> guestColumn;
-    @FXML
-    private TableColumn<Match, Integer> pointsForMatchColumn;
+    private TableColumn<Match, Integer> guestColumn;
     @FXML
     private TableColumn<Match, Integer> frequencyColumn;
     @FXML
     private TableColumn<Match, Integer> fixtureColumn;
+
+    @FXML
+    private TableColumn<Cadre, Integer> cadreIdColumn;
+    @FXML
+    private TableColumn<Cadre, Integer> matchIdColumn;
+    @FXML
+    private TableColumn<Cadre, Integer> clubIdColumn;
+    @FXML
+    private TableColumn<Cadre, Integer> cadreIdInCadreColumn;
+    @FXML
+    private TableColumn<Player, Integer> playerIdColumn;
     @FXML
     private ComboBox<Player> hostCadreCombobox;
     @FXML
@@ -189,6 +201,10 @@ public class Controller implements Initializable {
     private ComboBox<Player> cadrePlayerCombobox;
     @FXML
     private ComboBox<Match> matchCombobox;
+    @FXML
+    private TableView<Match> matchTable;
+    @FXML
+    private TableView<Cadre> cadreTable;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -235,6 +251,9 @@ public class Controller implements Initializable {
         fillCadreClubCombobox();
         refreshCadreClubCombobox();
         //refreshCadrePlayerCombobox();
+        setDataInMatchesTables();
+        refreshMatchTable();
+        refreshCadreTable();
     }
 
     private void refreshPlayerClubCombobox() {
@@ -439,6 +458,23 @@ public class Controller implements Initializable {
         editLeagueButton.setDisable(true);
     }
 
+    private void setDataInMatchesTables() {
+        hostColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Match, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Match, Integer> param) {
+                return new SimpleObjectProperty(param.getValue().getHostCadre());
+            }
+        });
+        guestColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getCadreId())));
+        frequencyColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFrequency())));
+        fixtureColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFixture())));
+        /*cadreIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().toString())));
+        matchIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getMatchId().getId())));
+        clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));*/
+        /*cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
+        playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getId())));*/
+    }
+
     private void setDataInCardTable() {
         cardsColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCardType()));
         editLeagueButton.setDisable(true);
@@ -597,6 +633,7 @@ public class Controller implements Initializable {
 
         clearHallTextFields();
         refreshHallTable();
+        refreshHallComboboxInClub();
     }
 
     private void clearHallTextFields() {
@@ -764,7 +801,6 @@ public class Controller implements Initializable {
         Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
         Team team = new Team(club, player);
         new PlayerRepository().insertBasic(player);
-        new TeamRepository().insert(team);
         refreshPlayerTable();
         refreshPlayerCombobox();
         clearPlayerFields();
@@ -865,6 +901,7 @@ public class Controller implements Initializable {
         tfPlayerAge.clear();
         tfPlayerHeight.clear();
         tfPlayerScoredPoints.clear();
+        playerClubCombobox.getSelectionModel().clearSelection();
     }
 
     public void deleteSuspensionDate(ActionEvent actionEvent) {
@@ -882,10 +919,22 @@ public class Controller implements Initializable {
         hallTable.setItems(hall);
     }
 
+    private void refreshMatchTable() {
+        List<Match> matches = new MatchRepository().findAll();
+        ObservableList<Match> match = FXCollections.observableArrayList(matches);
+        matchTable.setItems(match);
+    }
+
     private void refreshPlayerTable() {
         List<Player> players = new PlayerRepository().findAll();
         ObservableList<Player> player = FXCollections.observableArrayList(players);
         playerTable.setItems(player);
+    }
+
+    private void refreshCadreTable() {
+        List<Cadre> cadres = new CadreRepository().findAll();
+        ObservableList<Cadre> cadre = FXCollections.observableArrayList(cadres);
+        cadreTable.setItems(cadre);
     }
 
     private void refreshCoachTable() {

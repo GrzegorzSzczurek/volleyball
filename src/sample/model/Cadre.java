@@ -7,7 +7,6 @@ public class Cadre {
     private Integer cadreId;
     private Match matchId;
     private Club clubId;
-    private List<Player> playerList;
 
     public Cadre() {
     }

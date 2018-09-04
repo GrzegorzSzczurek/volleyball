@@ -24,7 +24,6 @@ public class MatchRepository implements MatchRepo {
                 int id = rs.getInt("MECZ_ID");
                 int guestId = rs.getInt("GOSC_KADRA");
                 int hostId = rs.getInt("GOSPODARZ_KADRA");
-                int pointsForMatch = rs.getInt("PKT_ZA_MECZ");
                 int frequency = rs.getInt("FREKWENCJA");
                 int fixture = rs.getInt("KOLEJKA");
 
@@ -33,7 +32,7 @@ public class MatchRepository implements MatchRepo {
                 Cadre hostById = cadreRepository.findById(hostId);
 
 
-                Match match = new Match(id, hostById, guestById, pointsForMatch, frequency, fixture);
+                Match match = new Match(id, hostById, guestById, frequency, fixture);
 
                 matchList.add(match);
             }
@@ -45,7 +44,7 @@ public class MatchRepository implements MatchRepo {
 
     @Override
     public Match findById(int matchId) {
-        String findMatchById = "SELECT * FROM MECZ WHERE MECY_ID=" + matchId;
+        String findMatchById = "SELECT * FROM MECZ WHERE MECZ_ID=" + matchId;
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(findMatchById)) {
             ResultSet rs = preparedStatement.executeQuery();
@@ -53,7 +52,6 @@ public class MatchRepository implements MatchRepo {
                 int id = rs.getInt("MECZ_ID");
                 int guestId = rs.getInt("GOSC_KADRA");
                 int hostId = rs.getInt("GOSPODARZ_KADRA");
-                int pointsForMatch = rs.getInt("PKT_ZA_MECZ");
                 int frequency = rs.getInt("FREKWENCJA");
                 int fixture = rs.getInt("KOLEJKA");
 
@@ -61,7 +59,7 @@ public class MatchRepository implements MatchRepo {
                 Cadre guestById = cadreRepository.findById(guestId);
                 Cadre hostById = cadreRepository.findById(hostId);
 
-                return new Match(id, hostById, guestById, pointsForMatch, frequency, fixture);
+                return new Match(id, hostById, guestById, frequency, fixture);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -73,16 +71,15 @@ public class MatchRepository implements MatchRepo {
     @Override
     public Match insert(Match match) {
         String insertTableSQL = "INSERT INTO MECZ"
-                + "(MECZ_ID, GOSC_KADRA, GOSPODARZ_KADRA, PKT_ZA_MECZ, FREKWENCJA, KOLEJKA) VALUES"
+                + "(MECZ_ID, GOSC_KADRA, GOSPODARZ_KADRA, FREKWENCJA, KOLEJKA) VALUES"
                 + "(?,?,?,?,?,?)";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
             preparedStatement.setInt(1, match.getId());
             preparedStatement.setInt(2, match.getGuestCadre().getCadreId());
             preparedStatement.setInt(3, match.getHostCadre().getCadreId());
-            preparedStatement.setInt(4, match.getPointsForMatch());
-            preparedStatement.setInt(5, match.getFrequency());
-            preparedStatement.setInt(6, match.getFixture());
+            preparedStatement.setInt(4, match.getFrequency());
+            preparedStatement.setInt(5, match.getFixture());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -103,15 +100,14 @@ public class MatchRepository implements MatchRepo {
 
     @Override
     public void update(Match match) {
-        String matchUpdate = "UPDATE MECZ SET GOSC_KADRA= ? , GOSPODARZ_KADRA= ? , PKT_ZA_MECZ= ? , FREKWENCJA= ? , KOLEJKA= ? WHERE MECZ_ID= ?";
+        String matchUpdate = "UPDATE MECZ SET GOSC_KADRA= ? , GOSPODARZ_KADRA= ? , FREKWENCJA= ? , KOLEJKA= ? WHERE MECZ_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(matchUpdate)) {
             preparedStatement.setInt(1, match.getGuestCadre().getCadreId());
             preparedStatement.setInt(2, match.getHostCadre().getCadreId());
-            preparedStatement.setInt(3, match.getPointsForMatch());
-            preparedStatement.setInt(4, match.getFrequency());
-            preparedStatement.setInt(5, match.getFixture());
-            preparedStatement.setInt(6, match.getId());
+            preparedStatement.setInt(3, match.getFrequency());
+            preparedStatement.setInt(4, match.getFixture());
+            preparedStatement.setInt(5, match.getId());
             int i = preparedStatement.executeUpdate();
             System.out.println("as");
         } catch (SQLException e) {
