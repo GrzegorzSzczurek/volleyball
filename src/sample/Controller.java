@@ -1,9 +1,7 @@
 package sample;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,13 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
+import sample.dbConnector.DbConnector;
 import sample.model.*;
 import sample.repositories.*;
 
 import java.net.URL;
-import java.sql.Date;
+import java.sql.*;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -150,7 +148,13 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Player, Integer> playerScoredPointsColumn;
     @FXML
+    private ComboBox<Club> playerClubCombobox2;
+    @FXML
+    private Label showSumPoints;
+    @FXML
     private Button editPlayerButton;
+    @FXML
+    private Button sumPoints;
 
     @FXML
     private TableView<Card> cardTable;
@@ -236,6 +240,8 @@ public class Controller implements Initializable {
 
         fillPlayerClubCombobox();
         refreshPlayerClubCombobox();
+        fillPlayerClubCombobox2();
+        refreshPlayerClubCombobox2();
 
         setDataInPlayerTable();
         refreshPlayerTable();
@@ -269,6 +275,12 @@ public class Controller implements Initializable {
         playerClubCombobox.setItems(clubs);
     }
 
+    private void refreshPlayerClubCombobox2() {
+        List<Club> allClubs = new ClubRepository().findAll();
+        ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
+        playerClubCombobox2.setItems(clubs);
+    }
+
     private void refreshCadreClubCombobox() {
         List<Club> allClubs = new ClubRepository().findAll();
         ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
@@ -290,6 +302,23 @@ public class Controller implements Initializable {
 
         };
         playerClubCombobox.setConverter(scConverter);
+    }
+
+    private void fillPlayerClubCombobox2() {
+        StringConverter<Club> scConverter = new StringConverter<Club>() {
+
+            @Override
+            public String toString(Club club) {
+                return club.getClubName() + " " + club.getCountry();
+            }
+
+            @Override
+            public Club fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        playerClubCombobox2.setConverter(scConverter);
     }
 
     private void fillCadreClubCombobox() {
@@ -467,17 +496,17 @@ public class Controller implements Initializable {
 
     private void setDataInMatchesTables() {
 
-        hostColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getCadreId())));
-        guestColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getCadreId())));
+        hostColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getClubId().getClubName())));
+        guestColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getClubId().getClubName())));
         frequencyColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFrequency())));
         fixtureColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFixture())));
 
         cadreIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
         matchIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getMatchId().getId())));
-        clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getClubId().getId())));
+        clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getClubId().getClubName())));
 
         cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().getCadreId())));
-        playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getPlayerId().getId())));
+        playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getPlayerId().getSurname())));
     }
 
     private void setDataInCardTable() {
@@ -798,6 +827,22 @@ public class Controller implements Initializable {
         }
     }
 
+    @FXML
+    public void sumPoints(ActionEvent event) {
+        Club club = playerClubCombobox2.getSelectionModel().getSelectedItem();
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement("select SUMOFSCOREDPOINTSBYPLAYERS(" + club.getId() + ")from dual")) {
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int res = rs.getInt(1);
+            showSumPoints.setText("Suma zdobytych punktów przez zawodników klubu: " + club.getClubName() + "wynosi: " + String.valueOf(String.valueOf(res)));
+            playerClubCombobox2.getSelectionModel().clearSelection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void addPlayer(ActionEvent actionEvent) {
         Club club = playerClubCombobox.getSelectionModel().getSelectedItem();
         Integer playerAge = Integer.parseInt(tfPlayerAge.getText());
@@ -861,7 +906,7 @@ public class Controller implements Initializable {
 
     public void editCard(ActionEvent actionEvent) {
         Card card = cardTable.getSelectionModel().getSelectedItem();
-        if(card != null){
+        if (card != null) {
             Card updatedCard = new Card(card.getId(), tfCard.getText());
             new CardRepository().update(updatedCard);
             refreshCardTable();

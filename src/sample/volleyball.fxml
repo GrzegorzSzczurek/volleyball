@@ -127,24 +127,27 @@
                                 <TextField fx:id="tfPlayerAge" layoutX="15.0" layoutY="164.0" promptText="Wiek" />
                                 <TextField fx:id="tfPlayerHeight" layoutX="15.0" layoutY="206.0" promptText="Wzrost" />
                                 <TextField fx:id="tfPlayerScoredPoints" layoutX="16.0" layoutY="249.0" promptText="Zdobyte punkty" />
-                                <TableView fx:id="playerTable" layoutX="166.0" layoutY="35.0" prefHeight="292.0" prefWidth="596.0">
+                                <TableView fx:id="playerTable" layoutX="164.0" layoutY="35.0" prefHeight="292.0" prefWidth="598.0">
                                     <columns>
                                         <TableColumn fx:id="playerClubColumn" prefWidth="75.0" text="Klub" />
                                         <TableColumn fx:id="playerNameColumn" prefWidth="75.0" text="Imię" />
                                         <TableColumn fx:id="playerSurnameColumn" prefWidth="75.0" text="Nazwisko" />
-                                        <TableColumn fx:id="playerAgeColumn" prefWidth="75.0" text="Wiek" />
-                                        <TableColumn fx:id="playerHeightColumn" prefWidth="63.0" text="Wzrost" />
-                                        <TableColumn fx:id="playerCardsColumn" minWidth="0.0" prefWidth="105.0" text="Kartki">
+                                        <TableColumn fx:id="playerAgeColumn" prefWidth="57.0" text="Wiek" />
+                                        <TableColumn fx:id="playerHeightColumn" prefWidth="69.0" text="Wzrost" />
+                                        <TableColumn fx:id="playerCardsColumn" minWidth="0.0" prefWidth="162.0" text="Kartki">
                                  <columns>
                                     <TableColumn fx:id="yellowCards" prefWidth="75.0" text="Żółte" />
                                     <TableColumn fx:id="redCards" prefWidth="75.0" text="Czerwone" />
                                  </columns></TableColumn>
-                                        <TableColumn fx:id="playerScoredPointsColumn" minWidth="0.0" prefWidth="127.0" text="Zdobyte punkty" />
+                                        <TableColumn fx:id="playerScoredPointsColumn" minWidth="0.0" prefWidth="94.0" text="Zdobyte punkty" />
                                     </columns>
                                 </TableView>
                                 <Button layoutX="15.0" layoutY="377.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
                                 <Button layoutX="90.0" layoutY="377.0" mnemonicParsing="false" onAction="#addPlayer" text="Dodaj" />
                                 <Button fx:id="editPlayerButton" layoutX="165.0" layoutY="377.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj" />
+                        <ComboBox fx:id="playerClubCombobox2" layoutX="250.0" layoutY="327.0" prefWidth="150.0" promptText="Klub" />
+                        <Button layoutX="250.0" layoutY="352.0" mnemonicParsing="false" onAction="#sumPoints" prefHeight="80.0" prefWidth="156.0" text="Oblicz sume zdobytych punktów przez zawodników danego klubu" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="showSumPoints" layoutX="449.0" layoutY="340.0" prefHeight="81.0" prefWidth="301.0" wrapText="true" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -181,7 +184,7 @@
                           <columns>
                             <TableColumn fx:id="cadreIdColumn" prefWidth="75.0" text="Id kadry" />
                             <TableColumn fx:id="matchIdColumn" prefWidth="75.0" text="id meczu" />
-                              <TableColumn fx:id="clubIdColumn" prefWidth="75.0" text="id klubu" />
+                              <TableColumn fx:id="clubIdColumn" prefWidth="75.0" text="Klub" />
                           </columns>
                         </TableView>
                         <TableView fx:id="playersCadreTable" layoutX="572.0" layoutY="47.0" prefHeight="200.0" prefWidth="188.0">
