@@ -68,12 +68,10 @@
                             <children>
                                 <TextField fx:id="tfLeagueName" layoutX="32.0" layoutY="35.0" />
                                 <TextField fx:id="tfLeagueNumberOfTeams" layoutX="32.0" layoutY="126.0" />
-                                <TextField fx:id="tfLeagueNumberOfMatches" layoutX="32.0" layoutY="167.0" />
-                                <TextField fx:id="tfLeagueYear" layoutX="32.0" layoutY="205.0" />
+                                <TextField fx:id="tfLeagueYear" layoutX="32.0" layoutY="165.0" />
                                 <Text layoutX="189.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa" />
                                 <Text layoutX="189.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość zespołów" />
-                                <Text layoutX="189.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość meczy" />
-                                <Text layoutX="187.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok" />
+                                <Text layoutX="190.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok" />
                                 <Button layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteLeague" text="Usuń" />
                                 <Button fx:id="editLeagueButton" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editLeague" text="Edytuj" />
                                 <Button layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#addLeague" text="Dodaj" />
@@ -82,7 +80,7 @@
                                         <TableColumn fx:id="leagueNameColumn" prefWidth="75.0" text="Nazwa" />
                                         <TableColumn fx:id="leagueLevelColumn" prefWidth="96.0" text="Poziom ligi" />
                                         <TableColumn fx:id="leagueNumberOfTeamsColumn" prefWidth="124.0" text="Ilość zespołów" />
-                                        <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="81.0" text="Ilość meczy" />
+                                        <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="81.0" text="Ilość kolejek" />
                                         <TableColumn fx:id="leagueYearColumn" prefWidth="70.0" text="Rok" />
                                     </columns>
                                 </TableView>
@@ -139,7 +137,7 @@
                                     <TableColumn fx:id="yellowCards" prefWidth="75.0" text="Żółte" />
                                     <TableColumn fx:id="redCards" prefWidth="75.0" text="Czerwone" />
                                  </columns></TableColumn>
-                                        <TableColumn fx:id="playerScoredPointsColumn" minWidth="0.0" prefWidth="94.0" text="Zdobyte punkty" />
+                                        <TableColumn fx:id="playerScoredPointsColumn" minWidth="0.0" prefWidth="96.0" text="Zdobyte punkty" />
                                     </columns>
                                 </TableView>
                                 <Button layoutX="14.0" layoutY="289.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
@@ -179,25 +177,27 @@
                             <TableColumn fx:id="hostColumn" prefWidth="75.0" text="Gospodarz" />
                             <TableColumn fx:id="guestColumn" prefWidth="64.0" text="Gość" />
                               <TableColumn fx:id="frequencyColumn" prefWidth="86.0" text="Frekwencja" />
-                              <TableColumn fx:id="fixtureColumn" prefWidth="75.0" text="Kolejka" />
+                              <TableColumn fx:id="fixtureColumn" prefWidth="77.0" text="Kolejka" />
                           </columns>
                         </TableView>
                         <TableView fx:id="cadreTable" layoutX="326.0" layoutY="47.0" prefHeight="200.0" prefWidth="228.0">
                           <columns>
                             <TableColumn fx:id="cadreIdColumn" prefWidth="75.0" text="Id kadry" />
                             <TableColumn fx:id="matchIdColumn" prefWidth="75.0" text="id meczu" />
-                              <TableColumn fx:id="clubIdColumn" prefWidth="75.0" text="Klub" />
+                              <TableColumn fx:id="clubIdColumn" prefWidth="77.0" text="Klub" />
                           </columns>
                         </TableView>
                         <TableView fx:id="playersCadreTable" layoutX="572.0" layoutY="47.0" prefHeight="200.0" prefWidth="188.0">
                           <columns>
                             <TableColumn fx:id="cadreIdInCadreColumn" prefWidth="75.0" text="id kadry" />
-                            <TableColumn fx:id="playerIdColumn" prefWidth="124.0" text="zawodnik" />
+                            <TableColumn fx:id="playerIdColumn" prefWidth="112.0" text="Zawodnik" />
                           </columns>
                         </TableView>
                         <Text layoutX="98.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mecz" />
                         <Text layoutX="401.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kadra" />
                         <Text layoutX="612.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zawodnicy w kadrze" />
+                        <Button layoutX="14.0" layoutY="276.0" mnemonicParsing="false" onAction="#averageFrequency" text="Pokaż średnią frekwencję" />
+                        <Label fx:id="labelMatch" layoutX="14.0" layoutY="319.0" prefHeight="91.0" prefWidth="150.0" wrapText="true" />
                      </children>
                   </AnchorPane>
               </content>
@@ -207,27 +207,25 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
                                 <DatePicker fx:id="tfSuspensionStartOfSuspesnion" layoutX="43.0" layoutY="73.0" promptText="Rozpoczecie zawieszenia" />
-                                <Button layoutX="32.0" layoutY="374.0" mnemonicParsing="false" onAction="#deleteSuspensionDate" text="Usuń" />
-                                <Button layoutX="82.0" layoutY="374.0" mnemonicParsing="false" onAction="#addSuspensionDate" text="Dodaj" />
-                                <Button layoutX="143.0" layoutY="374.0" mnemonicParsing="false" onAction="#editSuspensionDate" text="Edytuj" />
-                                <TableView fx:id="librarianTable1" layoutX="43.0" layoutY="197.0" prefHeight="110.0" prefWidth="310.0">
+                                <TableView fx:id="librarianTable1" layoutX="14.0" layoutY="113.0" prefHeight="110.0" prefWidth="465.0">
                                     <columns>
-                                        <TableColumn prefWidth="107.0" text="Imie" />
-                                        <TableColumn fx:id="CoachSurname1" prefWidth="127.0" text="Nazwisko" />
+                                        <TableColumn prefWidth="75.0" text="Imie" />
+                                        <TableColumn fx:id="CoachSurname1" prefWidth="118.0" text="Nazwisko" />
+                              <TableColumn minWidth="-Infinity" prefWidth="126.0" text="Rozpoczęcie zawieszenia" />
+                              <TableColumn prefWidth="145.0" text="Koniec zawieszenia" />
                                     </columns>
                                 </TableView>
-                                <DatePicker fx:id="tfSuspensionEndOfSuspesnion" layoutX="43.0" layoutY="118.0" promptText="Koniec zawieszenia" />
                         <Text layoutX="42.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zawieszenia" />
-                        <ComboBox fx:id="playerCombobox" layoutX="540.0" layoutY="73.0" prefWidth="150.0" promptText="Zawodnik" />
-                        <ComboBox fx:id="cardCombobox" layoutX="540.0" layoutY="118.0" prefWidth="150.0" promptText="Kartka" />
-                        <TableView fx:id="cardTable" layoutX="304.0" layoutY="69.0" prefHeight="98.0" prefWidth="224.0">
+                        <ComboBox fx:id="playerCombobox" layoutX="540.0" layoutY="73.0" prefHeight="25.0" prefWidth="160.0" promptText="Zawodnik" />
+                        <ComboBox fx:id="cardCombobox" layoutX="540.0" layoutY="118.0" prefHeight="25.0" prefWidth="160.0" promptText="Kartka" />
+                        <TableView fx:id="cardTable" layoutX="526.0" layoutY="192.0" prefHeight="98.0" prefWidth="224.0">
                           <columns>
                             <TableColumn fx:id="cardsColumn" prefWidth="110.0" text="Kartka" />
-                              <TableColumn fx:id="playerIdInCardsColumn" prefWidth="113.0" text="Id zawodnika" />
+                              <TableColumn fx:id="playerIdInCardsColumn" prefWidth="113.0" text="Zawodnik" />
                           </columns>
                         </TableView>
                         <Text layoutX="539.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przydzielanie kartek zawodnikom" />
-                        <Button layoutX="536.0" layoutY="155.0" mnemonicParsing="false" onAction="#addCardToPlayer" text="Zapisz kartkę zawodnikowi" />
+                        <Button layoutX="540.0" layoutY="155.0" mnemonicParsing="false" onAction="#addCardToPlayer" prefHeight="25.0" prefWidth="160.0" text="Zapisz kartkę zawodnikowi" />
                             </children>
                         </AnchorPane>
                     </content>

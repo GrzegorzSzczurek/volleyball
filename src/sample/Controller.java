@@ -155,6 +155,8 @@ public class Controller implements Initializable {
     @FXML
     private Label labelPlayer;
     @FXML
+    private Label labelMatch;
+    @FXML
     private Button editPlayerButton;
 
     @FXML
@@ -737,16 +739,15 @@ public class Controller implements Initializable {
     }
 
     public void addLeague(ActionEvent actionEvent) {
-        Integer numberOfMatches = Integer.parseInt(tfLeagueNumberOfMatches.getText());
+
         Integer numberOfTeams = Integer.parseInt(tfLeagueNumberOfTeams.getText());
         Integer year = Integer.parseInt(tfLeagueYear.getText());
-        League league = new League(tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, numberOfMatches, year);
+        League league = new League(tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, year);
         new LeagueRepository().insert(league);
 
         clearLeagueFields();
         refreshLeagueTable();
         refreshLeagueComboboxInClub();
-
     }
 
     public void editLeague(ActionEvent actionEvent) {
@@ -874,6 +875,20 @@ public class Controller implements Initializable {
             labelPlayer.setText("Średnia wzrostu zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
             playerClubCombobox2.getSelectionModel().clearSelection();
             labelVisibility(labelPlayer);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void averageFrequency(ActionEvent actionEvent) {
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement("select AVERAGEOFFREQUENCY from dual")) {
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int res = rs.getInt(1);
+            labelMatch.setText("Średnia frekwencja na meczach wynosi: " + String.valueOf(String.valueOf(res)));
+            labelVisibility(labelMatch);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
