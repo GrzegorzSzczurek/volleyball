@@ -37,6 +37,7 @@ public class MatchRepository implements MatchRepo {
                 matchList.add(match);
             }
         } catch (SQLException e) {
+            System.out.println("Error" + e);
             throw new RuntimeException(e);
         }
         return matchList;

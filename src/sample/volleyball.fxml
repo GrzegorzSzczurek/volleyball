@@ -218,7 +218,7 @@
                               <TableColumn fx:id="clubIdColumn" prefWidth="75.0" text="id klubu" />
                           </columns>
                         </TableView>
-                        <TableView layoutX="572.0" layoutY="47.0" prefHeight="200.0" prefWidth="188.0">
+                        <TableView fx:id="playersCadreTable" layoutX="572.0" layoutY="47.0" prefHeight="200.0" prefWidth="188.0">
                           <columns>
                             <TableColumn fx:id="cadreIdInCadreColumn" prefWidth="75.0" text="id kadry" />
                             <TableColumn fx:id="playerIdColumn" prefWidth="124.0" text="zawodnik" />

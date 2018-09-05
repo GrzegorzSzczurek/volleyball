@@ -1,7 +1,5 @@
 package sample.model;
 
-import java.util.List;
-
 public class Cadre {
 
     private Integer cadreId;
@@ -31,6 +29,14 @@ public class Cadre {
         this.clubId = clubId;
     }
 
+    public void setMatchId(Match matchId) {
+        this.matchId = matchId;
+    }
+
+    public void setClubId(Club clubId) {
+        this.clubId = clubId;
+    }
+
     public Integer getCadreId() {
         return cadreId;
     }
@@ -43,15 +49,7 @@ public class Cadre {
         return matchId;
     }
 
-    public void setMatchId(Match matchId) {
-        this.matchId = matchId;
-    }
-
     public Club getClubId() {
         return clubId;
-    }
-
-    public void setClubId(Club clubId) {
-        this.clubId = clubId;
     }
 }
