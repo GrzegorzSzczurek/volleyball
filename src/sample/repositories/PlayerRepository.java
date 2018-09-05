@@ -56,15 +56,7 @@ public class PlayerRepository implements PlayerRepo {
                 String playerSurname = rs.getString("NAZWISKO");
                 int age = rs.getInt("WIEK");
                 int height = rs.getInt("WZROST");
-                int suspensionId = rs.getInt("ZAWIESZENIE_ID");
-                int cardId = rs.getInt("KARTKA_ID");
                 int scoredPoints = rs.getInt("PKT_ZDOBYTE");
-
-                SuspensionRepository suspensionRepository = new SuspensionRepository();
-                Suspension suspensionbyId = suspensionRepository.findById(suspensionId);
-
-                CardRepository cardRepository = new CardRepository();
-                Card cardById = cardRepository.findById(cardId);
 
                 ClubRepository clubRepository = new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);

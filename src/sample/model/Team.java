@@ -2,23 +2,23 @@ package sample.model;
 
 public class Team {
 
-    private Club clubId;
+    private Cadre cadreId;
     private Player playerId;
 
-    public Team(Club clubId, Player playerId) {
-        this.clubId = clubId;
+    public Team(Cadre cadreId, Player playerId) {
+        this.cadreId = cadreId;
         this.playerId = playerId;
     }
 
     public Team() {
     }
 
-    public Club getClubId() {
-        return clubId;
+    public Cadre getCadreId() {
+        return cadreId;
     }
 
-    public void setClubId(Club clubId) {
-        this.clubId = clubId;
+    public void setCadreId(Cadre cadreId) {
+        this.cadreId = cadreId;
     }
 
     public Player getPlayerId() {

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="match read works">
+    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="data in match and cadre displays!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/model/Cadre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/model/Cadre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/MatchRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/MatchRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/model/Cadre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/model/Cadre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/MatchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/repositories/MatchRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/volleyball.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/volleyball.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/model/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/repositories/TeamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/repositories/TeamRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,27 +34,27 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="9" />
-          <entry key="java" value="117" />
+          <entry key="java" value="131" />
           <entry key="sql" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="117" />
+          <entry key="JAVA" value="131" />
           <entry key="SQL" value="1" />
           <entry key="XML" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3878" />
-          <entry key="txt" value="136" />
+          <entry key="java" value="4178" />
+          <entry key="txt" value="169" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3878" />
-          <entry key="PLAIN_TEXT" value="136" />
+          <entry key="JAVA" value="4178" />
+          <entry key="PLAIN_TEXT" value="169" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -72,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="469" column="126" selection-start-line="469" selection-start-column="126" selection-end-line="469" selection-end-column="126" />
+            <state relative-caret-position="123">
+              <caret line="474" column="127" selection-start-line="474" selection-start-column="127" selection-end-line="474" selection-end-column="127" />
               <folding>
                 <element signature="e#7005#7241#0" />
                 <element signature="e#7247#7481#0" />
@@ -155,7 +152,6 @@
                 <element signature="e#34346#34408#0" />
                 <element signature="e#34414#34477#0" />
                 <element signature="e#34483#34693#0" />
-                <element signature="e#34926#35154#0" />
                 <element signature="e#35385#35606#0" />
                 <element signature="e#35612#35840#0" />
                 <element signature="e#35846#36056#0" />
@@ -167,19 +163,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/repositories/CadreRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/model/Team.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="204">
+              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/repositories/MatchRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/repositories/TeamRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="238">
+              <caret line="29" column="54" lean-forward="true" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -228,19 +224,19 @@
         <option value="$PROJECT_DIR$/src/sample/interfaces/CardePlayersRepo.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Suspension.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Club.java" />
-        <option value="$PROJECT_DIR$/src/sample/model/Team.java" />
         <option value="$PROJECT_DIR$/src/sample/interfaces/TeamRepo.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Card.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Player.java" />
-        <option value="$PROJECT_DIR$/src/sample/repositories/TeamRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/interfaces/PlayerRepo.java" />
-        <option value="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/interfaces/CadreRepo.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Match.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/MatchRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Cadre.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/CadreRepository.java" />
+        <option value="$PROJECT_DIR$/src/sample/model/Team.java" />
+        <option value="$PROJECT_DIR$/src/sample/repositories/TeamRepository.java" />
+        <option value="$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
       </list>
     </option>
@@ -315,7 +311,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536127535338" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536135374508" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../tournaments/tournaments" />
     <property name="project.structure.last.edited" value="Project" />
@@ -584,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536083867413</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="data in match and cadre displays!">
+      <created>1536132740317</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1536132740317</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView">
@@ -610,7 +613,7 @@
       <window_info id="DB Browser" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20053835" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35666218" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39838493" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -619,7 +622,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32928476" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5025707" side_tool="true" weight="0.32928476" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.28667414" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.4974293" weight="0.3270525" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.4974293" visible="true" weight="0.3270525" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -681,7 +684,8 @@
     <MESSAGE value="miszmasz" />
     <MESSAGE value="powiedzmy ze dobrze" />
     <MESSAGE value="match read works" />
-    <option name="LAST_COMMIT_MESSAGE" value="match read works" />
+    <MESSAGE value="data in match and cadre displays!" />
+    <option name="LAST_COMMIT_MESSAGE" value="data in match and cadre displays!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -694,19 +698,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>363</line>
+          <line>366</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>687</line>
+          <line>690</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>884</line>
+          <line>886</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
@@ -718,33 +722,20 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>920</line>
+          <line>941</line>
           <properties />
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/repositories/MatchRepository.java</url>
-          <line>17</line>
-          <properties />
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/repositories/CadreRepository.java</url>
-          <line>47</line>
-          <properties />
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>932</line>
-          <properties />
-          <option name="timeStamp" value="36" />
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>List&lt;Team&gt; playerCadre = new TeamRepository().findAll();</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>List&lt;Cadre&gt; cadres = new CadreRepository().findAll();</expression-string>
         <language-id>JAVA</language-id>
@@ -931,29 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/Team.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding>
-            <element signature="e#302#303#0" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-            <element signature="e#494#495#0" expanded="true" />
-            <element signature="e#534#535#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/interfaces/TeamRepo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/repositories/CoachRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
@@ -975,25 +943,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/repositories/TeamRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/volleyball.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
           <caret line="220" column="115" selection-start-line="220" selection-start-column="115" selection-end-line="220" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/League.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
@@ -1004,24 +958,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/interfaces/PlayerRepo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="81" selection-start-line="18" selection-start-column="81" selection-end-line="18" selection-end-column="81" />
         </state>
       </provider>
     </entry>
@@ -1053,45 +993,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/repositories/PlayerRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/interfaces/TeamRepo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/League.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/Cadre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-          <folding>
-            <element signature="e#661#662#0" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
-            <element signature="e#741#742#0" expanded="true" />
-            <element signature="e#777#778#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
-            <element signature="e#930#931#0" expanded="true" />
-            <element signature="e#963#964#0" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
-            <element signature="e#1024#1025#0" expanded="true" />
-            <element signature="e#1053#1054#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/repositories/MatchRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="136">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/repositories/TeamRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="54" lean-forward="true" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/repositories/CadreRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="82">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="81" selection-start-line="18" selection-start-column="81" selection-end-line="18" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/Team.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="469" column="126" selection-start-line="469" selection-start-column="126" selection-end-line="469" selection-end-column="126" />
+        <state relative-caret-position="123">
+          <caret line="474" column="127" selection-start-line="474" selection-start-column="127" selection-end-line="474" selection-end-column="127" />
           <folding>
             <element signature="e#7005#7241#0" />
             <element signature="e#7247#7481#0" />
@@ -1173,7 +1141,6 @@
             <element signature="e#34346#34408#0" />
             <element signature="e#34414#34477#0" />
             <element signature="e#34483#34693#0" />
-            <element signature="e#34926#35154#0" />
             <element signature="e#35385#35606#0" />
             <element signature="e#35612#35840#0" />
             <element signature="e#35846#36056#0" />

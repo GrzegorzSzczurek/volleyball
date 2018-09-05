@@ -134,6 +134,8 @@ public class Controller implements Initializable {
     @FXML
     private TableView<Player> playerTable;
     @FXML
+    private TableView<Team> playersCadreTable;
+    @FXML
     private TableColumn<Player, String> playerClubColumn;
     @FXML
     private TableColumn<Player, String> playerNameColumn;
@@ -179,9 +181,9 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Cadre, Integer> clubIdColumn;
     @FXML
-    private TableColumn<Cadre, Integer> cadreIdInCadreColumn;
+    private TableColumn<Team, Integer> cadreIdInCadreColumn;
     @FXML
-    private TableColumn<Player, Integer> playerIdColumn;
+    private TableColumn<Team, Integer> playerIdColumn;
     @FXML
     private ComboBox<Player> hostCadreCombobox;
     @FXML
@@ -252,6 +254,7 @@ public class Controller implements Initializable {
         refreshCadreClubCombobox();
         //refreshCadrePlayerCombobox();
         setDataInMatchesTables();
+        refreshCadrePlayerTable();
         refreshMatchTable();
         refreshCadreTable();
     }
@@ -469,8 +472,8 @@ public class Controller implements Initializable {
         matchIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getMatchId().getId())));
         clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getClubId().getId())));
 
-        /*cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
-        playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getId())));*/
+        cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().getCadreId())));
+        playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getPlayerId().getId())));
     }
 
     private void setDataInCardTable() {
@@ -797,7 +800,6 @@ public class Controller implements Initializable {
         Integer scoredPoints = Integer.parseInt(tfPlayerScoredPoints.getText());
 
         Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
-        Team team = new Team(club, player);
         new PlayerRepository().insertBasic(player);
         refreshPlayerTable();
         refreshPlayerCombobox();
@@ -933,6 +935,13 @@ public class Controller implements Initializable {
         List<Cadre> cadres = new CadreRepository().findAll();
         ObservableList<Cadre> cadre = FXCollections.observableArrayList(cadres);
         cadreTable.setItems(cadre);
+    }
+
+    private void refreshCadrePlayerTable() {
+        List<Team> playerCadre = new TeamRepository().findAll();
+        ObservableList<Team> team = FXCollections.observableArrayList(playerCadre);
+
+        playersCadreTable.setItems(team);
     }
 
     private void refreshCoachTable() {
