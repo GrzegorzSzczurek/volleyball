@@ -146,7 +146,7 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Player, Integer> playerHeightColumn;
     @FXML
-    private TableColumn<Player, String> playerCardsColumn;
+    private TableColumn<Card, Integer> playerIdInCardsColumn;
     @FXML
     private TableColumn<Player, Integer> playerScoredPointsColumn;
     @FXML
@@ -159,7 +159,7 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<Player> playerCombobox;
     @FXML
-    private ComboBox<Card> cardCombobox;
+    private ComboBox<String> cardCombobox;
     @FXML
     private TableColumn<Card, String> cardsColumn;
     @FXML
@@ -247,8 +247,12 @@ public class Controller implements Initializable {
         refreshPlayerCombobox();
         refreshCardTable();
 
-        fillCardCombobox();
-        refreshCardCombobox();
+        /*fillCardCombobox();
+        refreshCardCombobox();*/
+
+        cardCombobox.getItems().addAll(
+                "Żółta",
+                "Czerwona");
 
         fillCadreClubCombobox();
         refreshCadreClubCombobox();
@@ -405,7 +409,7 @@ public class Controller implements Initializable {
         cadrePlayerCombobox.setConverter(scConverter1);
     }*/
 
-    private void fillCardCombobox() {
+    /*private void fillCardCombobox() {
         StringConverter<Card> scConverter1 = new StringConverter<Card>() {
 
             @Override
@@ -420,7 +424,7 @@ public class Controller implements Initializable {
 
         };
         cardCombobox.setConverter(scConverter1);
-    }
+    }*/
 
     private void refreshHallComboboxInClub() {
         List<Hall> allHalls = new HallRepository().findAll();
@@ -446,11 +450,11 @@ public class Controller implements Initializable {
         cadrePlayerCombobox.setItems(players);
     }*/
 
-    private void refreshCardCombobox() {
+    /*private void refreshCardCombobox() {
         List<Card> allCards = new CardRepository().findAll();
         ObservableList<Card> cards = FXCollections.observableArrayList(allCards);
         cardCombobox.setItems(cards);
-    }
+    }*/
 
     private void setDataInLeagueTable() {
         leagueNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLeagueName()));
@@ -478,6 +482,7 @@ public class Controller implements Initializable {
 
     private void setDataInCardTable() {
         cardsColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCardType()));
+        playerIdInCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty((param.getValue().getPlayer().getName())));
         editLeagueButton.setDisable(true);
     }
 
@@ -844,7 +849,6 @@ public class Controller implements Initializable {
         tfCard.clear();
         playerCombobox.getSelectionModel().clearSelection();
         refreshCardTable();
-        refreshCardCombobox();
     }
 
     public void deleteCard(ActionEvent actionEvent) {
@@ -852,7 +856,7 @@ public class Controller implements Initializable {
         new CardRepository().removeById(card.getId());
         refreshCardTable();
         tfCard.clear();
-        refreshCardCombobox();
+//        refreshCardCombobox();
     }
 
     public void editCard(ActionEvent actionEvent) {
@@ -862,15 +866,16 @@ public class Controller implements Initializable {
             new CardRepository().update(updatedCard);
             refreshCardTable();
             tfCard.clear();
-            refreshCardCombobox();
+//            refreshCardCombobox();
         }
     }
 
     public void addCardToPlayer(ActionEvent actionEvent) {
-        /*Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
-        Player player = new Player(playerFromCombobox.getId(), cardCombobox.getSelectionModel().getSelectedItem());
-        new PlayerRepository().insertCard(player);
-        refreshPlayerTable();*/
+        Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
+        Card card = new Card(cardCombobox.getSelectionModel().getSelectedItem(), playerFromCombobox);
+        new CardRepository().insert(card);
+        playerCombobox.getSelectionModel().clearSelection();
+        cardCombobox.getSelectionModel().clearSelection();
     }
 
     public void addMatch(ActionEvent actionEvent) {

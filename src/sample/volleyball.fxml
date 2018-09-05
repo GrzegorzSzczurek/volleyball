@@ -62,40 +62,6 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab text="Zawieszenia">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <DatePicker fx:id="tfSuspensionStartOfSuspesnion" layoutX="43.0" layoutY="73.0" promptText="Rozpoczecie zawieszenia" />
-                                <Button layoutX="32.0" layoutY="374.0" mnemonicParsing="false" onAction="#deleteSuspensionDate" text="Usuń" />
-                                <Button layoutX="82.0" layoutY="374.0" mnemonicParsing="false" onAction="#addSuspensionDate" text="Dodaj" />
-                                <Button layoutX="143.0" layoutY="374.0" mnemonicParsing="false" onAction="#editSuspensionDate" text="Edytuj" />
-                                <TableView fx:id="librarianTable1" layoutX="43.0" layoutY="197.0" prefHeight="110.0" prefWidth="310.0">
-                                    <columns>
-                                        <TableColumn prefWidth="107.0" text="Imie" />
-                                        <TableColumn fx:id="CoachSurname1" prefWidth="127.0" text="Nazwisko" />
-                                    </columns>
-                                </TableView>
-                                <DatePicker fx:id="tfSuspensionEndOfSuspesnion" layoutX="43.0" layoutY="118.0" promptText="Koniec zawieszenia" />
-                        <Text layoutX="42.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zawieszenia" />
-                        <Text layoutX="584.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kartki" />
-                        <ComboBox fx:id="playerCombobox" layoutX="539.0" layoutY="219.0" prefWidth="150.0" promptText="Zawodnik" />
-                        <ComboBox fx:id="cardCombobox" layoutX="540.0" layoutY="262.0" prefWidth="150.0" promptText="Kartka" />
-                        <TextField fx:id="tfCard" layoutX="540.0" layoutY="73.0" promptText="Kolor kartki" />
-                        <TableView fx:id="cardTable" layoutX="304.0" layoutY="69.0" prefHeight="98.0" prefWidth="224.0">
-                          <columns>
-                            <TableColumn fx:id="cardsColumn" prefWidth="224.0" text="Kartki" />
-                          </columns>
-                        </TableView>
-                        <Button layoutX="542.0" layoutY="118.0" mnemonicParsing="false" onAction="#addCard" text="Dodaj kartke" />
-                        <Text layoutX="538.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przydzielanie kartek zawodnikom" />
-                        <Button layoutX="542.0" layoutY="307.0" mnemonicParsing="false" onAction="#addCardToPlayer" text="Zapisz kartkę zawodnikowi" />
-                        <Button layoutX="637.0" layoutY="118.0" mnemonicParsing="false" onAction="#deleteCard" text="Usuń" />
-                        <Button fx:id="editCardButton" layoutX="687.0" layoutY="118.0" mnemonicParsing="false" onAction="#editCard" text="Edytuj" />
-                            </children>
-                        </AnchorPane>
-                    </content>
-                </Tab>
                 <Tab text="Liga">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="438.0" prefWidth="697.0">
@@ -231,6 +197,36 @@
                   </AnchorPane>
               </content>
             </Tab>
+                <Tab text="Zawieszenia">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <DatePicker fx:id="tfSuspensionStartOfSuspesnion" layoutX="43.0" layoutY="73.0" promptText="Rozpoczecie zawieszenia" />
+                                <Button layoutX="32.0" layoutY="374.0" mnemonicParsing="false" onAction="#deleteSuspensionDate" text="Usuń" />
+                                <Button layoutX="82.0" layoutY="374.0" mnemonicParsing="false" onAction="#addSuspensionDate" text="Dodaj" />
+                                <Button layoutX="143.0" layoutY="374.0" mnemonicParsing="false" onAction="#editSuspensionDate" text="Edytuj" />
+                                <TableView fx:id="librarianTable1" layoutX="43.0" layoutY="197.0" prefHeight="110.0" prefWidth="310.0">
+                                    <columns>
+                                        <TableColumn prefWidth="107.0" text="Imie" />
+                                        <TableColumn fx:id="CoachSurname1" prefWidth="127.0" text="Nazwisko" />
+                                    </columns>
+                                </TableView>
+                                <DatePicker fx:id="tfSuspensionEndOfSuspesnion" layoutX="43.0" layoutY="118.0" promptText="Koniec zawieszenia" />
+                        <Text layoutX="42.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zawieszenia" />
+                        <ComboBox fx:id="playerCombobox" layoutX="540.0" layoutY="73.0" prefWidth="150.0" promptText="Zawodnik" />
+                        <ComboBox fx:id="cardCombobox" layoutX="540.0" layoutY="118.0" prefWidth="150.0" promptText="Kartka" />
+                        <TableView fx:id="cardTable" layoutX="304.0" layoutY="69.0" prefHeight="98.0" prefWidth="224.0">
+                          <columns>
+                            <TableColumn fx:id="cardsColumn" prefWidth="110.0" text="Kartka" />
+                              <TableColumn fx:id="playerIdInCardsColumn" prefWidth="113.0" text="Id zawodnika" />
+                          </columns>
+                        </TableView>
+                        <Text layoutX="539.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przydzielanie kartek zawodnikom" />
+                        <Button layoutX="536.0" layoutY="155.0" mnemonicParsing="false" onAction="#addCardToPlayer" text="Zapisz kartkę zawodnikowi" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
             </tabs>
         </TabPane>
     </children>

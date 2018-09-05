@@ -3,6 +3,7 @@ package sample.repositories;
 import sample.dbConnector.DbConnector;
 import sample.interfaces.CardRepo;
 import sample.model.Card;
+import sample.model.Player;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +23,12 @@ public class CardRepository implements CardRepo {
             while (rs.next()) {
                 int id = rs.getInt("KARTKA_ID");
                 String cardColor = rs.getString("KOLOR_KARTKI");
+                int playerId = rs.getInt("ZAWODNIK_ID");
 
-                Card card = new Card(id, cardColor);
+                PlayerRepository playerRepository = new PlayerRepository();
+                Player playerById = playerRepository.findById(playerId);
+
+                Card card = new Card(id, cardColor, playerById);
                 cardList.add(card);
             }
         } catch (SQLException e) {
@@ -41,8 +46,12 @@ public class CardRepository implements CardRepo {
             while (rs.next()) {
                 int id = rs.getInt("KARTKA_ID");
                 String cardColor = rs.getString("KOLOR_KARTKI");
+                int playerId = rs.getInt("ZAWODNIK_ID");
 
-                return new Card(id, cardColor);
+                PlayerRepository playerRepository = new PlayerRepository();
+                Player playerById = playerRepository.findById(playerId);
+
+                return new Card(id, cardColor, playerById);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

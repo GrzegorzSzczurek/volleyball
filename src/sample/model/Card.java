@@ -16,6 +16,12 @@ public class Card {
         this.player = player;
     }
 
+    public Card(Integer id, String cardType, Player player) {
+        this.id = id;
+        this.cardType = cardType;
+        this.player = player;
+    }
+
     public Card(String cardType) {
         this.cardType = cardType;
     }
