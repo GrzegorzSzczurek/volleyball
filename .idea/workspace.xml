@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="adding cards works">
+    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="pl/sql sum of player's points function works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/model/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/model/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/CardRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/repositories/CardRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/volleyball.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/volleyball.fxml" afterDir="false" />
     </list>
@@ -34,7 +31,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fxml" value="10" />
+          <entry key="fxml" value="11" />
           <entry key="java" value="135" />
           <entry key="sql" value="1" />
         </counts>
@@ -43,19 +40,19 @@
         <counts>
           <entry key="JAVA" value="135" />
           <entry key="SQL" value="1" />
-          <entry key="XML" value="10" />
+          <entry key="XML" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4722" />
-          <entry key="txt" value="219" />
+          <entry key="java" value="4788" />
+          <entry key="txt" value="269" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4722" />
-          <entry key="PLAIN_TEXT" value="219" />
+          <entry key="JAVA" value="4788" />
+          <entry key="PLAIN_TEXT" value="269" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -70,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="839" column="69" selection-start-line="839" selection-start-column="69" selection-end-line="839" selection-end-column="69" />
+            <state relative-caret-position="365">
+              <caret line="877" column="42" selection-start-line="877" selection-start-column="42" selection-end-line="877" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7247#7481#0" />
@@ -130,6 +127,8 @@
                 <element signature="e#28251#28781#0" />
                 <element signature="e#28787#29599#0" />
                 <element signature="e#29605#30068#0" />
+                <element signature="e#32778#32779#0" expanded="true" />
+                <element signature="e#32833#32834#0" expanded="true" />
                 <element signature="e#30074#30752#0" />
                 <element signature="e#30758#31236#0" />
                 <element signature="e#31242#32094#0" />
@@ -157,17 +156,8 @@
         <entry file="file://$PROJECT_DIR$/src/sample/volleyball.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="220" column="115" selection-start-line="220" selection-start-column="115" selection-end-line="220" selection-end-column="115" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="150">
+              <caret line="151" column="112" selection-start-line="151" selection-start-column="112" selection-end-line="151" selection-end-column="112" />
             </state>
           </provider>
         </entry>
@@ -194,6 +184,7 @@
       <find>playercombobox</find>
       <find>car</find>
       <find>playerClubCombobox</find>
+      <find>sum</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -314,11 +305,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536148545570" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536153401042" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Studia/UrZ/II rok/Groszek oracle/siwego/Biblioteka2" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
@@ -604,7 +595,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536139059393</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="pl/sql sum of player's points function works">
+      <created>1536148622551</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1536148622551</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -704,7 +702,8 @@
     <MESSAGE value="data in match and cadre displays!" />
     <MESSAGE value="read works for last 3 tables" />
     <MESSAGE value="adding cards works" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding cards works" />
+    <MESSAGE value="pl/sql sum of player's points function works" />
+    <option name="LAST_COMMIT_MESSAGE" value="pl/sql sum of player's points function works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -717,19 +716,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>399</line>
+          <line>400</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>724</line>
+          <line>725</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>936</line>
+          <line>958</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
@@ -741,7 +740,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>991</line>
+          <line>1013</line>
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
@@ -1070,15 +1069,15 @@
     <entry file="file://$PROJECT_DIR$/src/sample/volleyball.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="220" column="115" selection-start-line="220" selection-start-column="115" selection-end-line="220" selection-end-column="115" />
+        <state relative-caret-position="150">
+          <caret line="151" column="112" selection-start-line="151" selection-start-column="112" selection-end-line="151" selection-end-column="112" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="839" column="69" selection-start-line="839" selection-start-column="69" selection-end-line="839" selection-end-column="69" />
+        <state relative-caret-position="365">
+          <caret line="877" column="42" selection-start-line="877" selection-start-column="42" selection-end-line="877" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#7247#7481#0" />
@@ -1137,6 +1136,8 @@
             <element signature="e#28251#28781#0" />
             <element signature="e#28787#29599#0" />
             <element signature="e#29605#30068#0" />
+            <element signature="e#32778#32779#0" expanded="true" />
+            <element signature="e#32833#32834#0" expanded="true" />
             <element signature="e#30074#30752#0" />
             <element signature="e#30758#31236#0" />
             <element signature="e#31242#32094#0" />

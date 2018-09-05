@@ -127,7 +127,7 @@
                                 <TextField fx:id="tfPlayerAge" layoutX="15.0" layoutY="164.0" promptText="Wiek" />
                                 <TextField fx:id="tfPlayerHeight" layoutX="15.0" layoutY="206.0" promptText="Wzrost" />
                                 <TextField fx:id="tfPlayerScoredPoints" layoutX="16.0" layoutY="249.0" promptText="Zdobyte punkty" />
-                                <TableView fx:id="playerTable" layoutX="164.0" layoutY="35.0" prefHeight="292.0" prefWidth="598.0">
+                                <TableView fx:id="playerTable" layoutX="164.0" layoutY="35.0" prefHeight="207.0" prefWidth="598.0">
                                     <columns>
                                         <TableColumn fx:id="playerClubColumn" prefWidth="75.0" text="Klub" />
                                         <TableColumn fx:id="playerNameColumn" prefWidth="75.0" text="Imię" />
@@ -142,12 +142,14 @@
                                         <TableColumn fx:id="playerScoredPointsColumn" minWidth="0.0" prefWidth="94.0" text="Zdobyte punkty" />
                                     </columns>
                                 </TableView>
-                                <Button layoutX="15.0" layoutY="377.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
-                                <Button layoutX="90.0" layoutY="377.0" mnemonicParsing="false" onAction="#addPlayer" text="Dodaj" />
-                                <Button fx:id="editPlayerButton" layoutX="165.0" layoutY="377.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj" />
-                        <ComboBox fx:id="playerClubCombobox2" layoutX="250.0" layoutY="327.0" prefWidth="150.0" promptText="Klub" />
-                        <Button layoutX="250.0" layoutY="352.0" mnemonicParsing="false" onAction="#sumPoints" prefHeight="80.0" prefWidth="156.0" text="Oblicz sume zdobytych punktów przez zawodników danego klubu" textAlignment="CENTER" wrapText="true" />
-                        <Label fx:id="showSumPoints" layoutX="449.0" layoutY="340.0" prefHeight="81.0" prefWidth="301.0" wrapText="true" />
+                                <Button layoutX="14.0" layoutY="289.0" mnemonicParsing="false" onAction="#deletePlayer" text="Usuń" />
+                                <Button layoutX="67.0" layoutY="289.0" mnemonicParsing="false" onAction="#addPlayer" text="Dodaj" />
+                                <Button fx:id="editPlayerButton" layoutX="122.0" layoutY="289.0" mnemonicParsing="false" onAction="#editPlayer" text="Edytuj" />
+                        <ComboBox fx:id="playerClubCombobox2" layoutX="186.0" layoutY="242.0" prefHeight="25.0" prefWidth="157.0" promptText="Klub" />
+                        <Button layoutX="187.0" layoutY="267.0" mnemonicParsing="false" onAction="#sumPoints" prefHeight="80.0" prefWidth="156.0" text="Oblicz sume zdobytych punktów przez zawodników danego klubu" textAlignment="CENTER" wrapText="true" />
+                        <Label fx:id="labelPlayer" layoutX="355.0" layoutY="250.0" prefHeight="171.0" prefWidth="395.0" wrapText="true" />
+                        <Button layoutX="186.0" layoutY="347.0" mnemonicParsing="false" onAction="#averageAge" prefHeight="42.0" prefWidth="158.0" text="Oblicz średnią wieku zawodników" textAlignment="CENTER" wrapText="true" />
+                        <Button layoutX="186.0" layoutY="389.0" mnemonicParsing="false" onAction="#averageHeight" prefHeight="42.0" prefWidth="157.0" text="Oblicz średnią wzrostu zawodników" textAlignment="CENTER" wrapText="true" />
                             </children>
                         </AnchorPane>
                     </content>

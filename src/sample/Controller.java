@@ -1,14 +1,17 @@
 package sample;
 
+import javafx.animation.PauseTransition;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 import sample.dbConnector.DbConnector;
 import sample.model.*;
@@ -150,11 +153,9 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<Club> playerClubCombobox2;
     @FXML
-    private Label showSumPoints;
+    private Label labelPlayer;
     @FXML
     private Button editPlayerButton;
-    @FXML
-    private Button sumPoints;
 
     @FXML
     private TableView<Card> cardTable;
@@ -836,12 +837,61 @@ public class Controller implements Initializable {
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
             int res = rs.getInt(1);
-            showSumPoints.setText("Suma zdobytych punktów przez zawodników klubu: " + club.getClubName() + "wynosi: " + String.valueOf(String.valueOf(res)));
+            labelPlayer.setText("Suma zdobytych punktów przez zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
             playerClubCombobox2.getSelectionModel().clearSelection();
+            labelVisibility(labelPlayer);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    public void averageAge(ActionEvent actionEvent) {
+        Club club = playerClubCombobox2.getSelectionModel().getSelectedItem();
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement("select AVERAGEOFAGE(" + club.getId() + ")from dual")) {
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int res = rs.getInt(1);
+            labelPlayer.setText("Średnia wieku zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
+            playerClubCombobox2.getSelectionModel().clearSelection();
+            labelVisibility(labelPlayer);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void averageHeight(ActionEvent actionEvent) {
+        Club club = playerClubCombobox2.getSelectionModel().getSelectedItem();
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement("select AVERAGEOFHEIGHT(" + club.getId() + ")from dual")) {
+            preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int res = rs.getInt(1);
+            labelPlayer.setText("Średnia wzrostu zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
+            playerClubCombobox2.getSelectionModel().clearSelection();
+            labelVisibility(labelPlayer);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void labelVisibility(Label label){
+            PauseTransition visiblePause = new PauseTransition(
+                    Duration.seconds(3)
+            );
+            visiblePause.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    labelPlayer.setVisible(false);
+                }
+            });
+            visiblePause.play();
+            label.setVisible(true);
+        }
 
     public void addPlayer(ActionEvent actionEvent) {
         Club club = playerClubCombobox.getSelectionModel().getSelectedItem();
@@ -885,33 +935,6 @@ public class Controller implements Initializable {
             clearPlayerFields();
             refreshPlayerCombobox();
             editPlayerButton.setDisable(true);
-        }
-    }
-
-    public void addCard(ActionEvent actionEvent) {
-        Card card = new Card(tfCard.getText(), playerCombobox.getSelectionModel().getSelectedItem());
-        new CardRepository().insert(card);
-        tfCard.clear();
-        playerCombobox.getSelectionModel().clearSelection();
-        refreshCardTable();
-    }
-
-    public void deleteCard(ActionEvent actionEvent) {
-        Card card = cardTable.getSelectionModel().getSelectedItem();
-        new CardRepository().removeById(card.getId());
-        refreshCardTable();
-        tfCard.clear();
-//        refreshCardCombobox();
-    }
-
-    public void editCard(ActionEvent actionEvent) {
-        Card card = cardTable.getSelectionModel().getSelectedItem();
-        if (card != null) {
-            Card updatedCard = new Card(card.getId(), tfCard.getText());
-            new CardRepository().update(updatedCard);
-            refreshCardTable();
-            tfCard.clear();
-//            refreshCardCombobox();
         }
     }
 
