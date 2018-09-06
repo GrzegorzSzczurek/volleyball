@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="pl/sql average values for player's function works">
+    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="pl/sql add number of fixture">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/model/League.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/model/League.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/model/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/model/League.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/volleyball.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/volleyball.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,27 +35,27 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="12" />
-          <entry key="java" value="140" />
+          <entry key="java" value="142" />
           <entry key="sql" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="140" />
+          <entry key="JAVA" value="142" />
           <entry key="SQL" value="1" />
           <entry key="XML" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5057" />
-          <entry key="txt" value="286" />
+          <entry key="java" value="5106" />
+          <entry key="txt" value="307" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5057" />
-          <entry key="PLAIN_TEXT" value="286" />
+          <entry key="JAVA" value="5106" />
+          <entry key="PLAIN_TEXT" value="307" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -70,10 +70,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="742" selection-start-line="742" selection-end-line="742" />
+            <state relative-caret-position="269">
+              <caret line="598" column="59" selection-start-line="598" selection-start-column="59" selection-end-line="598" selection-end-column="59" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#7424#7660#0" />
                 <element signature="e#7666#7904#0" />
                 <element signature="e#7910#8144#0" />
@@ -115,8 +114,6 @@
                 <element signature="e#20972#21348#0" />
                 <element signature="e#21362#21823#0" />
                 <element signature="e#21461#21815#0" />
-                <element signature="e#21829#22671#0" />
-                <element signature="e#21934#22663#0" />
                 <element signature="e#22677#23467#0" />
                 <element signature="e#22782#23459#0" />
                 <element signature="e#23473#23823#0" />
@@ -129,12 +126,11 @@
                 <element signature="e#26195#26546#0" />
                 <element signature="e#26552#26735#0" />
                 <element signature="e#26741#27335#0" />
-                <element signature="e#27341#27824#0" />
-                <element signature="e#28395#29178#0" />
+                <element signature="e#27830#28389#0" />
                 <element signature="e#29401#29696#0" />
                 <element signature="e#29702#30232#0" />
                 <element signature="e#30238#31050#0" />
-                <element signature="e#31056#31519#0" />
+                <element signature="e#31525#32408#0" />
                 <element signature="e#32414#33275#0" />
                 <element signature="e#33281#34150#0" />
                 <element signature="e#34156#34818#0" />
@@ -147,7 +143,6 @@
                 <element signature="e#37713#37766#0" />
                 <element signature="e#37772#37828#0" />
                 <element signature="e#37834#37888#0" />
-                <element signature="e#37894#38121#0" />
                 <element signature="e#38127#38183#0" />
                 <element signature="e#38189#38243#0" />
                 <element signature="e#38249#38516#0" />
@@ -158,6 +153,7 @@
                 <element signature="e#38946#39167#0" />
                 <element signature="e#39173#39401#0" />
                 <element signature="e#39407#39626#0" />
+                <element signature="e#39632#39870#0" />
                 <element signature="e#39876#40097#0" />
                 <element signature="e#40103#40331#0" />
                 <element signature="e#40337#40547#0" />
@@ -169,26 +165,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="246">
+              <caret line="108" column="38" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
+              <folding>
+                <marker date="1536216144427" expanded="true" signature="441:459" ph=" SELECT statement (LIGA)" />
+                <marker date="1536216144427" expanded="true" signature="1501:1534" ph=" SELECT statement (LIGA)" />
+                <marker date="1536216144427" expanded="true" signature="2525:2660" ph=" INSERT statement (LIGA)" />
+                <marker date="1536216144427" expanded="true" signature="3415:3447" ph=" DELETE statement (LIGA)" />
+                <marker date="1536216144427" expanded="true" signature="3854:3943" ph=" UPDATE statement (LIGA)" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java">
+        <entry file="file://$PROJECT_DIR$/src/sample/model/League.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-              <folding>
-                <marker date="1535962679846" expanded="true" signature="441:459" ph=" SELECT statement (LIGA)" />
-                <marker date="1535962679846" expanded="true" signature="1501:1534" ph=" SELECT statement (LIGA)" />
-                <marker date="1535962679846" expanded="true" signature="2525:2660" ph=" INSERT statement (LIGA)" />
-                <marker date="1535962679846" expanded="true" signature="3415:3447" ph=" DELETE statement (LIGA)" />
-                <marker date="1535962679846" expanded="true" signature="3854:3959" ph=" UPDATE statement (LIGA)" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="20" column="99" selection-start-line="20" selection-start-column="99" selection-end-line="20" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -217,6 +213,8 @@
       <find>playerClubCombobox</find>
       <find>sum</find>
       <find>tfLeagueNumberOfMatches</find>
+      <find>addca</find>
+      <find>editlea</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -233,7 +231,6 @@
         <option value="$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Coach.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/CoachRepository.java" />
-        <option value="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/HallRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/ClubRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/SuspensionRepository.java" />
@@ -256,6 +253,7 @@
         <option value="$PROJECT_DIR$/src/sample/model/Card.java" />
         <option value="$PROJECT_DIR$/src/sample/repositories/CardRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/model/League.java" />
+        <option value="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
       </list>
     </option>
@@ -267,10 +265,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1608" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="916" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -337,7 +335,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536175872351" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536216501377" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Studia/UrZ/II rok/Groszek oracle/seby/ProjektPLSQL/projekt~/skleprowerowy" />
     <property name="project.structure.last.edited" value="Project" />
@@ -641,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536153500582</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="pl/sql add number of fixture">
+      <created>1536176027908</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1536176027908</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView">
@@ -654,7 +659,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1608" y="-8" width="1616" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17030849" />
@@ -667,7 +672,7 @@
       <window_info id="DB Browser" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33844188" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35666218" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3971903" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -717,7 +722,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cadre repository done" />
     <MESSAGE value="card repository done" />
     <MESSAGE value="coach repository done" />
     <MESSAGE value="match repository done" />
@@ -742,7 +746,8 @@
     <MESSAGE value="adding cards works" />
     <MESSAGE value="pl/sql sum of player's points function works" />
     <MESSAGE value="pl/sql average values for player's function works" />
-    <option name="LAST_COMMIT_MESSAGE" value="pl/sql average values for player's function works" />
+    <MESSAGE value="pl/sql add number of fixture" />
+    <option name="LAST_COMMIT_MESSAGE" value="pl/sql add number of fixture" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -761,15 +766,9 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>727</line>
+          <line>725</line>
           <properties />
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/Controller.java</url>
-          <line>974</line>
-          <properties />
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sample/repositories/CadreRepository.java</url>
@@ -1072,13 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
@@ -1086,33 +1078,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/dbConnector/DbConnector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
-          <folding>
-            <marker date="1535962679846" expanded="true" signature="441:459" ph=" SELECT statement (LIGA)" />
-            <marker date="1535962679846" expanded="true" signature="1501:1534" ph=" SELECT statement (LIGA)" />
-            <marker date="1535962679846" expanded="true" signature="2525:2660" ph=" INSERT statement (LIGA)" />
-            <marker date="1535962679846" expanded="true" signature="3415:3447" ph=" DELETE statement (LIGA)" />
-            <marker date="1535962679846" expanded="true" signature="3854:3959" ph=" UPDATE statement (LIGA)" />
-          </folding>
+        <state relative-caret-position="459">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/League.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="28" column="87" selection-start-line="28" selection-start-column="87" selection-end-line="28" selection-end-column="87" />
+        <state relative-caret-position="289">
+          <caret line="20" column="99" selection-start-line="20" selection-start-column="99" selection-end-line="20" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="108" column="38" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
+          <folding>
+            <marker date="1536216144427" expanded="true" signature="441:459" ph=" SELECT statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="1501:1534" ph=" SELECT statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="2525:2660" ph=" INSERT statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="3415:3447" ph=" DELETE statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="3854:3943" ph=" UPDATE statement (LIGA)" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="742" selection-start-line="742" selection-end-line="742" />
+        <state relative-caret-position="269">
+          <caret line="598" column="59" selection-start-line="598" selection-start-column="59" selection-end-line="598" selection-end-column="59" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#7424#7660#0" />
             <element signature="e#7666#7904#0" />
             <element signature="e#7910#8144#0" />
@@ -1154,8 +1152,6 @@
             <element signature="e#20972#21348#0" />
             <element signature="e#21362#21823#0" />
             <element signature="e#21461#21815#0" />
-            <element signature="e#21829#22671#0" />
-            <element signature="e#21934#22663#0" />
             <element signature="e#22677#23467#0" />
             <element signature="e#22782#23459#0" />
             <element signature="e#23473#23823#0" />
@@ -1168,12 +1164,11 @@
             <element signature="e#26195#26546#0" />
             <element signature="e#26552#26735#0" />
             <element signature="e#26741#27335#0" />
-            <element signature="e#27341#27824#0" />
-            <element signature="e#28395#29178#0" />
+            <element signature="e#27830#28389#0" />
             <element signature="e#29401#29696#0" />
             <element signature="e#29702#30232#0" />
             <element signature="e#30238#31050#0" />
-            <element signature="e#31056#31519#0" />
+            <element signature="e#31525#32408#0" />
             <element signature="e#32414#33275#0" />
             <element signature="e#33281#34150#0" />
             <element signature="e#34156#34818#0" />
@@ -1186,7 +1181,6 @@
             <element signature="e#37713#37766#0" />
             <element signature="e#37772#37828#0" />
             <element signature="e#37834#37888#0" />
-            <element signature="e#37894#38121#0" />
             <element signature="e#38127#38183#0" />
             <element signature="e#38189#38243#0" />
             <element signature="e#38249#38516#0" />
@@ -1197,6 +1191,7 @@
             <element signature="e#38946#39167#0" />
             <element signature="e#39173#39401#0" />
             <element signature="e#39407#39626#0" />
+            <element signature="e#39632#39870#0" />
             <element signature="e#39876#40097#0" />
             <element signature="e#40103#40331#0" />
             <element signature="e#40337#40547#0" />

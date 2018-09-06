@@ -99,15 +99,14 @@ public class LeagueRepository implements LeagueRepo {
     @Override
     public void update(League league) {
 
-        String updatePlayerSql = "UPDATE LIGA SET NAZWA_LIGI= ?, POZIOM_LIGI= ?, ILOSC_ZESPOLOW= ?, ILOSC_MECZY= ?, ROK= ? WHERE LIGA_ID= ?";
+        String updatePlayerSql = "UPDATE LIGA SET NAZWA_LIGI= ?, POZIOM_LIGI= ?, ILOSC_ZESPOLOW= ?, ROK= ? WHERE LIGA_ID= ?";
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(updatePlayerSql)) {
             preparedStatement.setString(1, league.getLeagueName());
             preparedStatement.setString(2, league.getLeagueLevel());
             preparedStatement.setInt(3, league.getNumberOfClubs());
-            preparedStatement.setInt(4, league.getNumberOfMatches());
-            preparedStatement.setInt(5, league.getYear());
-            preparedStatement.setInt(6, league.getId());
+            preparedStatement.setInt(4, league.getYear());
+            preparedStatement.setInt(5, league.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

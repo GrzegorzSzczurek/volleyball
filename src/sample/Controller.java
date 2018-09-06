@@ -591,12 +591,10 @@ public class Controller implements Initializable {
     private void mouseHandlerOnLeagueTable() {
         leagueTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             League league = leagueTable.getSelectionModel().getSelectedItem();
+            String numberOfTeams = String.valueOf(league.getNumberOfClubs());
             if (league != null) {
-                String numberOfMatches = String.valueOf(league.getNumberOfMatches());
-                String numberOfTeams = String.valueOf(league.getNumberOfClubs());
                 String year = String.valueOf(league.getYear());
                 tfLeagueName.setText(league.getLeagueName());
-                tfLeagueNumberOfMatches.setText(numberOfMatches);
                 tfLeagueLevel.setText(league.getLeagueLevel());
                 tfLeagueNumberOfTeams.setText(numberOfTeams);
                 tfLeagueYear.setText(year);
@@ -730,7 +728,7 @@ public class Controller implements Initializable {
             try {
                 new LeagueRepository().removeById(league.getId());
             } catch (RuntimeException e) {
-                System.err.println("Can't delete coach!");
+                System.err.println("Can't delete league!");
             }
             refreshLeagueTable();
             clearLeagueFields();
@@ -753,10 +751,9 @@ public class Controller implements Initializable {
     public void editLeague(ActionEvent actionEvent) {
         League league = leagueTable.getSelectionModel().getSelectedItem();
         if (league != null) {
-            Integer numberOfMatches = Integer.parseInt(tfLeagueNumberOfMatches.getText());
             Integer numberOfTeams = Integer.parseInt(tfLeagueNumberOfTeams.getText());
             Integer year = Integer.parseInt(tfLeagueYear.getText());
-            League updatedLeague = new League(league.getId(), tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, numberOfMatches, year);
+            League updatedLeague = new League(league.getId(), tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, year);
             new LeagueRepository().update(updatedLeague);
             refreshLeagueTable();
             clearLeagueFields();
@@ -769,7 +766,6 @@ public class Controller implements Initializable {
     private void clearLeagueFields() {
         tfLeagueYear.clear();
         tfLeagueNumberOfTeams.clear();
-        tfLeagueNumberOfMatches.clear();
         tfLeagueName.clear();
         tfLeagueLevel.clear();
     }
@@ -959,6 +955,7 @@ public class Controller implements Initializable {
         new CardRepository().insert(card);
         playerCombobox.getSelectionModel().clearSelection();
         cardCombobox.getSelectionModel().clearSelection();
+        refreshCardTable();
     }
 
     public void addMatch(ActionEvent actionEvent) {
