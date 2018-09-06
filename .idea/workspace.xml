@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="pl/sql add number of fixture">
+    <list default="true" id="243eaecf-6573-443b-be08-b731924d2f14" name="Default" comment="league works fine">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/model/League.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/model/League.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/volleyball/sample/volleyball.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/model/League.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/model/League.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,9 +17,9 @@
     <session id="-951760795">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.20" value="2" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.22" value="3" />
           <entry key="project.open.time.24" value="1" />
@@ -29,7 +27,7 @@
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.39" value="2" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -48,14 +46,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5106" />
-          <entry key="txt" value="307" />
+          <entry key="java" value="5250" />
+          <entry key="txt" value="326" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5106" />
-          <entry key="PLAIN_TEXT" value="307" />
+          <entry key="JAVA" value="5250" />
+          <entry key="PLAIN_TEXT" value="326" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -70,9 +68,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="598" column="59" selection-start-line="598" selection-start-column="59" selection-end-line="598" selection-end-column="59" />
+            <state relative-caret-position="184">
+              <caret line="973" column="62" selection-start-line="973" selection-start-column="62" selection-end-line="973" selection-end-column="62" />
               <folding>
+                <element signature="e#5957#7418#0" />
                 <element signature="e#7424#7660#0" />
                 <element signature="e#7666#7904#0" />
                 <element signature="e#7910#8144#0" />
@@ -114,51 +113,56 @@
                 <element signature="e#20972#21348#0" />
                 <element signature="e#21362#21823#0" />
                 <element signature="e#21461#21815#0" />
-                <element signature="e#22677#23467#0" />
-                <element signature="e#22782#23459#0" />
-                <element signature="e#23473#23823#0" />
-                <element signature="e#23574#23815#0" />
-                <element signature="e#23829#24343#0" />
-                <element signature="e#24349#25001#0" />
-                <element signature="e#25007#25516#0" />
-                <element signature="e#25522#25716#0" />
-                <element signature="e#25722#26189#0" />
-                <element signature="e#26195#26546#0" />
-                <element signature="e#26552#26735#0" />
-                <element signature="e#26741#27335#0" />
-                <element signature="e#27830#28389#0" />
-                <element signature="e#29401#29696#0" />
-                <element signature="e#29702#30232#0" />
-                <element signature="e#30238#31050#0" />
-                <element signature="e#31525#32408#0" />
-                <element signature="e#32414#33275#0" />
-                <element signature="e#33281#34150#0" />
-                <element signature="e#34156#34818#0" />
-                <element signature="e#34824#35304#0" />
-                <element signature="class#35029:35223" />
-                <element signature="e#35310#35944#0" />
-                <element signature="e#35950#36428#0" />
-                <element signature="e#36434#37286#0" />
-                <element signature="e#37292#37707#0" />
-                <element signature="e#37713#37766#0" />
-                <element signature="e#37772#37828#0" />
-                <element signature="e#37834#37888#0" />
-                <element signature="e#38127#38183#0" />
-                <element signature="e#38189#38243#0" />
-                <element signature="e#38249#38516#0" />
-                <element signature="e#38522#38587#0" />
-                <element signature="e#38593#38655#0" />
-                <element signature="e#38661#38724#0" />
-                <element signature="e#38730#38940#0" />
-                <element signature="e#38946#39167#0" />
-                <element signature="e#39173#39401#0" />
-                <element signature="e#39407#39626#0" />
-                <element signature="e#39632#39870#0" />
-                <element signature="e#39876#40097#0" />
-                <element signature="e#40103#40331#0" />
-                <element signature="e#40337#40547#0" />
-                <element signature="e#40553#40763#0" />
-                <element signature="e#40769#40830#0" />
+                <element signature="e#21829#22515#0" />
+                <element signature="e#21934#22507#0" />
+                <element signature="e#22521#23311#0" />
+                <element signature="e#22626#23303#0" />
+                <element signature="e#23317#23667#0" />
+                <element signature="e#23418#23659#0" />
+                <element signature="e#23673#24187#0" />
+                <element signature="e#24193#24845#0" />
+                <element signature="e#24851#25360#0" />
+                <element signature="e#25366#25560#0" />
+                <element signature="e#25566#26033#0" />
+                <element signature="e#26039#26390#0" />
+                <element signature="e#26396#26579#0" />
+                <element signature="e#26585#27179#0" />
+                <element signature="e#27185#27669#0" />
+                <element signature="e#27675#28130#0" />
+                <element signature="e#28136#28811#0" />
+                <element signature="e#28817#28987#0" />
+                <element signature="e#28993#29288#0" />
+                <element signature="e#29294#29824#0" />
+                <element signature="e#29830#30642#0" />
+                <element signature="e#30648#31111#0" />
+                <element signature="e#31117#32000#0" />
+                <element signature="e#32006#32867#0" />
+                <element signature="e#33748#34410#0" />
+                <element signature="e#34416#34896#0" />
+                <element signature="class#34621:34815" />
+                <element signature="e#34902#35536#0" />
+                <element signature="e#35542#36020#0" />
+                <element signature="e#36026#36878#0" />
+                <element signature="e#37333#37386#0" />
+                <element signature="e#37392#37448#0" />
+                <element signature="e#37454#37508#0" />
+                <element signature="e#37514#37741#0" />
+                <element signature="e#37747#37803#0" />
+                <element signature="e#37809#37863#0" />
+                <element signature="e#37869#38136#0" />
+                <element signature="e#38142#38207#0" />
+                <element signature="e#38213#38275#0" />
+                <element signature="e#38281#38344#0" />
+                <element signature="e#38350#38560#0" />
+                <element signature="e#38566#38787#0" />
+                <element signature="e#38793#39021#0" />
+                <element signature="e#39027#39246#0" />
+                <element signature="e#39252#39490#0" />
+                <element signature="e#39496#39717#0" />
+                <element signature="e#39723#39951#0" />
+                <element signature="e#39957#40167#0" />
+                <element signature="e#40173#40383#0" />
+                <element signature="e#40389#40450#0" />
               </folding>
             </state>
           </provider>
@@ -167,7 +171,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
+            <state relative-caret-position="1683">
               <caret line="108" column="38" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
               <folding>
                 <marker date="1536216144427" expanded="true" signature="441:459" ph=" SELECT statement (LIGA)" />
@@ -183,7 +187,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/model/League.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="340">
               <caret line="20" column="99" selection-start-line="20" selection-start-column="99" selection-end-line="20" selection-end-column="99" />
             </state>
           </provider>
@@ -275,8 +279,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -332,10 +334,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536216501377" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536223476508" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Studia/UrZ/II rok/Groszek oracle/seby/ProjektPLSQL/projekt~/skleprowerowy" />
     <property name="project.structure.last.edited" value="Project" />
@@ -646,7 +650,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536176027908</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="league works fine">
+      <created>1536216708609</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1536216708609</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -662,7 +673,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17030849" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1722365" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -722,7 +733,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="card repository done" />
     <MESSAGE value="coach repository done" />
     <MESSAGE value="match repository done" />
     <MESSAGE value="something works" />
@@ -747,7 +757,8 @@
     <MESSAGE value="pl/sql sum of player's points function works" />
     <MESSAGE value="pl/sql average values for player's function works" />
     <MESSAGE value="pl/sql add number of fixture" />
-    <option name="LAST_COMMIT_MESSAGE" value="pl/sql add number of fixture" />
+    <MESSAGE value="league works fine" />
+    <option name="LAST_COMMIT_MESSAGE" value="league works fine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1085,32 +1096,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/League.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="99" selection-start-line="20" selection-start-column="99" selection-end-line="20" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="108" column="38" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
-          <folding>
-            <marker date="1536216144427" expanded="true" signature="441:459" ph=" SELECT statement (LIGA)" />
-            <marker date="1536216144427" expanded="true" signature="1501:1534" ph=" SELECT statement (LIGA)" />
-            <marker date="1536216144427" expanded="true" signature="2525:2660" ph=" INSERT statement (LIGA)" />
-            <marker date="1536216144427" expanded="true" signature="3415:3447" ph=" DELETE statement (LIGA)" />
-            <marker date="1536216144427" expanded="true" signature="3854:3943" ph=" UPDATE statement (LIGA)" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="598" column="59" selection-start-line="598" selection-start-column="59" selection-end-line="598" selection-end-column="59" />
+        <state relative-caret-position="184">
+          <caret line="973" column="62" selection-start-line="973" selection-start-column="62" selection-end-line="973" selection-end-column="62" />
           <folding>
+            <element signature="e#5957#7418#0" />
             <element signature="e#7424#7660#0" />
             <element signature="e#7666#7904#0" />
             <element signature="e#7910#8144#0" />
@@ -1152,52 +1143,78 @@
             <element signature="e#20972#21348#0" />
             <element signature="e#21362#21823#0" />
             <element signature="e#21461#21815#0" />
-            <element signature="e#22677#23467#0" />
-            <element signature="e#22782#23459#0" />
-            <element signature="e#23473#23823#0" />
-            <element signature="e#23574#23815#0" />
-            <element signature="e#23829#24343#0" />
-            <element signature="e#24349#25001#0" />
-            <element signature="e#25007#25516#0" />
-            <element signature="e#25522#25716#0" />
-            <element signature="e#25722#26189#0" />
-            <element signature="e#26195#26546#0" />
-            <element signature="e#26552#26735#0" />
-            <element signature="e#26741#27335#0" />
-            <element signature="e#27830#28389#0" />
-            <element signature="e#29401#29696#0" />
-            <element signature="e#29702#30232#0" />
-            <element signature="e#30238#31050#0" />
-            <element signature="e#31525#32408#0" />
-            <element signature="e#32414#33275#0" />
-            <element signature="e#33281#34150#0" />
-            <element signature="e#34156#34818#0" />
-            <element signature="e#34824#35304#0" />
-            <element signature="class#35029:35223" />
-            <element signature="e#35310#35944#0" />
-            <element signature="e#35950#36428#0" />
-            <element signature="e#36434#37286#0" />
-            <element signature="e#37292#37707#0" />
-            <element signature="e#37713#37766#0" />
-            <element signature="e#37772#37828#0" />
-            <element signature="e#37834#37888#0" />
-            <element signature="e#38127#38183#0" />
-            <element signature="e#38189#38243#0" />
-            <element signature="e#38249#38516#0" />
-            <element signature="e#38522#38587#0" />
-            <element signature="e#38593#38655#0" />
-            <element signature="e#38661#38724#0" />
-            <element signature="e#38730#38940#0" />
-            <element signature="e#38946#39167#0" />
-            <element signature="e#39173#39401#0" />
-            <element signature="e#39407#39626#0" />
-            <element signature="e#39632#39870#0" />
-            <element signature="e#39876#40097#0" />
-            <element signature="e#40103#40331#0" />
-            <element signature="e#40337#40547#0" />
-            <element signature="e#40553#40763#0" />
-            <element signature="e#40769#40830#0" />
+            <element signature="e#21829#22515#0" />
+            <element signature="e#21934#22507#0" />
+            <element signature="e#22521#23311#0" />
+            <element signature="e#22626#23303#0" />
+            <element signature="e#23317#23667#0" />
+            <element signature="e#23418#23659#0" />
+            <element signature="e#23673#24187#0" />
+            <element signature="e#24193#24845#0" />
+            <element signature="e#24851#25360#0" />
+            <element signature="e#25366#25560#0" />
+            <element signature="e#25566#26033#0" />
+            <element signature="e#26039#26390#0" />
+            <element signature="e#26396#26579#0" />
+            <element signature="e#26585#27179#0" />
+            <element signature="e#27185#27669#0" />
+            <element signature="e#27675#28130#0" />
+            <element signature="e#28136#28811#0" />
+            <element signature="e#28817#28987#0" />
+            <element signature="e#28993#29288#0" />
+            <element signature="e#29294#29824#0" />
+            <element signature="e#29830#30642#0" />
+            <element signature="e#30648#31111#0" />
+            <element signature="e#31117#32000#0" />
+            <element signature="e#32006#32867#0" />
+            <element signature="e#33748#34410#0" />
+            <element signature="e#34416#34896#0" />
+            <element signature="class#34621:34815" />
+            <element signature="e#34902#35536#0" />
+            <element signature="e#35542#36020#0" />
+            <element signature="e#36026#36878#0" />
+            <element signature="e#37333#37386#0" />
+            <element signature="e#37392#37448#0" />
+            <element signature="e#37454#37508#0" />
+            <element signature="e#37514#37741#0" />
+            <element signature="e#37747#37803#0" />
+            <element signature="e#37809#37863#0" />
+            <element signature="e#37869#38136#0" />
+            <element signature="e#38142#38207#0" />
+            <element signature="e#38213#38275#0" />
+            <element signature="e#38281#38344#0" />
+            <element signature="e#38350#38560#0" />
+            <element signature="e#38566#38787#0" />
+            <element signature="e#38793#39021#0" />
+            <element signature="e#39027#39246#0" />
+            <element signature="e#39252#39490#0" />
+            <element signature="e#39496#39717#0" />
+            <element signature="e#39723#39951#0" />
+            <element signature="e#39957#40167#0" />
+            <element signature="e#40173#40383#0" />
+            <element signature="e#40389#40450#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/repositories/LeagueRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="108" column="38" selection-start-line="108" selection-start-column="38" selection-end-line="108" selection-end-column="38" />
+          <folding>
+            <marker date="1536216144427" expanded="true" signature="441:459" ph=" SELECT statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="1501:1534" ph=" SELECT statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="2525:2660" ph=" INSERT statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="3415:3447" ph=" DELETE statement (LIGA)" />
+            <marker date="1536216144427" expanded="true" signature="3854:3943" ph=" UPDATE statement (LIGA)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/League.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="99" selection-start-line="20" selection-start-column="99" selection-end-line="20" selection-end-column="99" />
         </state>
       </provider>
     </entry>

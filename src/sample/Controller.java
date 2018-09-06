@@ -890,19 +890,19 @@ public class Controller implements Initializable {
         }
     }
 
-    private void labelVisibility(Label label){
-            PauseTransition visiblePause = new PauseTransition(
-                    Duration.seconds(3)
-            );
-            visiblePause.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    labelPlayer.setVisible(false);
-                }
-            });
-            visiblePause.play();
-            label.setVisible(true);
-        }
+    private void labelVisibility(Label label) {
+        PauseTransition visiblePause = new PauseTransition(
+                Duration.seconds(3)
+        );
+        visiblePause.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                labelPlayer.setVisible(false);
+            }
+        });
+        visiblePause.play();
+        label.setVisible(true);
+    }
 
     public void addPlayer(ActionEvent actionEvent) {
         Club club = playerClubCombobox.getSelectionModel().getSelectedItem();
@@ -952,10 +952,29 @@ public class Controller implements Initializable {
     public void addCardToPlayer(ActionEvent actionEvent) {
         Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
         Card card = new Card(cardCombobox.getSelectionModel().getSelectedItem(), playerFromCombobox);
-        new CardRepository().insert(card);
+        /*new CardRepository().insert(card);
         playerCombobox.getSelectionModel().clearSelection();
         cardCombobox.getSelectionModel().clearSelection();
-        refreshCardTable();
+        refreshCardTable();*/
+
+        try {Connection dbConnection = DbConnector.getDBConnection();
+             /*PreparedStatement preparedStatement = dbConnection.prepareStatement("select ADDSUSPENSION(" + playerFromCombobox.getId() + ", '" + card.getCardType() + "')from dual")) {
+            preparedStatement.execute();*/
+            /*ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int res = rs.getInt(1);
+            labelPlayer.setText("Średnia wzrostu zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
+            playerClubCombobox2.getSelectionModel().clearSelection();
+            labelVisibility(labelPlayer);*/
+
+            CallableStatement cst;
+            cst=dbConnection.prepareCall("{call ADDSUSPENSION(" + playerFromCombobox.getId() + ", '" + card.getCardType() + "')}");
+            cst.execute();
+            playerCombobox.getSelectionModel().clearSelection();
+            cardCombobox.getSelectionModel().clearSelection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void addMatch(ActionEvent actionEvent) {
