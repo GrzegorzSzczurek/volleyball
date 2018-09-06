@@ -5,15 +5,20 @@ public class Match {
     private Integer id;
     private Cadre hostCadre;
     private Cadre guestCadre;
-    private int pointsForMatch;
     private int frequency;
     private int fixture;
 
-    public Match(Integer id, Cadre hostCadre, Cadre guestCadre, int pointsForMatch, int frequency, int fixture) {
+    public Match(Integer id, Cadre hostCadre, Cadre guestCadre, int frequency, int fixture) {
         this.id = id;
         this.hostCadre = hostCadre;
         this.guestCadre = guestCadre;
-        this.pointsForMatch = pointsForMatch;
+        this.frequency = frequency;
+        this.fixture = fixture;
+    }
+
+    public Match(Cadre hostCadre, Cadre guestCadre, int frequency, int fixture) {
+        this.hostCadre = hostCadre;
+        this.guestCadre = guestCadre;
         this.frequency = frequency;
         this.fixture = fixture;
     }
@@ -43,14 +48,6 @@ public class Match {
 
     public void setGuestCadre(Cadre guestCadre) {
         this.guestCadre = guestCadre;
-    }
-
-    public int getPointsForMatch() {
-        return pointsForMatch;
-    }
-
-    public void setPointsForMatch(int pointsForMatch) {
-        this.pointsForMatch = pointsForMatch;
     }
 
     public int getFrequency() {

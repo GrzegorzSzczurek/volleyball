@@ -11,6 +11,10 @@ public interface CadreRepo {
 
     Cadre insert(Cadre cadre);
 
+    Cadre insertWithoutMatch(Cadre cadre);
+
+
+
     void removeById(int cadreId);
 
     void update(Cadre cadre);

@@ -68,10 +68,12 @@
                             <children>
                                 <TextField fx:id="tfLeagueName" layoutX="32.0" layoutY="35.0" />
                                 <TextField fx:id="tfLeagueNumberOfTeams" layoutX="32.0" layoutY="126.0" />
-                                <TextField fx:id="tfLeagueYear" layoutX="32.0" layoutY="165.0" />
+                                <TextField fx:id="tfLeagueNumberOfMatches" layoutX="32.0" layoutY="167.0" />
+                                <TextField fx:id="tfLeagueYear" layoutX="32.0" layoutY="205.0" />
                                 <Text layoutX="189.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa" />
                                 <Text layoutX="189.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość zespołów" />
-                                <Text layoutX="190.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok" />
+                                <Text layoutX="189.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ilość meczy" />
+                                <Text layoutX="187.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rok" />
                                 <Button layoutX="20.0" layoutY="252.0" mnemonicParsing="false" onAction="#deleteLeague" text="Usuń" />
                                 <Button fx:id="editLeagueButton" layoutX="151.0" layoutY="252.0" mnemonicParsing="false" onAction="#editLeague" text="Edytuj" />
                                 <Button layoutX="83.0" layoutY="252.0" mnemonicParsing="false" onAction="#addLeague" text="Dodaj" />
@@ -80,7 +82,7 @@
                                         <TableColumn fx:id="leagueNameColumn" prefWidth="75.0" text="Nazwa" />
                                         <TableColumn fx:id="leagueLevelColumn" prefWidth="96.0" text="Poziom ligi" />
                                         <TableColumn fx:id="leagueNumberOfTeamsColumn" prefWidth="124.0" text="Ilość zespołów" />
-                                        <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="81.0" text="Ilość kolejek" />
+                                        <TableColumn fx:id="leagueNumberOfMatchesColumn" prefWidth="81.0" text="Ilość meczy" />
                                         <TableColumn fx:id="leagueYearColumn" prefWidth="70.0" text="Rok" />
                                     </columns>
                                 </TableView>

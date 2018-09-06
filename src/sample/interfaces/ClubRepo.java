@@ -1,6 +1,5 @@
 package sample.interfaces;
 
-import sample.model.Card;
 import sample.model.Club;
 
 import java.util.List;

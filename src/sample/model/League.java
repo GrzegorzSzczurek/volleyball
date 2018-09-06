@@ -18,6 +18,21 @@ public class League {
         this.year = year;
     }
 
+    public League(String leagueName, String leagueLevel, int numberOfClubs, int numberOfMatches, int year) {
+        this.leagueName = leagueName;
+        this.leagueLevel = leagueLevel;
+        this.numberOfClubs = numberOfClubs;
+        this.numberOfMatches = numberOfMatches;
+        this.year = year;
+    }
+
+    public League(String leagueName, String leagueLevel, int numberOfClubs, int year) {
+        this.leagueName = leagueName;
+        this.leagueLevel = leagueLevel;
+        this.numberOfClubs = numberOfClubs;
+        this.year = year;
+    }
+
     public League() {
     }
 

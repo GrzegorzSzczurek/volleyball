@@ -5,11 +5,10 @@ import sample.interfaces.SuspensionRepo;
 import sample.model.Suspension;
 
 import java.sql.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuspensionRepository implements SuspensionRepo{
+public class SuspensionRepository implements SuspensionRepo {
 
     @Override
     public List<Suspension> findAll() {
@@ -22,7 +21,7 @@ public class SuspensionRepository implements SuspensionRepo{
                 int id = rs.getInt("ZAWIESZENIE_ID");
                 Date startDate = rs.getDate("DATA_ROZPOCZECIA");
                 Date endDate = rs.getDate("DATA_ZAKONCZENIA");
-                Suspension suspension= new Suspension(id, startDate, endDate);
+                Suspension suspension = new Suspension(id, startDate, endDate);
 
                 suspensionList.add(suspension);
             }
@@ -34,7 +33,7 @@ public class SuspensionRepository implements SuspensionRepo{
 
     @Override
     public Suspension findById(int suspensionId) {
-        String findBookById = "SELECT * FROM SUSPENSION WHERE ZAWIESZENIE_ID=" + suspensionId;
+        String findBookById = "SELECT * FROM ZAWIESZENIA WHERE ZAWIESZENIE_ID=" + suspensionId;
         try (Connection dbConnection = DbConnector.getDBConnection();
              PreparedStatement preparedStatement = dbConnection.prepareStatement(findBookById)) {
             ResultSet rs = preparedStatement.executeQuery();
@@ -42,7 +41,7 @@ public class SuspensionRepository implements SuspensionRepo{
                 int id = rs.getInt("ZAWIESZENIE_ID");
                 Date startDate = rs.getDate("DATA_ROZPOCZECIA");
                 Date endDate = rs.getDate("DATA_ZAKONCZENIA");
-                Suspension suspension= new Suspension(id, startDate, endDate);
+                Suspension suspension = new Suspension(id, startDate, endDate);
                 return suspension;
             }
         } catch (SQLException e) {

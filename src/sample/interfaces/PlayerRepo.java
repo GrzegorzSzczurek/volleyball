@@ -10,9 +10,15 @@ public interface PlayerRepo {
 
     Player findById(int playerId);
 
-    Player insert(Player player);
+    Player insertAll(Player player);
+
+    Player insertBasic(Player player);
+
+    //Player insertCard(Player player);
 
     void removeById(int playerId);
 
-    void update(Player player);
+    void updateBasic(Player player);
+
+    //void updateWithSuspensionAndCards(Player player);
 }
