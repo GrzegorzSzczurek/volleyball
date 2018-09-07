@@ -18,7 +18,6 @@ import sample.dbConnector.DbConnector;
 import sample.model.*;
 import sample.repositories.*;
 
-import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.List;
@@ -188,11 +187,9 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Team, Integer> playerIdColumn;
     @FXML
-    private ComboBox<Player> hostCadreCombobox;
+    private ComboBox<Cadre> hostCadreCombobox;
     @FXML
-    private ComboBox<Card> guestCadreCombobox;
-    @FXML
-    private ComboBox<Card> pointsCombobox;
+    private ComboBox<Cadre> guestCadreCombobox;
     @FXML
     private ComboBox<Cadre> cadreCombobox;
     @FXML
@@ -276,6 +273,11 @@ public class Controller implements Initializable {
         refreshCadrePlayerTable();
         refreshMatchTable();
         refreshCadreTable();
+
+        fillHostCadreCombobox();
+        fillGuestCadreCombobox();
+        refreshHostCadreCombobox();
+        refreshGuestCadreCombobox();
     }
 
     private void refreshPlayerClubCombobox() {
@@ -294,6 +296,18 @@ public class Controller implements Initializable {
         List<Club> allClubs = new ClubRepository().findAll();
         ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
         cadreClubCombobox.setItems(clubs);
+    }
+
+    private void refreshHostCadreCombobox() {
+        List<Cadre> allCadres = new CadreRepository().findAll();
+        ObservableList<Cadre> cadres = FXCollections.observableArrayList(allCadres);
+        hostCadreCombobox.setItems(cadres);
+    }
+
+    private void refreshGuestCadreCombobox() {
+        List<Cadre> allCadres = new CadreRepository().findAll();
+        ObservableList<Cadre> cadres = FXCollections.observableArrayList(allCadres);
+        guestCadreCombobox.setItems(cadres);
     }
 
     private void fillPlayerClubCombobox() {
@@ -455,22 +469,39 @@ public class Controller implements Initializable {
         playerCombobox.setConverter(scConverter1);
     }*/
 
-    /*private void fillCadrePlayerCombobox() {
-        StringConverter<Player> scConverter1 = new StringConverter<Player>() {
+    private void fillHostCadreCombobox() {
+        StringConverter<Cadre> scConverter1 = new StringConverter<Cadre>() {
 
             @Override
-            public String toString(Player players) {
-                return players.getName() + " " + players.getSurname();
+            public String toString(Cadre cadre) {
+                return cadre.getCadreId() + " " + cadre.getClubId().getClubName();
             }
 
             @Override
-            public Player fromString(String string) {
+            public Cadre fromString(String string) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
         };
-        cadrePlayerCombobox.setConverter(scConverter1);
-    }*/
+        hostCadreCombobox.setConverter(scConverter1);
+    }
+
+    private void fillGuestCadreCombobox() {
+        StringConverter<Cadre> scConverter1 = new StringConverter<Cadre>() {
+
+            @Override
+            public String toString(Cadre cadre) {
+                return cadre.getCadreId() + " " + cadre.getClubId().getClubName();
+            }
+
+            @Override
+            public Cadre fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        guestCadreCombobox.setConverter(scConverter1);
+    }
 
     private void refreshHallComboboxInClub() {
         List<Hall> allHalls = new HallRepository().findAll();
@@ -984,6 +1015,7 @@ public class Controller implements Initializable {
         Club club = cadreClubCombobox.getSelectionModel().getSelectedItem();
         Cadre cadre = new Cadre(club);
         new CadreRepository().insertWithoutMatch(cadre);
+        cadreClubCombobox.getSelectionModel().clearSelection();
     }
 
     public void deleteCadre(ActionEvent actionEvent) {
@@ -1069,5 +1101,33 @@ public class Controller implements Initializable {
         Card card = cardTable.getSelectionModel().getSelectedItem();
         new CardRepository().removeById(card.getId());
         refreshCardTable();
+    }
+
+    public void addMatch(ActionEvent actionEvent) {
+        Cadre hostCadre = hostCadreCombobox.getSelectionModel().getSelectedItem();
+        Cadre guestCadre = guestCadreCombobox.getSelectionModel().getSelectedItem();
+        Integer frequency = Integer.parseInt(tfFrequency.getText());
+        Integer fixture = Integer.parseInt(tfFixture.getText());
+        /*
+        Match match = new Match(hostCadre, guestCadre, frequency, fixture);
+        new MatchRepository().insert(match);
+        clearMatchFields();*/
+
+        try {
+            Connection dbConnection = DbConnector.getDBConnection();
+            CallableStatement cst;
+            cst = dbConnection.prepareCall("{call CORRECTFREQUENCY(" + frequency + ", " + hostCadre.getCadreId() + ", " + guestCadre.getCadreId() + ", " + fixture + ")}");
+            cst.execute();
+            clearMatchFields();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clearMatchFields() {
+        tfFrequency.clear();
+        hostCadreCombobox.getSelectionModel().clearSelection();
+        tfFixture.clear();
+        guestCadreCombobox.getSelectionModel().clearSelection();
     }
 }
