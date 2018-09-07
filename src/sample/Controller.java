@@ -77,8 +77,6 @@ public class Controller implements Initializable {
     @FXML
     private TextField tfLeagueNumberOfTeams;
     @FXML
-    private TextField tfLeagueNumberOfMatches;
-    @FXML
     private TextField tfLeagueLevel;
     @FXML
     private TextField tfLeagueYear;
@@ -164,15 +162,11 @@ public class Controller implements Initializable {
     @FXML
     private TableView<Card> cardTable;
     @FXML
-    private TextField tfCard;
-    @FXML
     private ComboBox<String> playerCombobox;
     @FXML
     private ComboBox<String> cardCombobox;
     @FXML
     private TableColumn<Card, String> cardsColumn;
-    @FXML
-    private Button editCardButton;
 
     @FXML
     private TableColumn<Match, Integer> hostColumn;
@@ -217,6 +211,17 @@ public class Controller implements Initializable {
     @FXML
     private TableView<Cadre> cadreTable;
 
+    @FXML
+    private TableView<Suspension> suspensionTable;
+    @FXML
+    private TableColumn<Suspension, String> suspensionPlayerNameColumn;
+    @FXML
+    private TableColumn<Suspension, String> suspensionPlayerSurnameColumn;
+    @FXML
+    private TableColumn<Suspension, Date> suspensionStartDate;
+    @FXML
+    private TableColumn<Suspension, Date> suspensionEndDate;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setDataInHallTable();
@@ -255,11 +260,10 @@ public class Controller implements Initializable {
         setDataInCardTable();
         mouseHandlerOnCardTable();
         fillPlayerCombobox();
-        //refreshPlayerCombobox();
         refreshCardTable();
 
-        /*fillCardCombobox();
-        refreshCardCombobox();*/
+        setDataInSuspensionTable();
+        refreshSuspensionTable();
 
         cardCombobox.getItems().addAll(
                 "Żółta",
@@ -352,6 +356,13 @@ public class Controller implements Initializable {
         editClubButton.setDisable(true);
     }
 
+    private void setDataInSuspensionTable() {
+        suspensionPlayerNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPlayerId().getName()));
+        suspensionPlayerSurnameColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getPlayerId().getSurname()));
+        suspensionStartDate.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getStart()));
+        suspensionEndDate.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getEnd()));
+    }
+
     private void refreshCoachCombobox() {
         List<Coach> allCoaches = new CoachRepository().findAll();
         ObservableList<Coach> coaches = FXCollections.observableArrayList(allCoaches);
@@ -412,15 +423,6 @@ public class Controller implements Initializable {
     private void fillPlayerCombobox() {
         try {
             Connection dbConnection = DbConnector.getDBConnection();
-             /*PreparedStatement preparedStatement = dbConnection.prepareStatement("select ADDSUSPENSION(" + playerFromCombobox.getId() + ", '" + card.getCardType() + "')from dual")) {
-            preparedStatement.execute();*/
-            /*ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-            int res = rs.getInt(1);
-            labelPlayer.setText("Średnia wzrostu zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
-            playerClubCombobox2.getSelectionModel().clearSelection();
-            labelVisibility(labelPlayer);*/
-
             CallableStatement cst;
             cst = dbConnection.prepareCall("{?=call PLAYER_COMBOBOX()}");
             cst.registerOutParameter(1, OracleTypes.CURSOR);
@@ -629,8 +631,6 @@ public class Controller implements Initializable {
         cardTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Card card = cardTable.getSelectionModel().getSelectedItem();
             if (card != null) {
-                tfCard.setText(card.getCardType());
-                editCardButton.setDisable(false);
             }
         });
     }
@@ -967,6 +967,7 @@ public class Controller implements Initializable {
             throw new RuntimeException(e);
         }
         refreshCardTable();
+        refreshSuspensionTable();
     }
 
     /*public void oldAddCardToPlayer(ActionEvent actionEvent){
@@ -1055,6 +1056,18 @@ public class Controller implements Initializable {
         cardTable.setItems(card);
     }
 
+    private void refreshSuspensionTable() {
+        List<Suspension> suspensions = new SuspensionRepository().findAll();
+        ObservableList<Suspension> suspension = FXCollections.observableArrayList(suspensions);
+        suspensionTable.setItems(suspension);
+    }
+
     public void addPlayerToCadre(ActionEvent actionEvent) {
+    }
+
+    public void deleteCard(ActionEvent actionEvent) {
+        Card card = cardTable.getSelectionModel().getSelectedItem();
+        new CardRepository().removeById(card.getId());
+        refreshCardTable();
     }
 }

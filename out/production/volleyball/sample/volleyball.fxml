@@ -125,18 +125,13 @@
                                 <TextField fx:id="tfPlayerAge" layoutX="15.0" layoutY="164.0" promptText="Wiek" />
                                 <TextField fx:id="tfPlayerHeight" layoutX="15.0" layoutY="206.0" promptText="Wzrost" />
                                 <TextField fx:id="tfPlayerScoredPoints" layoutX="16.0" layoutY="249.0" promptText="Zdobyte punkty" />
-                                <TableView fx:id="playerTable" layoutX="164.0" layoutY="35.0" prefHeight="207.0" prefWidth="598.0">
+                                <TableView fx:id="playerTable" layoutX="230.0" layoutY="31.0" prefHeight="207.0" prefWidth="448.0">
                                     <columns>
                                         <TableColumn fx:id="playerClubColumn" prefWidth="75.0" text="Klub" />
                                         <TableColumn fx:id="playerNameColumn" prefWidth="75.0" text="Imię" />
                                         <TableColumn fx:id="playerSurnameColumn" prefWidth="75.0" text="Nazwisko" />
                                         <TableColumn fx:id="playerAgeColumn" prefWidth="57.0" text="Wiek" />
                                         <TableColumn fx:id="playerHeightColumn" prefWidth="69.0" text="Wzrost" />
-                                        <TableColumn fx:id="playerCardsColumn" minWidth="0.0" prefWidth="162.0" text="Kartki">
-                                 <columns>
-                                    <TableColumn fx:id="yellowCards" prefWidth="75.0" text="Żółte" />
-                                    <TableColumn fx:id="redCards" prefWidth="75.0" text="Czerwone" />
-                                 </columns></TableColumn>
                                         <TableColumn fx:id="playerScoredPointsColumn" minWidth="0.0" prefWidth="96.0" text="Zdobyte punkty" />
                                     </columns>
                                 </TableView>
@@ -206,13 +201,12 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <DatePicker fx:id="tfSuspensionStartOfSuspesnion" layoutX="43.0" layoutY="73.0" promptText="Rozpoczecie zawieszenia" />
-                                <TableView fx:id="librarianTable1" layoutX="14.0" layoutY="113.0" prefHeight="110.0" prefWidth="465.0">
+                                <TableView fx:id="suspensionTable" layoutX="14.0" layoutY="113.0" prefHeight="110.0" prefWidth="475.0">
                                     <columns>
-                                        <TableColumn prefWidth="75.0" text="Imie" />
-                                        <TableColumn fx:id="CoachSurname1" prefWidth="118.0" text="Nazwisko" />
-                              <TableColumn minWidth="-Infinity" prefWidth="126.0" text="Rozpoczęcie zawieszenia" />
-                              <TableColumn prefWidth="145.0" text="Koniec zawieszenia" />
+                                        <TableColumn fx:id="suspensionPlayerNameColumn" prefWidth="75.0" text="Imie" />
+                                        <TableColumn fx:id="suspensionPlayerSurnameColumn" prefWidth="118.0" text="Nazwisko" />
+                              <TableColumn fx:id="suspensionStartDate" minWidth="-Infinity" prefWidth="145.0" text="Rozpoczęcie zawieszenia" />
+                              <TableColumn fx:id="suspensionEndDate" prefWidth="136.0" text="Koniec zawieszenia" />
                                     </columns>
                                 </TableView>
                         <Text layoutX="42.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zawieszenia" />
@@ -226,6 +220,7 @@
                         </TableView>
                         <Text layoutX="539.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przydzielanie kartek zawodnikom" />
                         <Button layoutX="540.0" layoutY="155.0" mnemonicParsing="false" onAction="#addCardToPlayer" prefHeight="25.0" prefWidth="160.0" text="Zapisz kartkę zawodnikowi" />
+                        <Button layoutX="526.0" layoutY="302.0" mnemonicParsing="false" onAction="#deleteCard" text="Usuń kartkę" />
                             </children>
                         </AnchorPane>
                     </content>

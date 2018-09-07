@@ -163,7 +163,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Wszystko">
+            <Tab text="Mecze, kadry i ich zawonicy">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -175,11 +175,11 @@
                               <TableColumn fx:id="fixtureColumn" prefWidth="77.0" text="Kolejka" />
                           </columns>
                         </TableView>
-                        <TableView fx:id="cadreTable" layoutX="326.0" layoutY="47.0" prefHeight="200.0" prefWidth="228.0">
+                        <TableView fx:id="cadreTable" layoutX="326.0" layoutY="47.0" prefHeight="200.0" prefWidth="240.0">
                           <columns>
                             <TableColumn fx:id="cadreIdColumn" prefWidth="75.0" text="Id kadry" />
                             <TableColumn fx:id="matchIdColumn" prefWidth="75.0" text="id meczu" />
-                              <TableColumn fx:id="clubIdColumn" prefWidth="77.0" text="Klub" />
+                              <TableColumn fx:id="clubIdColumn" prefWidth="89.0" text="Klub" />
                           </columns>
                         </TableView>
                         <TableView fx:id="playersCadreTable" layoutX="572.0" layoutY="47.0" prefHeight="200.0" prefWidth="188.0">
@@ -201,12 +201,12 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
-                                <TableView fx:id="librarianTable1" layoutX="14.0" layoutY="113.0" prefHeight="110.0" prefWidth="465.0">
+                                <TableView fx:id="suspensionTable" layoutX="14.0" layoutY="113.0" prefHeight="110.0" prefWidth="475.0">
                                     <columns>
                                         <TableColumn fx:id="suspensionPlayerNameColumn" prefWidth="75.0" text="Imie" />
                                         <TableColumn fx:id="suspensionPlayerSurnameColumn" prefWidth="118.0" text="Nazwisko" />
-                              <TableColumn fx:id="suspensionStartDate" minWidth="-Infinity" prefWidth="126.0" text="Rozpoczęcie zawieszenia" />
-                              <TableColumn fx:id="suspensionEndDate" prefWidth="145.0" text="Koniec zawieszenia" />
+                              <TableColumn fx:id="suspensionStartDate" minWidth="-Infinity" prefWidth="145.0" text="Rozpoczęcie zawieszenia" />
+                              <TableColumn fx:id="suspensionEndDate" prefWidth="136.0" text="Koniec zawieszenia" />
                                     </columns>
                                 </TableView>
                         <Text layoutX="42.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zawieszenia" />
@@ -220,6 +220,7 @@
                         </TableView>
                         <Text layoutX="539.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przydzielanie kartek zawodnikom" />
                         <Button layoutX="540.0" layoutY="155.0" mnemonicParsing="false" onAction="#addCardToPlayer" prefHeight="25.0" prefWidth="160.0" text="Zapisz kartkę zawodnikowi" />
+                        <Button layoutX="526.0" layoutY="302.0" mnemonicParsing="false" onAction="#deleteCard" text="Usuń kartkę" />
                             </children>
                         </AnchorPane>
                     </content>

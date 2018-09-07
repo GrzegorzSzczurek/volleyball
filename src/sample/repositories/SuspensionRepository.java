@@ -2,6 +2,7 @@ package sample.repositories;
 
 import sample.dbConnector.DbConnector;
 import sample.interfaces.SuspensionRepo;
+import sample.model.Player;
 import sample.model.Suspension;
 
 import java.sql.*;
@@ -19,9 +20,13 @@ public class SuspensionRepository implements SuspensionRepo {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("ZAWIESZENIE_ID");
+                int playerId = rs.getInt("ZAWODNIK_ID");
                 Date startDate = rs.getDate("DATA_ROZPOCZECIA");
                 Date endDate = rs.getDate("DATA_ZAKONCZENIA");
-                Suspension suspension = new Suspension(id, startDate, endDate);
+
+                PlayerRepository playerRepository = new PlayerRepository();
+                Player player = playerRepository.findById(playerId);
+                Suspension suspension = new Suspension(id, startDate, endDate, player);
 
                 suspensionList.add(suspension);
             }
