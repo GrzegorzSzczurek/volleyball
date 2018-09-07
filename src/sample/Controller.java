@@ -13,10 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
+import oracle.jdbc.OracleTypes;
 import sample.dbConnector.DbConnector;
 import sample.model.*;
 import sample.repositories.*;
 
+import javax.swing.*;
 import java.net.URL;
 import java.sql.*;
 import java.util.List;
@@ -164,7 +166,7 @@ public class Controller implements Initializable {
     @FXML
     private TextField tfCard;
     @FXML
-    private ComboBox<Player> playerCombobox;
+    private ComboBox<String> playerCombobox;
     @FXML
     private ComboBox<String> cardCombobox;
     @FXML
@@ -253,7 +255,7 @@ public class Controller implements Initializable {
         setDataInCardTable();
         mouseHandlerOnCardTable();
         fillPlayerCombobox();
-        refreshPlayerCombobox();
+        //refreshPlayerCombobox();
         refreshCardTable();
 
         /*fillCardCombobox();
@@ -408,6 +410,33 @@ public class Controller implements Initializable {
     }
 
     private void fillPlayerCombobox() {
+        try {
+            Connection dbConnection = DbConnector.getDBConnection();
+             /*PreparedStatement preparedStatement = dbConnection.prepareStatement("select ADDSUSPENSION(" + playerFromCombobox.getId() + ", '" + card.getCardType() + "')from dual")) {
+            preparedStatement.execute();*/
+            /*ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            int res = rs.getInt(1);
+            labelPlayer.setText("Średnia wzrostu zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
+            playerClubCombobox2.getSelectionModel().clearSelection();
+            labelVisibility(labelPlayer);*/
+
+            CallableStatement cst;
+            cst = dbConnection.prepareCall("{?=call PLAYER_COMBOBOX()}");
+            cst.registerOutParameter(1, OracleTypes.CURSOR);
+            cst.execute();
+
+            ResultSet result = (ResultSet) cst.getObject(1);
+            while (result.next()) {
+                playerCombobox.getItems().addAll(result.getString(1) + " " + result.getString(2) + " " + result.getString(3));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /*private void oldFillingPlayerCombobox(){
         StringConverter<Player> scConverter1 = new StringConverter<Player>() {
 
             @Override
@@ -422,7 +451,7 @@ public class Controller implements Initializable {
 
         };
         playerCombobox.setConverter(scConverter1);
-    }
+    }*/
 
     /*private void fillCadrePlayerCombobox() {
         StringConverter<Player> scConverter1 = new StringConverter<Player>() {
@@ -441,23 +470,6 @@ public class Controller implements Initializable {
         cadrePlayerCombobox.setConverter(scConverter1);
     }*/
 
-    /*private void fillCardCombobox() {
-        StringConverter<Card> scConverter1 = new StringConverter<Card>() {
-
-            @Override
-            public String toString(Card cards) {
-                return cards.getCardType();
-            }
-
-            @Override
-            public Card fromString(String string) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-        };
-        cardCombobox.setConverter(scConverter1);
-    }*/
-
     private void refreshHallComboboxInClub() {
         List<Hall> allHalls = new HallRepository().findAll();
         ObservableList<Hall> halls = FXCollections.observableArrayList(allHalls);
@@ -473,19 +485,13 @@ public class Controller implements Initializable {
     private void refreshPlayerCombobox() {
         List<Player> allPlayers = new PlayerRepository().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
-        playerCombobox.setItems(players);
+        //playerCombobox.setItems(players);
     }
 
     /*private void refreshCadrePlayerCombobox() {
         List<Player> allPlayers = new PlayerRepository().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
         cadrePlayerCombobox.setItems(players);
-    }*/
-
-    /*private void refreshCardCombobox() {
-        List<Card> allCards = new CardRepository().findAll();
-        ObservableList<Card> cards = FXCollections.observableArrayList(allCards);
-        cardCombobox.setItems(cards);
     }*/
 
     private void setDataInLeagueTable() {
@@ -542,7 +548,6 @@ public class Controller implements Initializable {
         playerSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
         playerAgeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getAge()));
         playerHeightColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getHeight()));
-        //playerCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCardId().getId()));
         playerScoredPointsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getScoredPoints()));
         editPlayerButton.setDisable(true);
     }
@@ -914,6 +919,7 @@ public class Controller implements Initializable {
         new PlayerRepository().insertBasic(player);
         refreshPlayerTable();
         refreshPlayerCombobox();
+        fillPlayerCombobox();
         clearPlayerFields();
     }
 
@@ -950,41 +956,27 @@ public class Controller implements Initializable {
     }
 
     public void addCardToPlayer(ActionEvent actionEvent) {
-        Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
-        Card card = new Card(cardCombobox.getSelectionModel().getSelectedItem(), playerFromCombobox);
-        /*new CardRepository().insert(card);
-        playerCombobox.getSelectionModel().clearSelection();
-        cardCombobox.getSelectionModel().clearSelection();
-        refreshCardTable();*/
-
-        try {Connection dbConnection = DbConnector.getDBConnection();
-             /*PreparedStatement preparedStatement = dbConnection.prepareStatement("select ADDSUSPENSION(" + playerFromCombobox.getId() + ", '" + card.getCardType() + "')from dual")) {
-            preparedStatement.execute();*/
-            /*ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-            int res = rs.getInt(1);
-            labelPlayer.setText("Średnia wzrostu zawodników klubu: " + club.getClubName() + " wynosi: " + String.valueOf(String.valueOf(res)));
-            playerClubCombobox2.getSelectionModel().clearSelection();
-            labelVisibility(labelPlayer);*/
-
+        try {
+            Connection dbConnection = DbConnector.getDBConnection();
             CallableStatement cst;
-            cst=dbConnection.prepareCall("{call ADDSUSPENSION(" + playerFromCombobox.getId() + ", '" + card.getCardType() + "')}");
+            cst = dbConnection.prepareCall("{call ADDSUSPENSION(" + playerCombobox.getSelectionModel().getSelectedItem().substring(0, 3) + ", '" + cardCombobox.getSelectionModel().getSelectedItem() + "')}");
             cst.execute();
             playerCombobox.getSelectionModel().clearSelection();
             cardCombobox.getSelectionModel().clearSelection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        refreshCardTable();
     }
 
-    public void addMatch(ActionEvent actionEvent) {
-    }
-
-    public void deleteMatch(ActionEvent actionEvent) {
-    }
-
-    public void editMatch(ActionEvent actionEvent) {
-    }
+    /*public void oldAddCardToPlayer(ActionEvent actionEvent){
+        Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
+        Card card = new Card(cardCombobox.getSelectionModel().getSelectedItem(), playerFromCombobox);
+        new CardRepository().insert(card);
+        playerCombobox.getSelectionModel().clearSelection();
+        cardCombobox.getSelectionModel().clearSelection();
+        refreshCardTable();
+    }*/
 
     public void addCadre(ActionEvent actionEvent) {
 
@@ -1006,15 +998,6 @@ public class Controller implements Initializable {
         tfPlayerHeight.clear();
         tfPlayerScoredPoints.clear();
         playerClubCombobox.getSelectionModel().clearSelection();
-    }
-
-    public void deleteSuspensionDate(ActionEvent actionEvent) {
-    }
-
-    public void addSuspensionDate(ActionEvent actionEvent) {
-    }
-
-    public void editSuspensionDate(ActionEvent actionEvent) {
     }
 
     private void refreshHallTable() {
