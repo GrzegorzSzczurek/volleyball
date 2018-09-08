@@ -166,15 +166,6 @@ public class Controller implements Initializable {
     private ComboBox<String> cardCombobox;
     @FXML
     private TableColumn<Card, String> cardsColumn;
-
-    @FXML
-    private TableColumn<Match, Integer> hostColumn;
-    @FXML
-    private TableColumn<Match, Integer> guestColumn;
-    @FXML
-    private TableColumn<Match, Integer> frequencyColumn;
-    @FXML
-    private TableColumn<Match, Integer> fixtureColumn;
     @FXML
     private TableColumn<Match, Integer> hostColumn1;
     @FXML
@@ -195,6 +186,8 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Team, Integer> playerIdColumn;
     @FXML
+    private TableColumn<Team, Integer> cadrePlayerClub;
+    @FXML
     private ComboBox<Cadre> hostCadreCombobox;
     @FXML
     private ComboBox<Cadre> guestCadreCombobox;
@@ -209,8 +202,6 @@ public class Controller implements Initializable {
     private ComboBox<Club> cadreClubCombobox;
     @FXML
     private ComboBox<Player> cadrePlayerCombobox;
-    @FXML
-    private TableView<Match> matchTable;
     @FXML
     private TableView<Match> matchTable1;
     @FXML
@@ -283,7 +274,7 @@ public class Controller implements Initializable {
 
         setDataInMatchesTables();
         refreshCadrePlayerTable();
-        refreshMatchTable();
+        //refreshMatchTable();
         refreshCadreTable();
 
         fillHostCadreCombobox();
@@ -593,17 +584,18 @@ public class Controller implements Initializable {
 
     private void setDataInMatchesTables() {
 
-        hostColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getClubId().getClubName())));
+        /*hostColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getClubId().getClubName())));
         guestColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getClubId().getClubName())));
         frequencyColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFrequency())));
         fixtureColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFixture())));
-
+*/
         cadreIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
         matchIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getMatchId().getId())));
         clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getClubId().getClubName())));
 
         cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().getCadreId())));
         playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getPlayerId().getSurname())));
+        cadrePlayerClub.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().getClubId().getClubName())));
     }
 
     private void setDataInMatchTable() {
@@ -1080,12 +1072,8 @@ public class Controller implements Initializable {
         new CadreRepository().insertWithoutMatch(cadre);
         cadreClubCombobox.getSelectionModel().clearSelection();
         refreshCadreCombobox();
-    }
-
-    public void deleteCadre(ActionEvent actionEvent) {
-    }
-
-    public void editCadre(ActionEvent actionEvent) {
+        refreshHostCadreCombobox();
+        refreshGuestCadreCombobox();
     }
 
     private void clearPlayerFields() {
@@ -1101,12 +1089,6 @@ public class Controller implements Initializable {
         List<Hall> halls = new HallRepository().findAll();
         ObservableList<Hall> hall = FXCollections.observableArrayList(halls);
         hallTable.setItems(hall);
-    }
-
-    private void refreshMatchTable() {
-        List<Match> matches = new MatchRepository().findAll();
-        ObservableList<Match> match = FXCollections.observableArrayList(matches);
-        matchTable.setItems(match);
     }
 
     private void refreshMatchTable1() {
@@ -1183,12 +1165,8 @@ public class Controller implements Initializable {
     public void addMatch(ActionEvent actionEvent) {
         Cadre hostCadre = hostCadreCombobox.getSelectionModel().getSelectedItem();
         Cadre guestCadre = guestCadreCombobox.getSelectionModel().getSelectedItem();
-        Integer frequency = Integer.parseInt(tfFrequency.getText());
-        Integer fixture = Integer.parseInt(tfFixture.getText());
-        /*
-        Match match = new Match(hostCadre, guestCadre, frequency, fixture);
-        new MatchRepository().insert(match);
-        clearMatchFields();*/
+        int frequency = Integer.parseInt(tfFrequency.getText());
+        int fixture = Integer.parseInt(tfFixture.getText());
 
         try {
             Connection dbConnection = DbConnector.getDBConnection();
@@ -1200,9 +1178,10 @@ public class Controller implements Initializable {
             throw new RuntimeException(e);
         }
         clearMatchFields();
+        refreshMatchTable1();
     }
 
-    public void clearMatchFields() {
+    private void clearMatchFields() {
         tfFrequency.clear();
         hostCadreCombobox.getSelectionModel().clearSelection();
         tfFixture.clear();

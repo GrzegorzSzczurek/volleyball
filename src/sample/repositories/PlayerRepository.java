@@ -2,10 +2,8 @@ package sample.repositories;
 
 import sample.dbConnector.DbConnector;
 import sample.interfaces.PlayerRepo;
-import sample.model.Card;
 import sample.model.Club;
 import sample.model.Player;
-import sample.model.Suspension;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

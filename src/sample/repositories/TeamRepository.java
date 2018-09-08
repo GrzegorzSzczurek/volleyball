@@ -3,7 +3,6 @@ package sample.repositories;
 import sample.dbConnector.DbConnector;
 import sample.interfaces.TeamRepo;
 import sample.model.Cadre;
-import sample.model.Match;
 import sample.model.Player;
 import sample.model.Team;
 
