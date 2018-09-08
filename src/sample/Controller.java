@@ -492,23 +492,6 @@ public class Controller implements Initializable {
         }
     }
 
-    /*private void oldFillingPlayerCombobox(){
-        StringConverter<Player> scConverter1 = new StringConverter<Player>() {
-
-            @Override
-            public String toString(Player players) {
-                return players.getName() + " " + players.getSurname();
-            }
-
-            @Override
-            public Player fromString(String string) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-        };
-        playerCombobox.setConverter(scConverter1);
-    }*/
-
     private void fillHostCadreCombobox() {
         StringConverter<Cadre> scConverter1 = new StringConverter<Cadre>() {
 
@@ -555,12 +538,6 @@ public class Controller implements Initializable {
         leagueComboboxInClub.setItems(leagues);
     }
 
-    private void refreshPlayerCombobox() {
-        List<Player> allPlayers = new PlayerRepository().findAll();
-        ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
-        //playerCombobox.setItems(players);
-    }
-
     private void refreshCadrePlayerCombobox() {
         List<Player> allPlayers = new PlayerRepository().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
@@ -583,12 +560,6 @@ public class Controller implements Initializable {
     }
 
     private void setDataInMatchesTables() {
-
-        /*hostColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getClubId().getClubName())));
-        guestColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getClubId().getClubName())));
-        frequencyColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFrequency())));
-        fixtureColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFixture())));
-*/
         cadreIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
         matchIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getMatchId().getId())));
         clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getClubId().getClubName())));
@@ -1004,7 +975,6 @@ public class Controller implements Initializable {
         Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
         new PlayerRepository().insertBasic(player);
         refreshPlayerTable();
-        refreshPlayerCombobox();
         fillPlayerCombobox();
         clearPlayerFields();
     }
@@ -1018,7 +988,7 @@ public class Controller implements Initializable {
                 System.err.println("Can't delete player!");
             }
             refreshPlayerTable();
-            refreshPlayerCombobox();
+            fillPlayerCombobox();
             clearPlayerFields();
         }
     }
@@ -1036,7 +1006,7 @@ public class Controller implements Initializable {
             new PlayerRepository().updateBasic(updatedPlayer);
             refreshPlayerTable();
             clearPlayerFields();
-            refreshPlayerCombobox();
+            fillPlayerCombobox();
             editPlayerButton.setDisable(true);
         }
     }
@@ -1055,15 +1025,6 @@ public class Controller implements Initializable {
         refreshCardTable();
         refreshSuspensionTable();
     }
-
-    /*public void oldAddCardToPlayer(ActionEvent actionEvent){
-        Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
-        Card card = new Card(cardCombobox.getSelectionModel().getSelectedItem(), playerFromCombobox);
-        new CardRepository().insert(card);
-        playerCombobox.getSelectionModel().clearSelection();
-        cardCombobox.getSelectionModel().clearSelection();
-        refreshCardTable();
-    }*/
 
     public void addCadre(ActionEvent actionEvent) {
 
@@ -1154,6 +1115,7 @@ public class Controller implements Initializable {
         new TeamRepository().insert(team);
         cadreCombobox.getSelectionModel().clearSelection();
         cadrePlayerCombobox.getSelectionModel().clearSelection();
+        refreshCadrePlayerTable();
     }
 
     public void deleteCard(ActionEvent actionEvent) {
