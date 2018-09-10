@@ -165,10 +165,11 @@
                            </font></Text>
                         <ComboBox fx:id="playerCombobox" layoutX="540.0" layoutY="73.0" prefHeight="25.0" prefWidth="160.0" promptText="Zawodnik" />
                         <ComboBox fx:id="cardCombobox" layoutX="540.0" layoutY="118.0" prefHeight="25.0" prefWidth="160.0" promptText="Kartka" />
-                        <TableView fx:id="cardTable" layoutX="526.0" layoutY="192.0" prefHeight="98.0" prefWidth="224.0">
+                        <TableView fx:id="cardTable" layoutX="526.0" layoutY="192.0" prefHeight="98.0" prefWidth="296.0">
                           <columns>
                             <TableColumn fx:id="cardsColumn" prefWidth="110.0" text="Kartka" />
-                              <TableColumn fx:id="playerIdInCardsColumn" prefWidth="113.0" text="Zawodnik" />
+                              <TableColumn fx:id="playerIdInCardsColumn" prefWidth="95.0" text="Imię zawodnika" />
+                              <TableColumn fx:id="playerSurnameInCardsColumm" prefWidth="90.0" text="Nazwisko" />
                           </columns>
                         </TableView>
                         <Text layoutX="539.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przydzielanie kartek zawodnikom" />

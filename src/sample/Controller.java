@@ -148,6 +148,8 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Card, Integer> playerIdInCardsColumn;
     @FXML
+    private TableColumn<Card, String> playerSurnameInCardsColumm;
+    @FXML
     private TableColumn<Player, Integer> playerScoredPointsColumn;
     @FXML
     private ComboBox<Club> playerClubCombobox2;
@@ -274,7 +276,6 @@ public class Controller implements Initializable {
 
         setDataInMatchesTables();
         refreshCadrePlayerTable();
-        //refreshMatchTable();
         refreshCadreTable();
 
         fillHostCadreCombobox();
@@ -580,6 +581,7 @@ public class Controller implements Initializable {
     private void setDataInCardTable() {
         cardsColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCardType()));
         playerIdInCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty((param.getValue().getPlayer().getName())));
+        playerSurnameInCardsColumm.setCellValueFactory(param -> new SimpleObjectProperty((param.getValue().getPlayer().getSurname())));
         editLeagueButton.setDisable(true);
     }
 
