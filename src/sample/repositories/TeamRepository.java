@@ -3,7 +3,6 @@ package sample.repositories;
 import sample.dbConnector.DbConnector;
 import sample.interfaces.TeamRepo;
 import sample.model.Cadre;
-import sample.model.Match;
 import sample.model.Player;
 import sample.model.Team;
 
@@ -44,7 +43,18 @@ public class TeamRepository implements TeamRepo {
 
     @Override
     public Team insert(Team team) {
-        return null;
+        String insertTableSQL = "INSERT INTO ZAWODNIK_KADRA"
+                + "(KADRA_ID, ZAWODNIK_ID) VALUES"
+                + "(?, ?)";
+        try (Connection dbConnection = DbConnector.getDBConnection();
+             PreparedStatement preparedStatement = dbConnection.prepareStatement(insertTableSQL)) {
+            preparedStatement.setInt(1, team.getCadreId().getCadreId());
+            preparedStatement.setInt(2, team.getPlayerId().getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return team;
     }
 
     @Override

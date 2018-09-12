@@ -5,7 +5,6 @@ import sample.interfaces.CadreRepo;
 import sample.model.Cadre;
 import sample.model.Club;
 import sample.model.Match;
-import sample.model.Player;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,11 +50,7 @@ public class CadreRepository implements CadreRepo {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("KADRA_ID");
-                //int matchId = rs.getInt("MECZ_ID");
                 int clubId = rs.getInt("KLUB_ID");
-
-                /*MatchRepository matchRepository = new MatchRepository();
-                Match matchById = matchRepository.findById(matchId);*/
 
                 ClubRepository clubRepository = new ClubRepository();
                 Club clubById = clubRepository.findById(clubId);

@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
+import oracle.jdbc.OracleTypes;
 import sample.dbConnector.DbConnector;
 import sample.model.*;
 import sample.repositories.*;
@@ -74,8 +75,6 @@ public class Controller implements Initializable {
     private TextField tfLeagueName;
     @FXML
     private TextField tfLeagueNumberOfTeams;
-    @FXML
-    private TextField tfLeagueNumberOfMatches;
     @FXML
     private TextField tfLeagueLevel;
     @FXML
@@ -149,6 +148,8 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Card, Integer> playerIdInCardsColumn;
     @FXML
+    private TableColumn<Card, String> playerSurnameInCardsColumm;
+    @FXML
     private TableColumn<Player, Integer> playerScoredPointsColumn;
     @FXML
     private ComboBox<Club> playerClubCombobox2;
@@ -162,24 +163,19 @@ public class Controller implements Initializable {
     @FXML
     private TableView<Card> cardTable;
     @FXML
-    private TextField tfCard;
-    @FXML
-    private ComboBox<Player> playerCombobox;
+    private ComboBox<String> playerCombobox;
     @FXML
     private ComboBox<String> cardCombobox;
     @FXML
     private TableColumn<Card, String> cardsColumn;
     @FXML
-    private Button editCardButton;
-
+    private TableColumn<Match, Integer> hostColumn1;
     @FXML
-    private TableColumn<Match, Integer> hostColumn;
+    private TableColumn<Match, Integer> guestColumn1;
     @FXML
-    private TableColumn<Match, Integer> guestColumn;
+    private TableColumn<Match, Integer> frequencyColumn1;
     @FXML
-    private TableColumn<Match, Integer> frequencyColumn;
-    @FXML
-    private TableColumn<Match, Integer> fixtureColumn;
+    private TableColumn<Match, Integer> fixtureColumn1;
 
     @FXML
     private TableColumn<Cadre, Integer> cadreIdColumn;
@@ -192,11 +188,11 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Team, Integer> playerIdColumn;
     @FXML
-    private ComboBox<Player> hostCadreCombobox;
+    private TableColumn<Team, Integer> cadrePlayerClub;
     @FXML
-    private ComboBox<Card> guestCadreCombobox;
+    private ComboBox<Cadre> hostCadreCombobox;
     @FXML
-    private ComboBox<Card> pointsCombobox;
+    private ComboBox<Cadre> guestCadreCombobox;
     @FXML
     private ComboBox<Cadre> cadreCombobox;
     @FXML
@@ -209,11 +205,20 @@ public class Controller implements Initializable {
     @FXML
     private ComboBox<Player> cadrePlayerCombobox;
     @FXML
-    private ComboBox<Match> matchCombobox;
-    @FXML
-    private TableView<Match> matchTable;
+    private TableView<Match> matchTable1;
     @FXML
     private TableView<Cadre> cadreTable;
+
+    @FXML
+    private TableView<Suspension> suspensionTable;
+    @FXML
+    private TableColumn<Suspension, String> suspensionPlayerNameColumn;
+    @FXML
+    private TableColumn<Suspension, String> suspensionPlayerSurnameColumn;
+    @FXML
+    private TableColumn<Suspension, Date> suspensionStartDate;
+    @FXML
+    private TableColumn<Suspension, Date> suspensionEndDate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -253,23 +258,33 @@ public class Controller implements Initializable {
         setDataInCardTable();
         mouseHandlerOnCardTable();
         fillPlayerCombobox();
-        refreshPlayerCombobox();
         refreshCardTable();
 
-        /*fillCardCombobox();
-        refreshCardCombobox();*/
+        setDataInSuspensionTable();
+        refreshSuspensionTable();
 
         cardCombobox.getItems().addAll(
                 "Żółta",
                 "Czerwona");
 
         fillCadreClubCombobox();
+        fillCadreCombobox();
+        refreshCadreCombobox();
         refreshCadreClubCombobox();
-        //refreshCadrePlayerCombobox();
+        fillCadrePlayerCombobox();
+        refreshCadrePlayerCombobox();
+
         setDataInMatchesTables();
         refreshCadrePlayerTable();
-        refreshMatchTable();
         refreshCadreTable();
+
+        fillHostCadreCombobox();
+        fillGuestCadreCombobox();
+        refreshHostCadreCombobox();
+        refreshGuestCadreCombobox();
+        setDataInMatchTable();
+        refreshMatchTable1();
+
     }
 
     private void refreshPlayerClubCombobox() {
@@ -288,6 +303,18 @@ public class Controller implements Initializable {
         List<Club> allClubs = new ClubRepository().findAll();
         ObservableList<Club> clubs = FXCollections.observableArrayList(allClubs);
         cadreClubCombobox.setItems(clubs);
+    }
+
+    private void refreshHostCadreCombobox() {
+        List<Cadre> allCadres = new CadreRepository().findAll();
+        ObservableList<Cadre> cadres = FXCollections.observableArrayList(allCadres);
+        hostCadreCombobox.setItems(cadres);
+    }
+
+    private void refreshGuestCadreCombobox() {
+        List<Cadre> allCadres = new CadreRepository().findAll();
+        ObservableList<Cadre> cadres = FXCollections.observableArrayList(allCadres);
+        guestCadreCombobox.setItems(cadres);
     }
 
     private void fillPlayerClubCombobox() {
@@ -329,7 +356,7 @@ public class Controller implements Initializable {
 
             @Override
             public String toString(Club club) {
-                return club.getClubName() + " " + club.getCountry();
+                return club.getId() + " " + club.getClubName() + " " + club.getCountry();
             }
 
             @Override
@@ -341,6 +368,40 @@ public class Controller implements Initializable {
         cadreClubCombobox.setConverter(scConverter);
     }
 
+    private void fillCadreCombobox() {
+        StringConverter<Cadre> scConverter = new StringConverter<Cadre>() {
+
+            @Override
+            public String toString(Cadre cadre) {
+                return cadre.getCadreId() + " " + cadre.getClubId().getClubName();
+            }
+
+            @Override
+            public Cadre fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        cadreCombobox.setConverter(scConverter);
+    }
+
+    private void fillCadrePlayerCombobox() {
+        StringConverter<Player> scConverter = new StringConverter<Player>() {
+
+            @Override
+            public String toString(Player player) {
+                return player.getSurname() + " " + player.getClubId().getClubName();
+            }
+
+            @Override
+            public Player fromString(String string) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        };
+        cadrePlayerCombobox.setConverter(scConverter);
+    }
+
     private void setDataInClubTable() {
         clubNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getClubName()));
         clubHallColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getHallId().getHallName()));
@@ -348,6 +409,13 @@ public class Controller implements Initializable {
         clubLeagueColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getLeagueId().getLeagueName()));
         clubCoachColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCoachId().getName()));
         editClubButton.setDisable(true);
+    }
+
+    private void setDataInSuspensionTable() {
+        suspensionPlayerNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getPlayerId().getName()));
+        suspensionPlayerSurnameColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getPlayerId().getSurname()));
+        suspensionStartDate.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getStart()));
+        suspensionEndDate.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getEnd()));
     }
 
     private void refreshCoachCombobox() {
@@ -408,55 +476,56 @@ public class Controller implements Initializable {
     }
 
     private void fillPlayerCombobox() {
-        StringConverter<Player> scConverter1 = new StringConverter<Player>() {
+        try {
+            Connection dbConnection = DbConnector.getDBConnection();
+            CallableStatement cst;
+            cst = dbConnection.prepareCall("{?=call PLAYER_COMBOBOX()}");
+            cst.registerOutParameter(1, OracleTypes.CURSOR);
+            cst.execute();
 
-            @Override
-            public String toString(Player players) {
-                return players.getName() + " " + players.getSurname();
+            ResultSet result = (ResultSet) cst.getObject(1);
+            while (result.next()) {
+                playerCombobox.getItems().addAll(result.getString(1) + " " + result.getString(2) + " " + result.getString(3));
             }
 
-            @Override
-            public Player fromString(String string) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-        };
-        playerCombobox.setConverter(scConverter1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    /*private void fillCadrePlayerCombobox() {
-        StringConverter<Player> scConverter1 = new StringConverter<Player>() {
+    private void fillHostCadreCombobox() {
+        StringConverter<Cadre> scConverter1 = new StringConverter<Cadre>() {
 
             @Override
-            public String toString(Player players) {
-                return players.getName() + " " + players.getSurname();
+            public String toString(Cadre cadre) {
+                return cadre.getCadreId() + " " + cadre.getClubId().getClubName();
             }
 
             @Override
-            public Player fromString(String string) {
+            public Cadre fromString(String string) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
         };
-        cadrePlayerCombobox.setConverter(scConverter1);
-    }*/
+        hostCadreCombobox.setConverter(scConverter1);
+    }
 
-    /*private void fillCardCombobox() {
-        StringConverter<Card> scConverter1 = new StringConverter<Card>() {
+    private void fillGuestCadreCombobox() {
+        StringConverter<Cadre> scConverter1 = new StringConverter<Cadre>() {
 
             @Override
-            public String toString(Card cards) {
-                return cards.getCardType();
+            public String toString(Cadre cadre) {
+                return cadre.getCadreId() + " " + cadre.getClubId().getClubName();
             }
 
             @Override
-            public Card fromString(String string) {
+            public Cadre fromString(String string) {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
         };
-        cardCombobox.setConverter(scConverter1);
-    }*/
+        guestCadreCombobox.setConverter(scConverter1);
+    }
 
     private void refreshHallComboboxInClub() {
         List<Hall> allHalls = new HallRepository().findAll();
@@ -470,23 +539,17 @@ public class Controller implements Initializable {
         leagueComboboxInClub.setItems(leagues);
     }
 
-    private void refreshPlayerCombobox() {
-        List<Player> allPlayers = new PlayerRepository().findAll();
-        ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
-        playerCombobox.setItems(players);
-    }
-
-    /*private void refreshCadrePlayerCombobox() {
+    private void refreshCadrePlayerCombobox() {
         List<Player> allPlayers = new PlayerRepository().findAll();
         ObservableList<Player> players = FXCollections.observableArrayList(allPlayers);
         cadrePlayerCombobox.setItems(players);
-    }*/
+    }
 
-    /*private void refreshCardCombobox() {
-        List<Card> allCards = new CardRepository().findAll();
-        ObservableList<Card> cards = FXCollections.observableArrayList(allCards);
-        cardCombobox.setItems(cards);
-    }*/
+    private void refreshCadreCombobox() {
+        List<Cadre> allCadres = new CadreRepository().findAll();
+        ObservableList<Cadre> cadre = FXCollections.observableArrayList(allCadres);
+        cadreCombobox.setItems(cadre);
+    }
 
     private void setDataInLeagueTable() {
         leagueNameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLeagueName()));
@@ -498,23 +561,27 @@ public class Controller implements Initializable {
     }
 
     private void setDataInMatchesTables() {
-
-        hostColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getClubId().getClubName())));
-        guestColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getClubId().getClubName())));
-        frequencyColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFrequency())));
-        fixtureColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFixture())));
-
         cadreIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId())));
         matchIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getMatchId().getId())));
         clubIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getClubId().getClubName())));
 
         cadreIdInCadreColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().getCadreId())));
         playerIdColumn.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getPlayerId().getSurname())));
+        cadrePlayerClub.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getCadreId().getClubId().getClubName())));
+    }
+
+    private void setDataInMatchTable() {
+        hostColumn1.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getHostCadre().getClubId().getClubName())));
+        guestColumn1.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getGuestCadre().getClubId().getClubName())));
+        frequencyColumn1.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFrequency())));
+        fixtureColumn1.setCellValueFactory(param -> new SimpleObjectProperty(String.valueOf(param.getValue().getFixture())));
+
     }
 
     private void setDataInCardTable() {
         cardsColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getCardType()));
         playerIdInCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty((param.getValue().getPlayer().getName())));
+        playerSurnameInCardsColumm.setCellValueFactory(param -> new SimpleObjectProperty((param.getValue().getPlayer().getSurname())));
         editLeagueButton.setDisable(true);
     }
 
@@ -542,7 +609,6 @@ public class Controller implements Initializable {
         playerSurnameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getSurname()));
         playerAgeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getAge()));
         playerHeightColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getHeight()));
-        //playerCardsColumn.setCellValueFactory(param -> new SimpleObjectProperty(param.getValue().getCardId().getId()));
         playerScoredPointsColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getScoredPoints()));
         editPlayerButton.setDisable(true);
     }
@@ -591,12 +657,10 @@ public class Controller implements Initializable {
     private void mouseHandlerOnLeagueTable() {
         leagueTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             League league = leagueTable.getSelectionModel().getSelectedItem();
+            String numberOfTeams = String.valueOf(league.getNumberOfClubs());
             if (league != null) {
-                String numberOfMatches = String.valueOf(league.getNumberOfMatches());
-                String numberOfTeams = String.valueOf(league.getNumberOfClubs());
                 String year = String.valueOf(league.getYear());
                 tfLeagueName.setText(league.getLeagueName());
-                tfLeagueNumberOfMatches.setText(numberOfMatches);
                 tfLeagueLevel.setText(league.getLeagueLevel());
                 tfLeagueNumberOfTeams.setText(numberOfTeams);
                 tfLeagueYear.setText(year);
@@ -626,8 +690,6 @@ public class Controller implements Initializable {
         cardTable.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Card card = cardTable.getSelectionModel().getSelectedItem();
             if (card != null) {
-                tfCard.setText(card.getCardType());
-                editCardButton.setDisable(false);
             }
         });
     }
@@ -730,7 +792,7 @@ public class Controller implements Initializable {
             try {
                 new LeagueRepository().removeById(league.getId());
             } catch (RuntimeException e) {
-                System.err.println("Can't delete coach!");
+                System.err.println("Can't delete league!");
             }
             refreshLeagueTable();
             clearLeagueFields();
@@ -753,10 +815,9 @@ public class Controller implements Initializable {
     public void editLeague(ActionEvent actionEvent) {
         League league = leagueTable.getSelectionModel().getSelectedItem();
         if (league != null) {
-            Integer numberOfMatches = Integer.parseInt(tfLeagueNumberOfMatches.getText());
             Integer numberOfTeams = Integer.parseInt(tfLeagueNumberOfTeams.getText());
             Integer year = Integer.parseInt(tfLeagueYear.getText());
-            League updatedLeague = new League(league.getId(), tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, numberOfMatches, year);
+            League updatedLeague = new League(league.getId(), tfLeagueName.getText(), tfLeagueLevel.getText(), numberOfTeams, year);
             new LeagueRepository().update(updatedLeague);
             refreshLeagueTable();
             clearLeagueFields();
@@ -769,7 +830,6 @@ public class Controller implements Initializable {
     private void clearLeagueFields() {
         tfLeagueYear.clear();
         tfLeagueNumberOfTeams.clear();
-        tfLeagueNumberOfMatches.clear();
         tfLeagueName.clear();
         tfLeagueLevel.clear();
     }
@@ -894,19 +954,19 @@ public class Controller implements Initializable {
         }
     }
 
-    private void labelVisibility(Label label){
-            PauseTransition visiblePause = new PauseTransition(
-                    Duration.seconds(3)
-            );
-            visiblePause.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    labelPlayer.setVisible(false);
-                }
-            });
-            visiblePause.play();
-            label.setVisible(true);
-        }
+    private void labelVisibility(Label label) {
+        PauseTransition visiblePause = new PauseTransition(
+                Duration.seconds(3)
+        );
+        visiblePause.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                labelPlayer.setVisible(false);
+            }
+        });
+        visiblePause.play();
+        label.setVisible(true);
+    }
 
     public void addPlayer(ActionEvent actionEvent) {
         Club club = playerClubCombobox.getSelectionModel().getSelectedItem();
@@ -917,7 +977,7 @@ public class Controller implements Initializable {
         Player player = new Player(club, tfPlayerName.getText(), tfPlayerSurname.getText(), playerAge, playerHeight, scoredPoints);
         new PlayerRepository().insertBasic(player);
         refreshPlayerTable();
-        refreshPlayerCombobox();
+        fillPlayerCombobox();
         clearPlayerFields();
     }
 
@@ -930,7 +990,7 @@ public class Controller implements Initializable {
                 System.err.println("Can't delete player!");
             }
             refreshPlayerTable();
-            refreshPlayerCombobox();
+            fillPlayerCombobox();
             clearPlayerFields();
         }
     }
@@ -948,26 +1008,24 @@ public class Controller implements Initializable {
             new PlayerRepository().updateBasic(updatedPlayer);
             refreshPlayerTable();
             clearPlayerFields();
-            refreshPlayerCombobox();
+            fillPlayerCombobox();
             editPlayerButton.setDisable(true);
         }
     }
 
     public void addCardToPlayer(ActionEvent actionEvent) {
-        Player playerFromCombobox = playerCombobox.getSelectionModel().getSelectedItem();
-        Card card = new Card(cardCombobox.getSelectionModel().getSelectedItem(), playerFromCombobox);
-        new CardRepository().insert(card);
-        playerCombobox.getSelectionModel().clearSelection();
-        cardCombobox.getSelectionModel().clearSelection();
-    }
-
-    public void addMatch(ActionEvent actionEvent) {
-    }
-
-    public void deleteMatch(ActionEvent actionEvent) {
-    }
-
-    public void editMatch(ActionEvent actionEvent) {
+        try {
+            Connection dbConnection = DbConnector.getDBConnection();
+            CallableStatement cst;
+            cst = dbConnection.prepareCall("{call ADDSUSPENSION(" + playerCombobox.getSelectionModel().getSelectedItem().substring(0, 3) + ", '" + cardCombobox.getSelectionModel().getSelectedItem() + "')}");
+            cst.execute();
+            playerCombobox.getSelectionModel().clearSelection();
+            cardCombobox.getSelectionModel().clearSelection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        refreshCardTable();
+        refreshSuspensionTable();
     }
 
     public void addCadre(ActionEvent actionEvent) {
@@ -975,12 +1033,10 @@ public class Controller implements Initializable {
         Club club = cadreClubCombobox.getSelectionModel().getSelectedItem();
         Cadre cadre = new Cadre(club);
         new CadreRepository().insertWithoutMatch(cadre);
-    }
-
-    public void deleteCadre(ActionEvent actionEvent) {
-    }
-
-    public void editCadre(ActionEvent actionEvent) {
+        cadreClubCombobox.getSelectionModel().clearSelection();
+        refreshCadreCombobox();
+        refreshHostCadreCombobox();
+        refreshGuestCadreCombobox();
     }
 
     private void clearPlayerFields() {
@@ -992,25 +1048,16 @@ public class Controller implements Initializable {
         playerClubCombobox.getSelectionModel().clearSelection();
     }
 
-    public void deleteSuspensionDate(ActionEvent actionEvent) {
-    }
-
-    public void addSuspensionDate(ActionEvent actionEvent) {
-    }
-
-    public void editSuspensionDate(ActionEvent actionEvent) {
-    }
-
     private void refreshHallTable() {
         List<Hall> halls = new HallRepository().findAll();
         ObservableList<Hall> hall = FXCollections.observableArrayList(halls);
         hallTable.setItems(hall);
     }
 
-    private void refreshMatchTable() {
+    private void refreshMatchTable1() {
         List<Match> matches = new MatchRepository().findAll();
         ObservableList<Match> match = FXCollections.observableArrayList(matches);
-        matchTable.setItems(match);
+        matchTable1.setItems(match);
     }
 
     private void refreshPlayerTable() {
@@ -1056,6 +1103,52 @@ public class Controller implements Initializable {
         cardTable.setItems(card);
     }
 
+    private void refreshSuspensionTable() {
+        List<Suspension> suspensions = new SuspensionRepository().findAll();
+        ObservableList<Suspension> suspension = FXCollections.observableArrayList(suspensions);
+        suspensionTable.setItems(suspension);
+    }
+
     public void addPlayerToCadre(ActionEvent actionEvent) {
+        Cadre cadre = cadreCombobox.getSelectionModel().getSelectedItem();
+        Player player = cadrePlayerCombobox.getSelectionModel().getSelectedItem();
+
+        Team team = new Team(cadre, player);
+        new TeamRepository().insert(team);
+        cadreCombobox.getSelectionModel().clearSelection();
+        cadrePlayerCombobox.getSelectionModel().clearSelection();
+        refreshCadrePlayerTable();
+    }
+
+    public void deleteCard(ActionEvent actionEvent) {
+        Card card = cardTable.getSelectionModel().getSelectedItem();
+        new CardRepository().removeById(card.getId());
+        refreshCardTable();
+    }
+
+    public void addMatch(ActionEvent actionEvent) {
+        Cadre hostCadre = hostCadreCombobox.getSelectionModel().getSelectedItem();
+        Cadre guestCadre = guestCadreCombobox.getSelectionModel().getSelectedItem();
+        int frequency = Integer.parseInt(tfFrequency.getText());
+        int fixture = Integer.parseInt(tfFixture.getText());
+
+        try {
+            Connection dbConnection = DbConnector.getDBConnection();
+            CallableStatement cst;
+            cst = dbConnection.prepareCall("{call CORRECTFREQUENCY(" + frequency + ", " + hostCadre.getCadreId() + ", " + guestCadre.getCadreId() + ", " + fixture + ")}");
+            cst.execute();
+            clearMatchFields();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        clearMatchFields();
+        refreshMatchTable1();
+    }
+
+    private void clearMatchFields() {
+        tfFrequency.clear();
+        hostCadreCombobox.getSelectionModel().clearSelection();
+        tfFixture.clear();
+        guestCadreCombobox.getSelectionModel().clearSelection();
     }
 }

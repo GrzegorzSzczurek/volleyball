@@ -9,6 +9,13 @@ public class Suspension {
     private Date end;
     private Player playerId;
 
+    public Suspension(Integer id, Date start, Date end, Player playerId) {
+        this.id = id;
+        this.start = start;
+        this.end = end;
+        this.playerId = playerId;
+    }
+
     public Suspension(Integer id, Date start, Date end) {
         this.id = id;
         this.start = start;
